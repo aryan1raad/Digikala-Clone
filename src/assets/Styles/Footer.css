@@ -1,0 +1,129 @@
+.footerContainer{
+    margin-top: 32px;
+    padding: 32px 0px;
+    border-top: 1px solid#f0f0f1;
+}
+.topCont{
+    padding: 0 20px;
+}
+.logoBazgasht{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.Bazgashan{
+    background-color: #fff;
+    border: 1px solid #e0e0e2;
+    border-radius: 8px;
+    color: #a1a3a8;
+    padding: 8px 16px;
+    font-weight: 700;
+}
+.footerLogoCont{
+    width: 195px;
+    height: 30px;
+}
+.footerLogoCont > img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.poshtibaniCont{
+    display: flex;align-items: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+.poshtibaniCont > div {
+    color: #3f4064;
+    font-size: 14px
+}
+.tahvil{
+    display: flex;
+    justify-content: space-between;
+}
+.tahvil_inner{
+    display: flex;flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+    width: 100%;
+}
+.tahvil_Img_Cont{
+    width: 55px;height: 55px;
+}
+.tahvil_Img_Cont > img{
+    height: 100%;
+    width: 100%;
+}
+.tahvil_text{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.Discript_First_Cont{
+    display: flex;
+    flex-direction: column;
+}
+.discriptionCont{
+    display: flex;
+        border-top: 1px solid #f0f0f1;
+    padding: 32px 0;
+}
+.etemaadCont{
+    display: flex;
+    max-height: fit-content;        
+}
+.etemaad{
+    padding: 16px;
+    margin-right: 16px;
+    height: 100px; width: 100px;
+    border: 1px solid #e0e0e2;
+    border-radius: 8px;
+    display: flex;justify-content: center;align-items: center;
+}
+.etemaad > img{
+    width: 100%;max-height: 75px;object-fit: contain;
+}
+/*استایل های مشترکی که بین باز و بسته است */
+.FooterLongTextCont , .FooterLongTextContClosed{
+    direction:rtl;
+    flex-grow: 1;
+    font-size: 1.2rem;
+    padding-left: 40px;
+
+}
+.FooterLongTextContClosed{
+    max-height: 200px;
+    overflow: hidden;
+    /* برای گردینت ::before */
+    position: relative;
+}
+/*گردینت بسته */
+.FooterLongTextContClosed::before{
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 50%, #fff);;
+    position: absolute;
+    content: '';
+    width: 100%;height: 100%;
+}
+/* به صورت مشترک */
+.FooterLongTextCont> h1 , .FooterLongTextContClosed> h1{
+    font-size: 21px;
+    font-weight: 500;
+    color: #62666d;
+}
+.FooterLongTextCont> p, .FooterLongTextContClosed> p{
+    color: #81858b ;
+    font-size: 12px ;
+    line-height: 2.17 ;
+}
+.FooterLongTextCont> h2, .FooterLongTextContClosed> h2{
+    color:#81858b;
+    font-size: 16px;
+    line-height: 2.17;
+}
+.more{
+    color: #00a2ff;
+    font-weight: 600;
+    direction: rtl;
+    cursor: pointer;
+}

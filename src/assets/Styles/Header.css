@@ -1,0 +1,40 @@
+input:focus{outline: none;}
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    margin-top: 8px;
+}
+.headLeft{
+
+}
+.headRight{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.logo{
+    height: 30px;
+}
+.logo > img{
+    height: 100%;
+}
+.SignUp_BTN{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;align-items: center;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e2;
+    color: #0c0c0c;
+}
+.headRight > input {
+    width: 400px;
+    height: 40px;
+    direction: rtl;
+    color: #81858b;
+    background-color: #f0f0f1;
+    padding-right: 16px;
+    border-radius: 4px;
+    border: none;
+}

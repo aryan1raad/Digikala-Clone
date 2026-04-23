@@ -1,0 +1,40 @@
+.QuickAccess_Cont{
+    width: 100%;
+    max-width: 1336px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.QuickAccess{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+.Quick{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 82px !important;
+}
+.QuickImgCont{
+    width: 52px; height: 52px;
+
+}
+.QuickImgCont > img {
+    height: 100%;
+}
+.Quick > span {
+    padding: 0 16px;
+    font-size: 11px;
+    color: #3f4064;
+    line-height: 2.17;
+    font-weight: 400;
+    margin-top: 4px;
+    text-align: center;
+}
+.dot{
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background-color: white;
+}

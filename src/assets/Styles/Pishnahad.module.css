@@ -1,0 +1,84 @@
+.Pishnahad{
+    position: relative;
+    width: 100%;
+    max-width: 1336px;
+    border-radius: 16px;
+    padding: 20px 0;
+    background: linear-gradient(225deg , #d22c4e , #ee384e , #ef5662);
+    overflow: hidden;
+}
+.right{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    padding: 0 16px;
+    position: absolute;
+    right: 5px;
+    top: 44px;
+}
+.left{
+    position: relative;
+    right: 200px;
+    padding-left: 100px;
+    margin-left: 150px;
+    overflow: hidden;
+}
+.card{
+    width: 180px;
+    min-width: 180px;
+    max-width: 260px;
+    background-color: white;
+    padding: 5px 15px;
+    flex-shrink: 0;
+}
+.productImgCont > img{
+    width: 100%;
+}
+.productTitle{
+    font-weight: 400;
+    font-size: 1rem;
+    color: #62666d;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis ;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.pricePercent{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.percent{
+    background-color: #d32f2f;
+    color: white;
+    font-weight:700;
+    font-size:12px;
+    padding: 0 8px;
+    border-radius: 50px;
+    display: flex;justify-content: center;align-items: center;
+}
+.price{
+    color: #23254e;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;justify-content: center;align-items:center;
+}
+.prevPrice{
+    font-size: 12px;
+    color: #c0c2c5;
+    line-height: 21px;
+    text-decoration: line-through;
+    width:100%;
+    display: block;
+    text-align: left;
+    padding-left:11px;
+}
+.productTitle, .price, .prevPrice{cursor: pointer;}
+.moshahede{
+    color: white;
+    font-size: 12px;
+}
+.img1cont , .img2cont{display: flex; justify-content: center;align-items: center;}
+.img1cont>img{width: 100%;}
+.img2cont2>img{width: 100%;}

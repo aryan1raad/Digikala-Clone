@@ -1,0 +1,244 @@
+.cont{
+    width:100%;
+    max-width: 1676px;
+}
+.productSelfCont{
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.leftDOWN{
+    overflow-y: auto;
+    direction: rtl;
+    display:grid;
+    grid-template-columns: minmax(300px , auto) minmax(300px , 345px);
+    grid-template-rows: auto 0fr auto 1fr;
+    grid-template-areas:         
+        "variant-info buy-box"
+        "fidibo-audio-preview buy-box"
+        "spec buy-box"
+        "touchPoints buy-box";
+}
+.furushContCard{
+    grid-area: buy-box;
+    height: 100%;
+}
+
+.variant{
+    grid-area: variant-info;
+}
+.properties{
+    grid-area: spec;
+    border-top: 1px solid #e0e0e2;
+}
+.flow{
+    display: flex;
+    color:#81858b;
+    font-weight: 500;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+.productCont{
+    display: flex;
+}
+.leftUP > h1{
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.right{
+    width: 36%;
+    margin-left: 16px;
+}
+.rangCont{
+    display: flex;
+}
+.circle{
+    width: 40px; height: 40px;
+    border-radius: 50%;
+}
+.circleCont{
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex;justify-content: center;align-items: center;
+    border: 1px solid #c2c3c7;
+}
+
+.propertiesGrid{
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(3 , minmax(0 , 1fr));
+    grid-template-rows: repeat(2 , 1fr);
+}
+.downProperty{
+    color: #3f4064;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.alert{
+    color:#81858b;
+}
+.hrWithText {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.hrWithText hr {
+    flex: 1;
+    border: none;
+    height: 1px;
+    background: #e0e0e2;
+}
+
+.hrWithText button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e2;
+    background: white;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.box{
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #f0f0f1;
+}
+.lilCont{
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    direction: rtl;
+    justify-content: space-evenly;
+}
+
+.littleImgCont{
+    height: 82px; width: 82px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e2;
+    display: flex;
+    justify-content: center;align-items: center;
+    padding: 4px;
+}
+.littleImgCont > img{
+    width: 100%;
+}
+.card{
+    background: linear-gradient(0deg, hsla(240, 3%, 94%, .5), hsla(240, 3%, 94%, .5)), #fff;
+    border: 1px solid #e0e0e2;
+    border-radius: 8px
+}
+.furushInner{
+    row-gap: 8px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 180px;
+}
+.furushande{
+    padding : 16px 20px 8px 20px;
+}
+.digi{
+    width: 100%;
+    padding-top:  16px;
+    padding-bottom: 32px;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: row-reverse ;
+    justify-content: flex-end;
+    border-bottom: #e0e0e2 1px solid;
+}
+.price{
+    width: 100%;
+    padding: 0 16px;
+}
+.innerPrice{
+    padding-top:16px;
+}
+.PrevThenNow{
+    display: flex;
+    align-items: center;
+}
+.prevPriceInner{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-right: auto;
+}
+.prevPriceColCont{
+    display: flex;
+    direction: ltr;
+}
+.prevPriceColCont > div{
+    margin-left: 4px;
+    font-weight: 700;
+    text-decoration: line-through;
+    color: #c0c2c5;
+}
+.prevPriceColCont > span {
+    margin-right: 4px;margin-left: 4px;
+    background-color: #d32f2f;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 0 8px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.productImgCont{
+    margin-left: 10px;
+}
+.animator{
+    height: 26px;
+    overflow: hidden;
+    position: relative;
+}
+
+.track{
+    display: flex;
+    flex-direction: column;
+    /*harekat*/
+    animation: slide 5s cubic-bezier(.25, .60, .10, 1) infinite;
+}
+
+.item{
+    height: 26px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #e7133d;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.item img{
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes slide {
+    0%   { transform: translateY(0); }
+    33%  { transform: translateY(-26px); }
+    66%  { transform: translateY(-52px); }
+    100% { transform: translateY(0); }
+}
+.emjCont{
+    height: 18px; width: 18px;
+}
+.emjCont > img {
+    width: 100%;
+}
+.num{
+    font-weight: 700 ;
+}

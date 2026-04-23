@@ -1,0 +1,16 @@
+
+.SliderCont{
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%;
+    max-height: 400px;
+}
+.Slider_IMG_Cont{
+    min-height: 390px;
+}
+.Slider_IMG{
+    height: 100%;
+    width: 100vw;
+    object-fit: cover;
+}

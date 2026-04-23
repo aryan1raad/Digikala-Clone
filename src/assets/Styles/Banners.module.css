@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    max-width: 1336px;
+    gap: 16px;
+}
+.ImgCont{
+    aspect-ratio: 100 / 75;
+}
+.Img{
+    height: 100%; 
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+@media(min-width:1024px){
+    .container{
+        padding-left: 16px;
+        padding-right:16px
+    }
+}
+@media(min-width:1336px){
+    .container{
+        padding-left: 0;
+        padding-right:0
+    }
+}
