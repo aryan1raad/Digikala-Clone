@@ -79,7 +79,7 @@ export const Slider = ({ SliderIMGs }) => {
         e.preventDefault();
         if (sliderRef.current) {
             const x = e.pageX - sliderRef.current.offsetLeft;
-            const walk = (x - startXRef.current) * 2; 
+            const walk = (x - startXRef.current) * 1; 
             sliderRef.current.scrollLeft = scrollLeftRef.current - walk;
         }
     };

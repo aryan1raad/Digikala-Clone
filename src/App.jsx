@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { BrowserRouter as Router, Routes, Route, useParams, Outlet, Navigate } from 'react-router-dom'
 import './App.css'
@@ -8,6 +8,8 @@ import { Landing } from './Pages/Landing';
 import { Product } from './Pages/Product'
 import { Footer } from './Components/Layout/Footer';
 import Login from './Components/Login'
+import SearchedPage from './Components/SearchedPage'
+
 // داده‌های استوری
 const Dadaye1 = {
   img: 'src/assets/StoryDataAssets/Namayangar/Atr.jpg',
@@ -27,7 +29,6 @@ const Dadaye2 = {
   id: 13
 };
 
-// export const ProductContext = createContext();
 const formatWithComma = (num) => {
   return new Intl.NumberFormat().format(num);
 }
@@ -42,7 +43,7 @@ const items = [
     id: 1, colors: [''],
     properties: [
       { top: 'ماده اصلی مکمل', bottom: 'ویتامین C' }
-    ]
+    ] , rate: 4.4
   },
 
   {
@@ -53,7 +54,7 @@ const items = [
       { top: 'نوع گوشی', bottom: 'دو گوشی' },
       { top: 'نوع اتصال', bottom: 'بی‌سیم' },
       { top: 'رابط‌ها', bottom: 'بلوتوث' }
-    ]
+    ], rate: 4.3
   },
 
   {
@@ -64,7 +65,7 @@ const items = [
       { top: 'فناوری صفحه‌ نسخه سیستم عامل', bottom: 'iOS 17' },
       { top: 'رزولوشن دوربین اصلی', bottom: '48 مگاپیکسل' },
       { top: 'اندازه', bottom: '6.1' },
-    ]
+    ], rate: 4.9
   },
 
   {
@@ -73,7 +74,7 @@ const items = [
     properties: [
       { top: 'کشور تولید کننده', bottom: 'ایران' },
       { top: 'بسته', bottom: 'سی عددی' },
-    ]
+    ], rate: 4.1
   },
   {
     img: '/src/assets/IMGS/PishnahadIMGs/5.webp', title: ' هدفون بی سیم ادیفایر مدل X3', prevPrice: formatWithComma(1049000), price: formatWithComma(799000), percent: Math.round(takhfifPercent(1049000, 799000)),
@@ -83,7 +84,7 @@ const items = [
       { top: 'نوع گوشی', bottom: 'دو گوشی' },
       { top: 'نوع اتصال', bottom: 'بی‌سیم' },
       { top: 'رابط‌ها', bottom: 'بلوتوث' }
-    ]
+    ], rate: 3.9
   }, {
     img: '/src/assets/IMGS/PishnahadIMGs/6.webp', title: 'جوراب ساق بلند مردانه اسپست مدل ASP-XSH-VRTAA1 مجموعه 3 عددی', prevPrice: formatWithComma(600000), price: formatWithComma(349900), percent: Math.round(takhfifPercent(600000, 349900)),
     id: 6, colors: ['navy', 'gold', 'red'],
@@ -91,7 +92,7 @@ const items = [
       { top: 'تعداد', bottom: '3 جفت' },
       { top: 'جنس', bottom: 'پنبه و پلی‌استر' },
       { top: 'ویژگی', bottom: 'ساق بلند' },
-    ]
+    ], rate: 4.2
   },
 
   {
@@ -102,7 +103,7 @@ const items = [
       { top: 'انتشارات', bottom: 'کتابستان معرفت' },
       { top: 'قطع', bottom: 'رقعی' },
       { top: 'تعداد صفحات', bottom: '224 صفحه' },
-    ]
+    ], rate: 4.3
   },
 
   {
@@ -113,7 +114,7 @@ const items = [
       { top: 'حاوی', bottom: 'هیالورونیک اسید' },
       { top: 'ویژگی', bottom: 'آبرسان قوی و سبک' },
       { top: 'حجم', bottom: '50 میلی‌لیتر' },
-    ]
+    ], rate: 2.7
   },
 
   {
@@ -124,7 +125,7 @@ const items = [
       { top: 'حاوی', bottom: 'اوره 10٪' },
       { top: 'اثر', bottom: 'نرم‌کننده و ترمیم‌کننده' },
       { top: 'حجم', bottom: '50 میلی‌لیتر' },
-    ]
+    ], rate: 4.1
   },
 
   {
@@ -135,7 +136,7 @@ const items = [
       { top: 'ویژگی', bottom: 'جذب سریع بدون ایجاد سنگینی' },
       { top: 'حاوی', bottom: 'هیالورونیک اسید + ویتامین B5' },
       { top: 'حجم', bottom: '50 میلی‌لیتر' },
-    ]
+    ], rate: 5
   },
 
   {
@@ -146,7 +147,7 @@ const items = [
       { top: 'مناسب برای', bottom: 'انواع پوست' },
       { top: 'اثر', bottom: 'آبرسان و نرم‌کننده' },
       { top: 'حجم', bottom: '250 میلی‌لیتر' },
-    ]
+    ], rate: 4.4
   },
 
   {
@@ -161,7 +162,7 @@ const items = [
       { top: 'ساختار نت‌ها', bottom: 'گل' },
       { top: 'ساختار رایحه', bottom: 'گلی' },
       { top: 'مناسب برای فصل', bottom: 'بهار، تابستان، پاییز' },
-    ]
+    ], rate: 4.8
   },
 
   {
@@ -170,7 +171,7 @@ const items = [
     properties: [
       { top: 'درجه کیفی زعفران', bottom: 'ممتاز (اعلاء)' },
       { top: 'شکل ماده غذایی', bottom: 'رشته کامل' }
-    ]
+    ], rate: 4.9
   }
 ];
 const storyWrapperData = [
@@ -180,6 +181,8 @@ const storyWrapperData = [
 ];
 
 export const ProductContext = createContext();
+
+
 
 const MainLayout = () => {
   return (
@@ -210,7 +213,24 @@ const MainLayout = () => {
 
 function App() {
   const [product, setProduct] = useState();
+  // const [screenSize , setScreenSize] = useState();
+  // document.querySelector('#root').addEventListener('resize' , () => {
+  //   console.log('hi')
+  // })
+  // useEffect(() => {
 
+  //   setScreenSize
+  // }, [])
+  const MyInitialUser = {
+    isAuthorized: true,
+    userName: 'Aryan Raad'
+  }
+
+  const [user , setUser] = useState({
+    isAuthorized : false,
+    userName: null,
+    numOrMail: null
+  })
 
   function getParams() {
     const { productId } = useParams();
@@ -218,22 +238,22 @@ function App() {
   }
   return (
     <Router>
-      <ProductContext.Provider value={{ product, setProduct }}>
+      <ProductContext.Provider value={{ product, setProduct, items, user, setUser }}>
 
         <Routes>
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<Login MyInitialUser={MyInitialUser} />} />
 
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Landing storyWrapperData={storyWrapperData} />} />
+            <Route path='/search' element={<SearchedPage />} />
             <Route path='/product/:productId' element={<Product items={items} />} />
             <Route path="product/undefined" element={
               <div style={{ textAlign: 'center', marginTop: '50px' }}>
                 <h1 dir='rtl' style={{ color: '#ed1944' }}>محصول مربوطه پیدا نشد</h1>
                 <button onClick={() => window.location.href = '/'}>بازگشت به خانه</button>
               </div>
-            } />
+            } />  
           </Route>
-
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 

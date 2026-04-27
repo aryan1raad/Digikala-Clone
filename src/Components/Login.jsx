@@ -1,55 +1,231 @@
-import { useRef , useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { useRef, useEffect, useReducer, use, useState, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../assets/Styles/Login.module.css';
-const Login = () => {
+import { ProductContext } from '../App';
 
-    const [isFocused , setFocused] = useState(true);
-    const [submited , setSubmited] = useState(false);
+function minutes_And_seconds(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return (`${mins < 10 ? `0${mins}` : mins} : ${secs < 10 ? `0${secs}` : secs}`)
+}
+
+const Login = ({MyInitialUser}) => {
     const LoginInputRef = useRef(null);
-    useEffect(() => {
-        if( LoginInputRef ) {
-            LoginInputRef.current.focus();
-        }
-    }, [])
-    //حتما باید فقط در اولین رندر فوکس کند نه در تمامی ری رندر ها
+    const timerIdRef = useRef(null);
+    // console.log(MyInitialUser)
+    const navigate = useNavigate();
+    const { setUser } = useContext(ProductContext);
 
-    function changeHandler(e){
-        if(e.target.value != ''){
-            setFocused(true);
+    const initialState = {
+        status: 'NumberIsGiving',
+        input: '',
+        NumberOrMail: '',
+        Code: '1234',
+        InputVoid: true,
+        secondsLeft: 3,
+        //:برای فوکوس کردن اینپوت به صورت خودکار در قسمت بعدی
+        EnteredCodeStatus: false,   
+
+    }
+    const [{ status, secondsLeft, input, InputVoid, NumberOrMail, EnteredCodeStatus, }, dispatch] = useReducer(reducer, initialState);
+    function reducer(state, action) {
+        switch (action.type) {
+            case 'tick_Tock':
+                return {
+                    ...state,
+                    secondsLeft: state.secondsLeft - 1,
+                }
+            case 'ChangeHandler':
+                if (action.payload === '') {
+                    return {
+                        ...state,
+                        input: action.payload,
+                        InputVoid: true,
+                    }
+                } else {
+                    return {
+                        ...state,
+                        input: action.payload,
+                        InputVoid: false
+                    }
+                }
+            case 'SubmitPhoneNumber':
+                if (state.InputVoid) {
+                    console.log('چیزی ننوشتید');
+                    return state
+                }  
+                return{
+                    ...state,
+                    NumberOrMail: state.input,
+                    status: 'SendingCode',
+                    EnteredCodeStatus: true, //فوکوس برای اینپوت در وضعیت ارسال کد
+                    input: ''
+                }
+            case 'sendMeAgain':
+                return {
+                    ...state,
+                    status: 'SendingCode',
+                    secondsLeft: 3,
+                    input: '' 
+                }
+            case 'verifyCode' :
+                if (state.input === "")
+                    return {
+                        ...state,
+                        InputVoid: true 
+                    }
+                if (state.input === state.Code)
+                    return {
+                        ...state,
+                        status: 'Done',
+                        InputVoid: 'false'
+                    }
+                else 
+                    return {
+                        ...state,
+                        status: 'Error',
+                        InputVoid: true,
+                        input: ''
+                    }
+            case 'SetError': 
+                return { 
+                    ...state, 
+                    status: 'Error', 
+                    InputVoid: true 
+                };
+            case 'ResetLogin':
+                return { 
+                    ...initialState, 
+                    status: 'NumberIsGiving', 
+                    secondsLeft: 0 
+                };
+            default:
+                return state;
         }
     }
-    function SubmitHandler(){
-        setSubmited(true);
+
+    // تایمر
+    useEffect(() => {
+        if (status === 'SendingCode' && secondsLeft > 0) {
+            timerIdRef.current = setInterval(() => {
+                dispatch({ type: 'tick_Tock' })
+            }, 1000)
+        }
+        else if (secondsLeft === 0 && timerIdRef.current){
+            clearInterval(timerIdRef.current);
+            timerIdRef.current = null;
+        }
+        return () => {
+            if (timerIdRef.current) {
+                clearInterval(timerIdRef.current);
+                timerIdRef.current = null;
+            }
+        }
+    }, [status, secondsLeft])
+
+    useEffect(() => {
+        if (EnteredCodeStatus && LoginInputRef.current) {
+            // برای اطمینان از DOM 
+            setTimeout(() => {
+                LoginInputRef.current.focus();
+            }, 0);
+        }
+    }, [EnteredCodeStatus]);
+
+    useEffect(() => {
+        if (status === 'Done'){
+            console.log("لاگین با موفقیت انجام شد");
+            setUser({
+                ...MyInitialUser,
+                numOrMail : NumberOrMail
+            })
+            navigate('/');
+
+
+        }
+    }, [status , navigate]);
+
+    const handleEmptySubmit = () => {
+        //در آینده میتوان پیام توستر نیز به عنوان فیدبک اضافه شود
+        //فعلا فقط لاگ میکنیم
+        console.log('لطفا فیلد مناسب را پر کنید.')
     }
-  return (
-    <main className={styles.main}>
-        <div className={styles.Cont}>
-            <div className={styles.row1}>
-                <div className={styles.ComeBack}>arrowright</div>
-                <Link to={'/'}>
-                    <div className={styles.logoCont}><img src="/src/assets/IMGS/DigiKalaLOGO2.svg" alt="Digikala" /></div>
-                </Link>
-            </div>
-            <div className={styles.row2}>
-                <h1 className={styles.textH1}>ورود | ثبت‌نام</h1>
-                <p  style={{fontSize: '12px' , color: '#3f4064' , marginTop: '16px' , lineHeight: '2.17' , fontWeight: '500'}}>سلام!</p>
-                <p  style={{fontSize: '12px' , color: '#3f4064' , marginBottom: '16px' , lineHeight: '2.17' , fontWeight: '500'}}>لطفا شماره موبایل یا ایمیل خود را وارد کنید</p>
-                <form>
-                    <label className={styles.labelInput}>
-                        <div className={styles.divInput} >
-                            <div className={styles.grow}>
-                                <input className={ isFocused ? styles.focused : styles.UnFocused} ref={LoginInputRef} onChange={changeHandler} onFocus={() => setFocused(true)} onBlur={() => {if (LoginInputRef.current.value === "" ) setFocused(false)}} type="text" name="" id="" />
+    console.log(status)
+    return (
+        <main className={styles.main}>
+            <div className={styles.Cont}>
+                <div className={styles.row1}>
+                    <div className={styles.ComeBack} onClick={() => navigate(-1)}>arrowright</div>
+                    <Link to={'/'}>
+                        <div className={styles.logoCont}><img src="/src/assets/IMGS/DigiKalaLOGO2.svg" alt="Digikala" /></div>
+                    </Link>
+                </div>
+                <div className={styles.row2}>
+                    <h1 className={styles.textH1}>
+                        {status === "NumberIsGiving" && " ورود | ثبت‌نام"}
+                        {status === "SendingCode" && "کد تایید را وارد کنید"}
+                        {status === "Error" && "خطا در ورود"}
+                    </h1>
+
+                    {status === "NumberIsGiving" && <p style={{ fontSize: '12px', color: '#3f4064', marginTop: '16px', lineHeight: '2.17', fontWeight: '500' }}>
+                        سلام!
+                    </p>}
+
+                    <p style={{ fontSize: '12px', color: '#3f4064', marginBottom: '16px', lineHeight: '2.17', fontWeight: '500' }}>
+                        {status === "NumberIsGiving" && "لطفا شماره موبایل یا ایمیل خود را وارد کنید"}
+                        {status === "SendingCode" && "کد تایید برای شماره ۰۹۳۳۳۸۷۶۴۴۶ پیامک شد"}
+                        {status === "Error" && <div>کد وارد شده صحیح نیست. لطفا دوباره تلاش کنید. <br />[code:1234]</div>}
+                    </p>
+
+                    <form onSubmit={(e) => { e.preventDefault() }}>
+                        <label className={styles.labelInput}>
+                            <div className={styles.divInput}>
+                                <div className={styles.grow}>
+                                    <input
+                                        ref={LoginInputRef}
+                                        value={input}
+                                        onChange={(e) => dispatch({ type: 'ChangeHandler', payload: e.target.value })}
+                                        type="text"
+                                        name=""
+                                        id=""
+                                        autoComplete='off'
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <p style={isFocused ? {visibility: 'hidden'} : {visibility: 'visible'}} className={styles.alert}>لطفا این قسمت را خالی نگذارید.</p>
-                    </label>
-                    <input onSubmit={SubmitHandler} type='submit' value='ورود' className={styles.login_btn}/>
-                </form>
-                <p className={styles.accept} >ورود شما به معنای پذیرش <span>شرایط دیجی کالا</span> و <span>قوانین حریم‌خصوصی</span> است</p>
+                            {(InputVoid || input==='') && <p className={styles.alert}>لطفا این قسمت را خالی نگذارید.</p> }
+                        </label>
+
+                        {/* مدت زمان باقی مانده */}
+                        {(status === "SendingCode" && secondsLeft > 0) && <div dir='ltr' className={styles.remaining}> {minutes_And_seconds(secondsLeft)}<div>مانده تا دریافت مجدد کد</div></div>}
+
+                        {/* ارسال از طرق پیامک */}
+                        {(status === "SendingCode" && secondsLeft === 0) && <p onClick={() => dispatch({ type: 'sendMeAgain' })} className={styles.accept} style={{ color: 'black', cursor: 'pointer' }}>دریافت مجدد کد از طریق <span style={{ fontWeight: 600 }}>پیامک</span></p>}
+
+                        {/* سابمیت های نهایی */}
+                        {(status === 'NumberIsGiving') && <input type='submit'
+                            onClick={() => {
+                                dispatch({ type: 'SubmitPhoneNumber' })}
+                            } 
+                            value='ورود' 
+                            className={styles.login_btn} 
+                        />}
+
+                        {(status === 'SendingCode' || status === 'Error') && <input type='submit' 
+                            onClick={() => {
+                                dispatch({ type: 'verifyCode' })}
+                            } 
+                            value='تایید'
+                            className={styles.login_btn} 
+                            disabled={ InputVoid && status!== 'Error'} //اگر ارور داده باشد بتواند دوباره امتحان کند
+                            //اگر ارور نباشد و اینپوت خالی باشد ، غیرفعالش بکن
+                        />}
+                        
+                    </form>
+                    {(status === "NumberIsGiving") && <p className={styles.accept}>ورود شما به معنای پذیرش <span>شرایط دیجی کالا</span> و <span>قوانین حریم‌خصوصی</span> است</p>}
+                </div>
             </div>
-        </div>
-    </main>
-  )
+        </main>
+    )
 }
 
 export default Login

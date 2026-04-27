@@ -19,7 +19,7 @@ export const Pishnahad = ({img}) => {
       return{borderBottomRightRadius: '8px',borderTopRightRadius: '8px'}
     else return null
   }
-  const { product } = useContext(ProductContext);
+  // const { product } = useContext(ProductContext);
   const { setProduct } = useContext(ProductContext);
   return (
     <div className={styles.Pishnahad}>

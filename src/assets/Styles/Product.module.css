@@ -209,7 +209,7 @@
     display: flex;
     flex-direction: column;
     /*harekat*/
-    animation: slide 5s cubic-bezier(.25, .60, .10, 1) infinite;
+    animation: slide 8s cubic-bezier(.25, .60, .10, 1) infinite;
 }
 
 .item{
@@ -229,8 +229,9 @@
 
 @keyframes slide {
     0%   { transform: translateY(0); }
-    33%  { transform: translateY(-26px); }
-    66%  { transform: translateY(-52px); }
+    25%  { transform: translateY(-26px); }
+    50%  { transform: translateY(-52px); }
+    75%  { transform: translateY(-78px); }
     100% { transform: translateY(0); }
 }
 .emjCont{

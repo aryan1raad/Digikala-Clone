@@ -13,7 +13,6 @@ import { Carousel } from '../Components/Carousel'
 import { TwoBanner } from '../Components/TwoBanner'
 import { BrandCraousel } from '../Components/BrandCraousel'
 
-// export const ProductContext = createContext();
 const formatWithComma = (num) => {
     return new Intl.NumberFormat().format(num);
 } 
