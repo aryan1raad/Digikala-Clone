@@ -12,7 +12,6 @@ function minutes_And_seconds(seconds) {
 const Login = ({MyInitialUser}) => {
     const LoginInputRef = useRef(null);
     const timerIdRef = useRef(null);
-    // console.log(MyInitialUser)
     const navigate = useNavigate();
     const { setUser } = useContext(ProductContext);
 
@@ -53,7 +52,24 @@ const Login = ({MyInitialUser}) => {
                 if (state.InputVoid) {
                     console.log('چیزی ننوشتید');
                     return state
-                }  
+                }
+
+                // یک الگو رجکس برای شماره ایران
+                //یک اعتبار سنجی ساده
+                const phoneRegex = /^09\d{9}$/;
+                //جیمیل
+                const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+                if(!gmailRegex.test(state.input) && !phoneRegex.test(state.input)){
+                    //اگر دارای جیمیل دات کام نبود و شماره ایرانی هم نبود
+                    //ارور بده
+                    return{
+                        ...state,
+                        status: 'ErrorNum',
+                        input: '',
+                        InputVoid: true
+                    }
+                }
+                
                 return{
                     ...state,
                     NumberOrMail: state.input,
@@ -83,9 +99,9 @@ const Login = ({MyInitialUser}) => {
                 else 
                     return {
                         ...state,
-                        status: 'Error',
+                        status: 'ErrorCode',
+                        input: '',
                         InputVoid: true,
-                        input: ''
                     }
             case 'SetError': 
                 return { 
@@ -150,7 +166,6 @@ const Login = ({MyInitialUser}) => {
         //فعلا فقط لاگ میکنیم
         console.log('لطفا فیلد مناسب را پر کنید.')
     }
-    console.log(status)
     return (
         <main className={styles.main}>
             <div className={styles.Cont}>
@@ -164,7 +179,7 @@ const Login = ({MyInitialUser}) => {
                     <h1 className={styles.textH1}>
                         {status === "NumberIsGiving" && " ورود | ثبت‌نام"}
                         {status === "SendingCode" && "کد تایید را وارد کنید"}
-                        {status === "Error" && "خطا در ورود"}
+                        {(status === "ErrorCode" || status === "ErrorNum") && "خطا در ورود"}
                     </h1>
 
                     {status === "NumberIsGiving" && <p style={{ fontSize: '12px', color: '#3f4064', marginTop: '16px', lineHeight: '2.17', fontWeight: '500' }}>
@@ -173,8 +188,9 @@ const Login = ({MyInitialUser}) => {
 
                     <p style={{ fontSize: '12px', color: '#3f4064', marginBottom: '16px', lineHeight: '2.17', fontWeight: '500' }}>
                         {status === "NumberIsGiving" && "لطفا شماره موبایل یا ایمیل خود را وارد کنید"}
-                        {status === "SendingCode" && "کد تایید برای شماره ۰۹۳۳۳۸۷۶۴۴۶ پیامک شد"}
-                        {status === "Error" && <div>کد وارد شده صحیح نیست. لطفا دوباره تلاش کنید. <br />[code:1234]</div>}
+                        {status === "SendingCode" && `کد تایید به  ${NumberOrMail} ارسال شد`}
+                        {status === "ErrorNum" && <div>لطفا ایمیل یا شماره تلفن خود را به درستی وارد کنید.<br /></div>}
+                        {status === "ErrorCode" && <div>لطفا کد ارسالی را به درستی وارد کنید.<br />[code:1234]</div>}
                     </p>
 
                     <form onSubmit={(e) => { e.preventDefault() }}>
@@ -202,7 +218,7 @@ const Login = ({MyInitialUser}) => {
                         {(status === "SendingCode" && secondsLeft === 0) && <p onClick={() => dispatch({ type: 'sendMeAgain' })} className={styles.accept} style={{ color: 'black', cursor: 'pointer' }}>دریافت مجدد کد از طریق <span style={{ fontWeight: 600 }}>پیامک</span></p>}
 
                         {/* سابمیت های نهایی */}
-                        {(status === 'NumberIsGiving') && <input type='submit'
+                        {(status === 'NumberIsGiving'  || status === 'ErrorNum') && <input type='submit'
                             onClick={() => {
                                 dispatch({ type: 'SubmitPhoneNumber' })}
                             } 
@@ -210,9 +226,13 @@ const Login = ({MyInitialUser}) => {
                             className={styles.login_btn} 
                         />}
 
-                        {(status === 'SendingCode' || status === 'Error') && <input type='submit' 
+                        
+
+                        {(status === 'SendingCode' || (status === 'ErrorCode')) && <input type='submit' 
                             onClick={() => {
-                                dispatch({ type: 'verifyCode' })}
+                                // اگر سندینگ کد نیست ، پس ارور است
+                                // پس حتما در اعتبار سنجی شماره تلفن هستیم
+                                dispatch({ type: 'verifyCode'})}
                             } 
                             value='تایید'
                             className={styles.login_btn} 

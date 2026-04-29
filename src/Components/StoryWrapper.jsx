@@ -261,7 +261,7 @@ export const StoryWrapper = ({ storyWrapperData }) => {
             >
                 <div
                 className='StoryVideoCont'
-                    // این خط مهم است: جلوی بسته شدن را می‌گیرد وقتی روی خود محتوا کلیک می‌شود
+                    // جلوی بسته شدن را می‌گیرد وقتی روی خود محتوا کلیک می‌شود
                     onClick={(e) => e.stopPropagation()} 
                     style={{ 
                         background: '#fff', 

@@ -6,7 +6,7 @@ header{
     margin-top: 8px;
 }
 .headLeft{
-
+    position: relative;
 }
 .headRight{
     display: flex;
@@ -38,4 +38,40 @@ header{
     padding-right: 16px;
     border-radius: 40px;
     border: none;
+}
+.PopInfo{
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    left: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 15px;
+    filter: drop-shadow(0 1px 5px rgba(0,0,0, .2));
+    width: 260px;
+}
+.Poplink{
+}
+.NumberOrMail{
+    padding: 16px 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: black;
+    font-weight: 500;
+    transition: all .2s ease;
+    border-bottom: #e0e0e2 1px solid;
+}
+
+.Exit{
+    padding: 16px 16px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;    color: black;
+    font-weight: 500;
+    transition: all .2s ease;
+    border-bottom: #e0e0e2 1px solid;
+}
+
+.NumberOrMail:hover , .Exit:hover{
+    background-color: #f0f0f1;
+    border-color: transparent;
 }

@@ -25,6 +25,15 @@
     height: 100%;
 }
 
+.title{
+    display: -webkit-inline-box;
+    overflow: hidden;
+    max-width: 360px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    direction: rtl;
+}
 .variant{
     grid-area: variant-info;
 }
@@ -38,6 +47,8 @@
     font-weight: 500;
     margin-top: 16px;
     margin-bottom: 8px;
+    font-weight: 400; 
+    font-size: 12px;
 }
 .productCont{
     display: flex;

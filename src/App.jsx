@@ -54,7 +54,7 @@ const items = [
       { top: 'نوع گوشی', bottom: 'دو گوشی' },
       { top: 'نوع اتصال', bottom: 'بی‌سیم' },
       { top: 'رابط‌ها', bottom: 'بلوتوث' }
-    ], rate: 4.3
+    ], rate: 4.3 , category: 'digitalProducts'
   },
 
   {
@@ -65,7 +65,7 @@ const items = [
       { top: 'فناوری صفحه‌ نسخه سیستم عامل', bottom: 'iOS 17' },
       { top: 'رزولوشن دوربین اصلی', bottom: '48 مگاپیکسل' },
       { top: 'اندازه', bottom: '6.1' },
-    ], rate: 4.9
+    ], rate: 4.9 , category: 'mobile'
   },
 
   {
@@ -84,7 +84,7 @@ const items = [
       { top: 'نوع گوشی', bottom: 'دو گوشی' },
       { top: 'نوع اتصال', bottom: 'بی‌سیم' },
       { top: 'رابط‌ها', bottom: 'بلوتوث' }
-    ], rate: 3.9
+    ], rate: 3.9 , category: 'digitalProducts'
   }, {
     img: '/src/assets/IMGS/PishnahadIMGs/6.webp', title: 'جوراب ساق بلند مردانه اسپست مدل ASP-XSH-VRTAA1 مجموعه 3 عددی', prevPrice: formatWithComma(600000), price: formatWithComma(349900), percent: Math.round(takhfifPercent(600000, 349900)),
     id: 6, colors: ['navy', 'gold', 'red'],
@@ -92,7 +92,7 @@ const items = [
       { top: 'تعداد', bottom: '3 جفت' },
       { top: 'جنس', bottom: 'پنبه و پلی‌استر' },
       { top: 'ویژگی', bottom: 'ساق بلند' },
-    ], rate: 4.2
+    ], rate: 4.2 , category: 'clothing'
   },
 
   {
@@ -114,7 +114,7 @@ const items = [
       { top: 'حاوی', bottom: 'هیالورونیک اسید' },
       { top: 'ویژگی', bottom: 'آبرسان قوی و سبک' },
       { top: 'حجم', bottom: '50 میلی‌لیتر' },
-    ], rate: 2.7
+    ], rate: 2.7 , category: 'makeupCleaning'
   },
 
   {
@@ -125,7 +125,7 @@ const items = [
       { top: 'حاوی', bottom: 'اوره 10٪' },
       { top: 'اثر', bottom: 'نرم‌کننده و ترمیم‌کننده' },
       { top: 'حجم', bottom: '50 میلی‌لیتر' },
-    ], rate: 4.1
+    ], rate: 4.1 , category: 'makeupCleaning'
   },
 
   {
@@ -136,7 +136,7 @@ const items = [
       { top: 'ویژگی', bottom: 'جذب سریع بدون ایجاد سنگینی' },
       { top: 'حاوی', bottom: 'هیالورونیک اسید + ویتامین B5' },
       { top: 'حجم', bottom: '50 میلی‌لیتر' },
-    ], rate: 5
+    ], rate: 5 , category: 'makeupCleaning'
   },
 
   {
@@ -147,7 +147,7 @@ const items = [
       { top: 'مناسب برای', bottom: 'انواع پوست' },
       { top: 'اثر', bottom: 'آبرسان و نرم‌کننده' },
       { top: 'حجم', bottom: '250 میلی‌لیتر' },
-    ], rate: 4.4
+    ], rate: 4.4 , category: 'makeupCleaning'
   },
 
   {
@@ -172,6 +172,47 @@ const items = [
       { top: 'درجه کیفی زعفران', bottom: 'ممتاز (اعلاء)' },
       { top: 'شکل ماده غذایی', bottom: 'رشته کامل' }
     ], rate: 4.9
+  },
+
+  {
+    img: '/src/assets/IMGS/TotalIMGs/14.webp', title: 'گوشی موبایل اپل مدل iPhone 17 Pro Max ZAA تک سیم کارت + eSim ظرفیت 256 گیگابایت و رم 12 گیگابایت - نات اکتیو', price: formatWithComma(404999000),
+    id: 14, colors: ['orange'],
+    properties: [
+      { top: 'فناوری صفحه‌ نمایش', bottom: 'LTPO Super Retina XDR OLED' },
+      { top: 'نسخه سیستم عامل', bottom: 'iOS 26' },
+      { top: 'رزولوشن دوربین اصلی', bottom: '48 مگاپیکسل' },
+      { top: 'اندازه', bottom: '6.9' },
+
+    ], rate: 4.6 , category: 'mobile'
+  },
+
+  {
+    img: '/src/assets/IMGS/TotalIMGs/15.webp', title: 'گوشی موبایل اپل مدل iPhone 17 CH دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - نات اکتیو', price: formatWithComma(299999000),
+    id: 15, colors: ['white' , 'purple' , 'blue' , 'black'],
+    properties: [
+      { top: 'فناوری صفحه‌ نمایش', bottom: 'LTPO Super Retina XDR OLED' },
+      { top: 'نسخه سیستم عامل', bottom: 'iOS 26' },
+      { top: 'رزولوشن دوربین اصلی', bottom: '48 مگاپیکسل' },
+      { top: 'اندازه', bottom: '6.3' },
+
+    ], rate: 4.6 , category: 'mobile'
+  },
+
+  {
+    img: '/src/assets/IMGS/TotalIMGs/16.webp', title: 'لپ‌تاپ لنوو مدل IdeaPad 1 15IJL7 با پردازنده Celeron N4500، رم DDR4 8GB با فرکانس 2933MHz، حافظه SSD با ظرفیت 256GB، نمایشگر 15.6 اینچ TN با وضوح Full HD', price: formatWithComma(49400000),
+    id: 16, colors: ['gray'],
+    properties: [
+      { top: 'نورپردازی صفحه کلید', bottom: 'بدون نور پردازی' },
+      { top: 'سازنده پردازنده گرافیکی', bottom: 'Intel' },
+      { top: 'ظرفیت حافظه رم (RAM)', bottom: '8 گیگابایت' },
+      { top: 'دقت صفحه نمایش', bottom: 'Full HD | 1920 x1080' },
+      { top: 'ظرفیت حافظه داخلی', bottom: '256 گیگابایت' },
+      { top: 'نسخه‌ بلوتوث', bottom: '5.2' },
+      { top: 'نرخ بروزرسانی تصویر', bottom: '60' },
+      { top: 'کاربری', bottom: 'عمومی' },
+      { top: 'نوع روکش صفحه‌نمایش', bottom: 'مات'}
+
+    ], rate: 4.3 , category: 'laptop'
   }
 ];
 const storyWrapperData = [
@@ -213,14 +254,7 @@ const MainLayout = () => {
 
 function App() {
   const [product, setProduct] = useState();
-  // const [screenSize , setScreenSize] = useState();
-  // document.querySelector('#root').addEventListener('resize' , () => {
-  //   console.log('hi')
-  // })
-  // useEffect(() => {
 
-  //   setScreenSize
-  // }, [])
   const MyInitialUser = {
     isAuthorized: true,
     userName: 'Aryan Raad'
@@ -232,10 +266,7 @@ function App() {
     numOrMail: null
   })
 
-  function getParams() {
-    const { productId } = useParams();
-    return productId
-  }
+
   return (
     <Router>
       <ProductContext.Provider value={{ product, setProduct, items, user, setUser }}>
@@ -245,7 +276,8 @@ function App() {
 
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Landing storyWrapperData={storyWrapperData} />} />
-            <Route path='/search' element={<SearchedPage />} />
+            <Route path='/search/' element={<SearchedPage />} />
+            <Route path='search/:category' element={<SearchedPage />} />
             <Route path='/product/:productId' element={<Product items={items} />} />
             <Route path="product/undefined" element={
               <div style={{ textAlign: 'center', marginTop: '50px' }}>
@@ -254,6 +286,7 @@ function App() {
               </div>
             } />  
           </Route>
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 

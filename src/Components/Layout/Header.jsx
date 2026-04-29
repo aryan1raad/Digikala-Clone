@@ -1,13 +1,32 @@
 import '../../assets/Styles/Header.css'
 import { Link, useNavigate} from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { ProductContext } from '../../App'
 
 
 export const Header = () => {
   const {user} = useContext(ProductContext);
+  const {setUser} = useContext(ProductContext);
   const navigate = useNavigate();
   const [searchValue , setSearchValue] = useState('');
+
+  const [PopIsOpen , setPopOpen] = useState(false);
+  const popWindowRef = useRef(null);
+  const btnRef = useRef(null);
+
+  const togglePop = () => {
+    setPopOpen((Pop)=> !Pop)
+  }
+  useEffect(() => {
+    const handleMouseDownOutside = (e)  => {
+      if(PopIsOpen && (popWindowRef.current && !popWindowRef.current.contains(e.target)) && (btnRef.current && !btnRef.current.contains(e.target))){
+        setPopOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown' , handleMouseDownOutside);
+    return () => document.removeEventListener('mousedown' , handleMouseDownOutside)
+  }, [PopIsOpen])
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -18,15 +37,32 @@ export const Header = () => {
     }
   }
   const handleSearch = () => {
-    navigate(`/search?q=${searchValue}`)
+    navigate(`/search/?q=${searchValue}`)
   }
+
   return (
     <header>
-      <Link to={"/login"} className='headLeft'>
-        <button className='SignUp_BTN'>
-         {!user.isAuthorized ? 'ورود | ثبت نام' : user.userName}
-        </button>
-      </Link>
+      {user.isAuthorized ?
+        <div className='headLeft'>
+          <button className='SignUp_BTN' ref={btnRef} onClick={togglePop} style={ PopIsOpen ? {backgroundColor: '#ff546817'} : {}}>
+            {user.userName}
+          </button>
+          {PopIsOpen && <div ref={popWindowRef} className="PopInfo" dir='rtl'>
+            <Link to={'/'} className='Poplink'>
+              <div className='NumberOrMail'>09333876446</div>  
+            </Link>
+            <Link to={'/'} className='Poplink'>
+              <div className='Exit'>خروج از حساب کاربری</div>  
+            </Link>
+          </div>}
+        </div>
+        :
+        <Link to={"/login"} className='headLeft'>
+          <button className='SignUp_BTN' >
+           ورود | ثبت نام
+          </button>
+        </Link> 
+      }
       <div className='headRight'>
         <input type="text" onChange={handleChange} onKeyDown={handleKeyDown} placeholder='جستجو' />
         <Link to='/'>

@@ -25,8 +25,8 @@ export const Landing = ({storyWrapperData}) => {
         // با استفاده از اسم فولدر سورس دقیق 
         '/src/assets/IMGS/banner1.webp' , '/src/assets/IMGS/banner2.webp' , '/src/assets/IMGS/banner3.webp' , '/src/assets/IMGS/banner.jpg'
     ]
-    const BannerIMGs1 = ['/src/assets/IMGS/BannerIMGs1/1.webp', '/src/assets/IMGS/BannerIMGs1/2.webp', '/src/assets/IMGS/BannerIMGs1/3.webp', '/src/assets/IMGS/BannerIMGs1/4.webp',];
-    const BannerIMGs2 = ['/src/assets/IMGS/BannerIMGs2/1.webp', '/src/assets/IMGS/BannerIMGs2/2.webp', '/src/assets/IMGS/BannerIMGs2/3.webp', '/src/assets/IMGS/BannerIMGs2/4.webp',];
+    const BannerIMGs1 = [{ src: '/src/assets/IMGS/BannerIMGs1/1.webp' , category: 'jewlrey' }, { src: '/src/assets/IMGS/BannerIMGs1/2.webp' , category: 'kitchen' }, { src: '/src/assets/IMGS/BannerIMGs1/3.webp' , category: 'mobile' }, { src: '/src/assets/IMGS/BannerIMGs1/4.webp' , category: 'massage' }];
+    const BannerIMGs2 = [{ src: '/src/assets/IMGS/BannerIMGs2/1.webp' , category: 'lastic'}, { src: '/src/assets/IMGS/BannerIMGs2/2.webp' , category: 'jewlrey'}, { src: '/src/assets/IMGS/BannerIMGs2/3.webp' , category: 'health'}, { src: '/src/assets/IMGS/BannerIMGs2/4.webp' , category: 'supermarker'}];
     const PishnahadIMGsDetail = [
         {img: '/src/assets/IMGS/PishnahadIMGs/1.webp' , title: 'کپسول ویتامین ث و زینک 10 میلی گرمی  بسته 60 عددی' , prevPrice: formatWithComma(506000) , price:formatWithComma(154000), percent: Math.round(takhfifPercent(506000,154000)) , id:1},
         {img: '/src/assets/IMGS/PishnahadIMGs/2.webp' , title: 'هدفون بلوتوثی ورنا مدل Airpods pro K14' , prevPrice: formatWithComma(810000) , price:formatWithComma(565000), percent: Math.round(takhfifPercent(810000,565000)) , id:2},
@@ -54,19 +54,17 @@ export const Landing = ({storyWrapperData}) => {
                     gap: '16px'
                 }
                 }>
-                {/* <ProductContext.Provider value={{product , setProduct}}> */}
-                    <StoryWrapper storyWrapperData={storyWrapperData}/>
-                    <Slider SliderIMGs={SliderIMGs}/>
-                    <QuickAccess />
-                    <Pishnahad img={PishnahadIMGsDetail}/>
-                    <Banners img={BannerIMGs1}/>
-                    <TakhfifBanners imgLeft={TakhfifIMGs}/> 
-                    <Banners img={BannerIMGs2}/>
-                    <Carousel /> 
-                    {/* کاروسل عکس های ثابت دارد پس دیتای آرایه ی ان را نمی فرستیم */}
-                    <TwoBanner img1={'/src/assets/IMGS/TwoBanner/1.webp'} img2={'/src/assets/IMGS/TwoBanner/2.webp'} />
-                    <BrandCraousel img={BrandCraouselImgs} />
-                {/* </ProductContext.Provider> */}
+                <StoryWrapper storyWrapperData={storyWrapperData}/>
+                <Slider SliderIMGs={SliderIMGs}/>
+                <QuickAccess />
+                <Pishnahad img={PishnahadIMGsDetail}/>
+                <Banners img={BannerIMGs1}/>
+                <TakhfifBanners imgLeft={TakhfifIMGs}/> 
+                <Banners img={BannerIMGs2}/>
+                <Carousel /> 
+                {/* کاروسل عکس های ثابت دارد پس دیتای آرایه ی ان را نمی فرستیم */}
+                <TwoBanner img1={'/src/assets/IMGS/TwoBanner/1.webp'} img2={'/src/assets/IMGS/TwoBanner/2.webp'} />
+                <BrandCraousel img={BrandCraouselImgs} />
             </div>
         </>
     )

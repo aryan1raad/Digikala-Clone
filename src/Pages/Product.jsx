@@ -22,7 +22,9 @@ export const Product = ({ items }) => {
         white: {persian:'سفید', secondUsed: '#c3c3c3'},
         gold: {persian:'طلایی', secondUsed: '#b89e13'},  
         gray: {persian:'خاکستری', secondUsed: '#373737'},
-        navy: {persian:'سرمه ای', secondUsed: '#00009e'}
+        navy: {persian:'سرمه ای', secondUsed: '#00009e'},
+        orange: {persian:'نارنجی', secondUsed: '#e67700'},
+        purple: {persian:'بنفش', secondUsed: 'purple'},
     };
     const [colorSelected , setColorSelected] = useState('blue'); 
     // برای نمایش رنگ رف
@@ -42,10 +44,10 @@ export const Product = ({ items }) => {
                                 <div>دیجی کالا
                                     <span style={{ marginRight: '12px', marginLeft: '12px' }}>/</span>
                                 </div>
-                                <div>موبایل
-                                    <span style={{ marginRight: '12px', marginLeft: '12px' }}>/</span>
+                                <div>{item.category}
+                                    <span style={{ marginRight: '12px', marginLeft: '12px' }}>{item.category ? '/' : ''}</span>
                                 </div>
-                                <div>گوشی موبایل
+                                <div className={styles.title}>{item.title}
                                 </div>
                             </nav>
                             <div className={styles.productCont}>
@@ -85,9 +87,9 @@ export const Product = ({ items }) => {
                                                 <div className={styles.propertiesGrid} dir='rtl'>
 
                                                     {/* لوپ مپ برای گرفتن جزئیات پراپرتیز محصول[آیتم] */}
-                                                    {item.properties.map((property) => {
+                                                    {item.properties.map((property , index) => {
                                                         return(
-                                                            <div className={styles.box}>
+                                                            <div className={styles.box} key={index}>
                                                                 <p className={styles.topProperty} style={{ color: '#81858b', fontSize: '12px' }}>
                                                                     {property.top}
                                                                 </p>
@@ -136,9 +138,9 @@ export const Product = ({ items }) => {
                                                             <div className={styles.PrevThenNow}>
                                                                 <div className={styles.prevPriceInner}>
 
-                                                                    <div className={styles.prevPriceColCont}>
+                                                                    {item.percent && <div className={styles.prevPriceColCont}>
                                                                         <span>%{item.percent}</span><div>{item.prevPrice}</div>
-                                                                    </div>
+                                                                    </div>}
                                                                     <div style={{fontSize:'24px' , fontWeight: '700' , color:'#23254e'}}>{item.price}</div>
 
                                                                 </div>

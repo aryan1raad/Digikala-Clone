@@ -1,20 +1,32 @@
-import { Link, useSearchParams } from "react-router-dom"
+import { Link, useParams, useSearchParams } from "react-router-dom"
 import { ProductContext } from "../App";
 import { useContext, useEffect, useState } from "react";
 import styles from '../assets/Styles/SearchedPage.module.css'
 
 const SearchedPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const {category} = useParams();
   const { items } = useContext(ProductContext);
   const [showingItems, setShowingItems] = useState([])
   const query = searchParams.get('q') || '';
-
   useEffect(() => {
+    //اسکرول به  بالا برای دیدن صفحه بدون اسکرول قبلی
+    window.scrollTo({top: 0});
+  }, [])
+  useEffect(() => {
+    //برای سرچ
     if (items && query !== null) {
       const filtered = items.filter(itm =>
         itm.title.toLowerCase().includes(query.toLowerCase())
       );
       setShowingItems(filtered);
+    }
+    //برای سورتینگ
+    if (items && category){
+      const filtered = items.filter( itm => 
+        itm.category == category
+      )
+      setShowingItems(filtered)
     }
   }, [query, items]);
 
@@ -81,11 +93,11 @@ const SearchedPage = () => {
                               <div>
                                 <div className={styles.pricePercent}>
                                   <span className={styles.price} dir='ltr'>
-                                    <img src="src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" style={{width:'11px'}}/>{prd.price}
+                                    <img src="/src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" style={{width:'11px'}}/>{prd.price}
                                   </span >
-                                  <div className={styles.percent}>
+                                  {prd.percent && <div className={styles.percent}>
                                     {prd.percent}%
-                                  </div>
+                                  </div>}
                                 </div>
                                 <span className={styles.prevPrice}>
                                   {prd.prevPrice}
