@@ -2,13 +2,21 @@ import { Link, useParams, useSearchParams } from "react-router-dom"
 import { ProductContext } from "../App";
 import { useContext, useEffect, useState } from "react";
 import styles from '../assets/Styles/SearchedPage.module.css'
+import PriceRange from "../Components/PriceRange";
 
 const SearchedPage = () => {
+  const [maxPrice , setMaxPrice] = useState(1000000000);
+  const [minPrice , setMinPrice] = useState(0);
+
   const [searchParams, setSearchParams] = useSearchParams();
-  const {category} = useParams();
+  const { category } = useParams();
+
   const { items } = useContext(ProductContext);
   const [showingItems, setShowingItems] = useState([])
   const query = searchParams.get('q') || '';
+
+  //ویو ، پرایس ، تخفیف
+  const [sorter , setSorter] = useState(null);
   useEffect(() => {
     //اسکرول به  بالا برای دیدن صفحه بدون اسکرول قبلی
     window.scrollTo({top: 0});
@@ -28,8 +36,40 @@ const SearchedPage = () => {
       )
       setShowingItems(filtered)
     }
-  }, [query, items]);
+  }, [query, items, category]);
 
+  // برای رنج قیمت
+  // useEffect(() => {
+  //   const filtered = showingItems.filter( itm => 
+  //     //بودن در بازه
+  //     (itm.price <= maxPrice && itm.price >= minPrice)
+  //   );
+  //   setShowingItems(filtered);
+
+  // }, [minPrice , maxPrice])
+  useEffect(() => {
+    if(sorter === 'price'){
+      //کپی کردن آرایه بدون رفرنس
+      let myNewArr = showingItems.slice();
+      for(let i = 0 ; i < myNewArr.length -1 ; i++){
+        for (let j = 0; j < myNewArr.length -1 -i ; j++) {
+          if(myNewArr[j].priceNumber > myNewArr[j+1].priceNumber)
+            [myNewArr[j] , myNewArr[j+1]] = [myNewArr[j+1] , myNewArr[j]]
+        }
+      }
+      setShowingItems(myNewArr)
+    } else if(sorter === 'takhfif'){
+      //کپی کردن آرایه بدون رفرنس
+      let myNewArr = showingItems.slice();
+      for(let i = 0 ; i < myNewArr.length -1 ; i++){
+        for( let j = 0 ; j < myNewArr.length -1 -i ; j++){
+          if (myNewArr[j].percent < myNewArr[j+1].percent)
+            [myNewArr[j] , myNewArr[j+1]] = [myNewArr[j+1] , myNewArr[j]]
+        }
+      }
+      setShowingItems(myNewArr)
+    }
+  }, [sorter])
   return (
     <div className={styles.Cont}>
       <div className={styles.InnerCont}>
@@ -39,9 +79,9 @@ const SearchedPage = () => {
             <div className={styles.sortingCont} dir="rtl">
               <div className={styles.sorting}>
                 <div dir="rtl">مرتب سازی :</div>
-                <div>پربازدید ترین</div>
-                <div>ارزان ترین</div>
-                <div>بیشترین تخفیف</div>
+                {/* <div onClick={() => setSorter('view')}>پربازدید ترین</div> */}
+                <div onClick={() => setSorter('price')}>ارزان ترین</div>
+                <div onClick={() => setSorter('takhfif')}>بیشترین تخفیف</div>
               </div>
 
               <div style={{marginRight: 'auto'}}>
@@ -124,13 +164,17 @@ const SearchedPage = () => {
                   <div></div>
                 </div>
                 <div style={{padding: '0 20px'}}>
-                  <div style={{padding: '12px 0', color: '#3f4064', fontWeight: '700' , fontSize: '19px' , borderBottom: '1px solid #f0f0f1'}}>محدوده قیمت</div>
-                  <div></div>
+                
+                <PriceRange />
+
                 </div>
                 <div style={{padding: '0 20px'}}>
                   <div style={{padding: '12px 0', color: '#3f4064', fontWeight: '700' , fontSize: '19px' , borderBottom: '1px solid #f0f0f1'}}>رنگ</div>
                   <div></div>
                 </div>
+                
+                <button>اعمال</button>
+
               </div>
               <div></div>
             </div>

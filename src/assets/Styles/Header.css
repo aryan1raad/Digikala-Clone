@@ -50,8 +50,8 @@ header{
     filter: drop-shadow(0 1px 5px rgba(0,0,0, .2));
     width: 260px;
 }
-.Poplink{
-}
+/* .Poplink{
+} */
 .NumberOrMail{
     padding: 16px 16px;
     border-top-left-radius: 8px;
@@ -69,6 +69,7 @@ header{
     font-weight: 500;
     transition: all .2s ease;
     border-bottom: #e0e0e2 1px solid;
+    pointer-events: none;
 }
 
 .NumberOrMail:hover , .Exit:hover{

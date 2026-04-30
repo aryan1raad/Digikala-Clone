@@ -151,6 +151,69 @@ article {
     text-align: left;
     padding-left:11px;
 }
+.container {
+  direction: rtl;
+  width: 100%;
+  padding: 16px 12px;
+  user-select: none;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin: 30px 0;
+}
+
+.filled {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: #00bcd4;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border: 2px solid #00bcd4;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s;
+  z-index: 2;
+}
+
+.thumb:hover {
+  transform: translate(50%, -50%) scale(1.2);
+}
+
+.thumb.dragging {
+  transform: translate(50%, -50%) scale(1.1);
+}
+
+.labels {
+  display: flex;flex-direction: column;
+  justify-content: space-between;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #333;
+}
+
+.PriceRange{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
 @media (max-width:1360px){
     .ShowingGrid{
         grid-template-columns: repeat(3,1fr);

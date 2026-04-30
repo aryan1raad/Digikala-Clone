@@ -7,6 +7,7 @@ import { ProductContext } from '../../App'
 export const Header = () => {
   const {user} = useContext(ProductContext);
   const {setUser} = useContext(ProductContext);
+
   const navigate = useNavigate();
   const [searchValue , setSearchValue] = useState('');
 
@@ -20,7 +21,7 @@ export const Header = () => {
   useEffect(() => {
     const handleMouseDownOutside = (e)  => {
       if(PopIsOpen && (popWindowRef.current && !popWindowRef.current.contains(e.target)) && (btnRef.current && !btnRef.current.contains(e.target))){
-        setPopOpen(false)
+        setPopOpen(false);
       }
     }
 
@@ -49,11 +50,25 @@ export const Header = () => {
           </button>
           {PopIsOpen && <div ref={popWindowRef} className="PopInfo" dir='rtl'>
             <Link to={'/'} className='Poplink'>
-              <div className='NumberOrMail'>09333876446</div>  
+              <div className='NumberOrMail'>{user.numOrMail}</div>  
             </Link>
-            <Link to={'/'} className='Poplink'>
-              <div className='Exit'>خروج از حساب کاربری</div>  
+            <Link to={'/sabaadeKharid'} className='Poplink'>
+              <div className='NumberOrMail'>سبد خرید</div>  
             </Link>
+            <div className='Poplink' onClick={() => setUser({    
+              isAuthorized : false,
+              userName: null,
+              numOrMail: null})}
+            >
+              <div className='Exit' onClick={() => setUser({
+                  isAuthorized : false,
+                  userName: null,
+                  numOrMail: null
+                })}
+                >
+                  خروج از حساب کاربری
+                </div>  
+            </div>
           </div>}
         </div>
         :
