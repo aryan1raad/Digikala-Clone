@@ -20,7 +20,7 @@ const takhfifPercent = (prevPrice , price) => {
     // عدد ضربدر منفی شده است تا تخفیف مثبت بیان شود
     return ((price/prevPrice)-1)*-100
 }
-export const Landing = ({storyWrapperData}) => {
+const Landing = ({storyWrapperData}) => {
     const SliderIMGs = [
         // با استفاده از اسم فولدر سورس دقیق 
         '/src/assets/IMGS/banner1.webp' , '/src/assets/IMGS/banner2.webp' , '/src/assets/IMGS/banner3.webp' , '/src/assets/IMGS/banner.jpg'
@@ -69,6 +69,7 @@ export const Landing = ({storyWrapperData}) => {
         </>
     )
 }
+export default Landing
 //ایمپورت کردن عکس ها برای آمادگی برای بیلد و دیپلوی
     // import banner1 from '../assets/IMGS/BannerIMGs1/banner1.webp';
     // import banner2 from '../assets/IMGS/BannerIMGs1/banner2.webp';

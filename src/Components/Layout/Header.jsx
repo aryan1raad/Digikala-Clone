@@ -4,7 +4,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { ProductContext } from '../../App'
 
 
-export const Header = () => {
+const Header = () => {
   const {user} = useContext(ProductContext);
   const {setUser} = useContext(ProductContext);
 
@@ -88,3 +88,4 @@ export const Header = () => {
   )
 }
 
+export default Header 

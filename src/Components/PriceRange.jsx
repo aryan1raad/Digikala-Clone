@@ -1,9 +1,11 @@
 import { useState , useRef , useEffect} from 'react';
 import styles from '../assets/Styles/SearchedPage.module.css'
 
-const PriceRange = ({ min = 0, max = 50000000 }) => {
+const PriceRange = ({ min = 0, max = 50000000 , showingItems , setShowingItems , BeforeRange}) => {
     const [minValue, setMinValue] = useState(min);
     const [maxValue, setMaxValue] = useState(max);
+    const leftValueRef = useRef(null);
+    const rightValueRef = useRef(null);
     const [dragging , setDragging] = useState(null);
     const [tabIsOpen , setTabOpen] = useState(false);
     const trackRef = useRef(null);
@@ -25,15 +27,25 @@ const PriceRange = ({ min = 0, max = 50000000 }) => {
     const getPercent = (val) => {
         return ((val-min) / (max-min)) * 100;
     }
-    
+    let newArr = [];
+    const finishPoint = () => {
+        newArr = BeforeRange.current.filter( itm => (itm.priceNumber <= maxValue && itm.priceNumber >= minValue));
+        setShowingItems(newArr)
+    }
+    console.log(newArr)
     //آن ماوس داون چیزی را فرخوانی نمیکند
     //استیت را درگینگ میکند و درنتیجه یوز افکت تریگر میشود
     useEffect(() => {
-        if(!dragging) 
-            return
+        if(!dragging) {
+            // setMaxValue(max);
+            // setMinValue(min);
+            // return
+            setDragging(null);
+        }
 
         const HandleMouseMove = (e) => {
-            const newValue = getValueFromClientX(e.clientX)
+            const newValue = getValueFromClientX(e.clientX);
+            // console.log(newValue)
             if( dragging === 'max' && newValue >= minValue) 
                 setMaxValue(newValue)
             else if ( dragging === 'min' && newValue <= maxValue)
@@ -52,13 +64,35 @@ const PriceRange = ({ min = 0, max = 50000000 }) => {
         }
     } , [dragging , minValue , maxValue , min , max]);
 
+    useEffect(() => {
+        if(showingItems.length > 0 ){
+            let min = showingItems[0].priceNumber;
+            let max = showingItems[0].priceNumber;
+        for (let i = 0; i < showingItems.length; i++) {
+            //پیدا کردن ماکسیمم و مینیمم
+            if( showingItems[i].priceNumber < min) 
+            min = showingItems[i].priceNumber;
+            if( showingItems[i].priceNumber > max) 
+            max = showingItems[i].priceNumber;
+        }
+            setMaxValue(max);
+            setMinValue(min);
+        }
+
+    }, [showingItems])
+
+    useEffect(() => {
+        newArr = showingItems.filter( itm => (itm.priceNumber <= maxValue && itm.priceNumber >= minValue));
+    }, [maxValue, minValue])
+
+    
     const minPercent = getPercent(minValue);
     const maxPercent = getPercent(maxValue);
-
+    console.log('min:', min, 'max:', max);
     return (
         <div style={{padding: '12px 0', color: '#3f4064', fontWeight: '700' , fontSize: '19px' , borderBottom: '1px solid #f0f0f1'}}>
             <div onClick={() => setTabOpen((prev) => !prev)} style={{userSelect: 'none'}}>محدوده قیمت</div>
-            <div className={styles.container} style={{maxHeight: `${tabIsOpen ? '250px' : '0px'}` , padding: `${!tabIsOpen ? 'unset' : '16px 12px'}`}}>
+            <div className={styles.container} style={{maxHeight: `${tabIsOpen ? '330px' : '0px'}` , padding: `${!tabIsOpen ? 'unset' : '16px 12px'}`}}>
                 <div className={styles.labels}>
                     <div className={styles.PriceRange}>
                         <div style={{fontWeight: '700', fontSize: '16px' , lineHeight: '2.15', color: '#81858b'}}>از</div>
@@ -83,30 +117,43 @@ const PriceRange = ({ min = 0, max = 50000000 }) => {
 
                 <div ref={trackRef} className={styles.track}>
                     {/*قسمت خاکستری*/}
-                    <div className={styles.trackBackground} />
+                    <div className={styles.trackBackground}></div>
                     <div 
                         className={styles.filled} 
                         style={{
                             right: `${minPercent}%`, 
                             width: `${maxPercent - minPercent}%`
-                        }} 
-                    />
-                    <div 
+                        }}
+                    >
+                    </div>
+                    <div
                         onMouseDown={() => setDragging('min')} 
                         className={styles.thumb} 
                         style={{right: `${minPercent}%`}} 
-                    />
+                    >
+                    </div>
                     <div 
                         onMouseDown={() => setDragging('max')} 
                         className={styles.thumb} 
-                        style={{right: `${maxPercent}%`}} 
-                    />
+                        //این عدد 1.4 برای روهم منطبق نشدن و یو اکس بهتر است
+                        style={{right: `${maxPercent + 1.4}%`}} 
+                    >
+                    </div>
                 </div>
                 <div style={{display: 'flex' , justifyContent: 'space-between'}} dir='ltr'>
                     <span>گرانترین</span>
                     <span>ارزانترین</span>
                 </div>
+                <button
+                    onClick={finishPoint}
+                    style={{width: '100%' , backgroundColor: '#00bcd4' , color: 'white' , fontWeight: '700' , padding: '5px' , border: 'none' , marginTop: '10px'}}
+                >اعمال</button>
+                <button 
+                    onClick={() => {setShowingItems(BeforeRange.current)}}
+                    style={{width: '100%' , background: 'linear-gradient(225deg, #d22c4e, #ee384e, #ef5662)' , color: 'white' , padding: '5px' , border: 'none' , marginTop: '10px'}}
+                >بازنشانی محدوده</button>
             </div>
+ 
         </div>
         
     );

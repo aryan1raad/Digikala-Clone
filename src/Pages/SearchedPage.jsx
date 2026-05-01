@@ -1,11 +1,12 @@
 import { Link, useParams, useSearchParams } from "react-router-dom"
 import { ProductContext } from "../App";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from '../assets/Styles/SearchedPage.module.css'
 import PriceRange from "../Components/PriceRange";
-
+//شوینگ آیتمز در کامپوننت های فرزند هم عوض خواهند شد ، در 
+//PriceRange و ColorsRange
 const SearchedPage = () => {
-  const [maxPrice , setMaxPrice] = useState(1000000000);
+  const [maxPrice , setMaxPrice] = useState(0);
   const [minPrice , setMinPrice] = useState(0);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,61 +16,70 @@ const SearchedPage = () => {
   const [showingItems, setShowingItems] = useState([])
   const query = searchParams.get('q') || '';
 
+  const filteredBeforeRangersRef = useRef(null);
   //ویو ، پرایس ، تخفیف
   const [sorter , setSorter] = useState(null);
   useEffect(() => {
     //اسکرول به  بالا برای دیدن صفحه بدون اسکرول قبلی
     window.scrollTo({top: 0});
   }, [])
+
   useEffect(() => {
-    //برای سرچ
+    if(!items) return
+
+    let filtered = items.slice();
     if (items && query !== null) {
-      const filtered = items.filter(itm =>
-        itm.title.toLowerCase().includes(query.toLowerCase())
+      filtered = items.filter(itm =>
+       itm.title.toLowerCase().includes(query.toLowerCase())
       );
-      setShowingItems(filtered);
+      console.log(query)
     }
-    //برای سورتینگ
-    if (items && category){
-      const filtered = items.filter( itm => 
-        itm.category == category
+
+    //فقط برای دسته بندی های کلیک شده ی تگ Link
+    if(category){
+      filtered = items.filter(itm => 
+        itm.category === category
       )
-      setShowingItems(filtered)
     }
-  }, [query, items, category]);
 
-  // برای رنج قیمت
-  // useEffect(() => {
-  //   const filtered = showingItems.filter( itm => 
-  //     //بودن در بازه
-  //     (itm.price <= maxPrice && itm.price >= minPrice)
-  //   );
-  //   setShowingItems(filtered);
-
-  // }, [minPrice , maxPrice])
-  useEffect(() => {
     if(sorter === 'price'){
       //کپی کردن آرایه بدون رفرنس
-      let myNewArr = showingItems.slice();
-      for(let i = 0 ; i < myNewArr.length -1 ; i++){
-        for (let j = 0; j < myNewArr.length -1 -i ; j++) {
-          if(myNewArr[j].priceNumber > myNewArr[j+1].priceNumber)
-            [myNewArr[j] , myNewArr[j+1]] = [myNewArr[j+1] , myNewArr[j]]
+      for(let i = 0 ; i < filtered.length -1 ; i++){
+        for (let j = 0; j < filtered.length -1 -i ; j++) {
+          if(filtered[j].priceNumber > filtered[j+1].priceNumber)
+            [filtered[j] , filtered[j+1]] = [filtered[j+1] , filtered[j]]
         }
       }
-      setShowingItems(myNewArr)
-    } else if(sorter === 'takhfif'){
-      //کپی کردن آرایه بدون رفرنس
-      let myNewArr = showingItems.slice();
-      for(let i = 0 ; i < myNewArr.length -1 ; i++){
-        for( let j = 0 ; j < myNewArr.length -1 -i ; j++){
-          if (myNewArr[j].percent < myNewArr[j+1].percent)
-            [myNewArr[j] , myNewArr[j+1]] = [myNewArr[j+1] , myNewArr[j]]
+    } 
+    else if(sorter === 'takhfif'){
+      for(let i = 0 ; i < filtered.length -1 ; i++){
+        for( let j = 0 ; j < filtered.length -1 -i ; j++){
+          if (filtered[j].percent < filtered[j+1].percent)
+            [filtered[j] , filtered[j+1]] = [filtered[j+1] , filtered[j]]
         }
       }
-      setShowingItems(myNewArr)
     }
-  }, [sorter])
+    
+    //اعمال تغییرات بالا
+    filteredBeforeRangersRef.current = filtered;
+    setShowingItems(filtered);
+
+    if(filtered.length > 0 ){
+      let min = filtered[0].priceNumber;
+      let max = filtered[0].priceNumber;
+      for (let i = 0; i < filtered.length; i++) {
+        //پیدا کردن ماکسیمم و مینیمم
+        if( filtered[i].priceNumber < min) 
+          min = filtered[i].priceNumber;
+        if( filtered[i].priceNumber > max) 
+          max = filtered[i].priceNumber;
+      }
+      setMinPrice(min);
+      setMaxPrice(max);
+    }
+
+  }, [items , query , category , sorter ])
+  
   return (
     <div className={styles.Cont}>
       <div className={styles.InnerCont}>
@@ -80,8 +90,8 @@ const SearchedPage = () => {
               <div className={styles.sorting}>
                 <div dir="rtl">مرتب سازی :</div>
                 {/* <div onClick={() => setSorter('view')}>پربازدید ترین</div> */}
-                <div onClick={() => setSorter('price')}>ارزان ترین</div>
-                <div onClick={() => setSorter('takhfif')}>بیشترین تخفیف</div>
+                <div onClick={() => setSorter('price')} style={sorter === 'price' ? {color: '#ef394e' , fontWeight: '700' , userSelect: 'none'} : { fontWeight: '700' , userSelect: 'none'}}>ارزان ترین</div>
+                <div onClick={() => setSorter('takhfif')} style={sorter === 'takhfif' ? {color: '#ef394e' , fontWeight: '700' , userSelect: 'none'} : { fontWeight: '700' , userSelect: 'none'}}>بیشترین تخفیف</div>
               </div>
 
               <div style={{marginRight: 'auto'}}>
@@ -164,8 +174,9 @@ const SearchedPage = () => {
                   <div></div>
                 </div>
                 <div style={{padding: '0 20px'}}>
-                
-                <PriceRange />
+                {/* {console.log(minPrice , maxPrice)} */}
+                {/* زمانی که شوینگ آیتمز عوض شود ، باید مینیمم و ماکسیمم رنج هم دوباره حساب شوند */}
+                <PriceRange min={minPrice} max={maxPrice} showingItems={showingItems} setShowingItems={setShowingItems} BeforeRange={filteredBeforeRangersRef}/>
 
                 </div>
                 <div style={{padding: '0 20px'}}>
@@ -173,8 +184,6 @@ const SearchedPage = () => {
                   <div></div>
                 </div>
                 
-                <button>اعمال</button>
-
               </div>
               <div></div>
             </div>

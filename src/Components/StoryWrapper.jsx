@@ -58,6 +58,7 @@ export const StoryWrapper = ({ storyWrapperData }) => {
     }
 
     const handleClicker = (e) => {
+        //گرفتن استوری کلیک شده با کلوسست
         const storyContainer = e.target.closest(`.${styles.Story_container}`);
         if(storyContainer){
             const index = Array.from(StoryRef.current.children).indexOf(storyContainer);

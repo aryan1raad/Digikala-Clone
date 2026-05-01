@@ -18,7 +18,7 @@
     align-items: center;
     width: 100%;
     padding: 0px 50px 0px 0px;
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: pointer;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     /* ویژگی‌های مهم برای پرفورمنس */

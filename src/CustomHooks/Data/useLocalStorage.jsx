@@ -5,7 +5,7 @@ const useLocalStorage = (key , initValue) => {
         try {
             const storedItem = localStorage.getItem(key);
             if (storedItem === null || storedItem === undefined)
-                return initialValue
+                return initValue
             return (JSON.parse(storedItem))
 
         } catch (error) {

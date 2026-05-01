@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../../assets/Styles/Footer.css'
-export const Footer = () => {
+ const Footer = () => {
   const [TextBishtar, setBishtar] = useState(false);
   return (
     <footer>
@@ -98,3 +98,4 @@ export const Footer = () => {
     </footer>
   )
 }
+export default Footer

@@ -3,14 +3,16 @@ import { createContext } from 'react'
 import { BrowserRouter as Router, Routes, Route, useParams, Outlet, Navigate } from 'react-router-dom'
 import './App.css'
 import './assets/Styles/Header.css'
-import { Header } from './Components/Layout/header';
-import { Landing } from './Pages/Landing';
-import { Product } from './Pages/Product'
-import { Footer } from './Components/Layout/Footer';
+import GetMainItems from './CustomHooks/Data/GetMainItems'
+import Header from './Components/Layout/header';
+import Landing from './Pages/Landing';
+import Product from './Pages/Product'
+import Footer from './Components/Layout/Footer';
 import Login from './Pages/Login'
 import SearchedPage from './Pages/SearchedPage'
 import useLocalStorage from './CustomHooks/Data/useLocalStorage'
-import GetMainItems from './CustomHooks/Data/GetMainItems'
+import Sabad from './Pages/Sabad'
+
 
 // داده‌های استوری
 const Dadaye1 = {
@@ -39,8 +41,6 @@ const storyWrapperData = [
 ];
 
 export const ProductContext = createContext();
-
-
 
 const MainLayout = () => {
   return (
@@ -84,7 +84,7 @@ function App() {
     numOrMail: null
   })
 
-
+  const [selectedProducts , SetSelectedProducts] = useLocalStorage( 'selectedProducts' , 'null')
   return (
     <Router>
       <ProductContext.Provider value={{ product, setProduct, items, user, setUser }}>
@@ -96,7 +96,8 @@ function App() {
             <Route index element={<Landing storyWrapperData={storyWrapperData} />} />
             <Route path='/search/' element={<SearchedPage />} />
             <Route path='search/:category' element={<SearchedPage />} />
-            <Route path='/product/:productId' element={<Product items={items} />} />
+            <Route path='/product/:productId' element={<Product />} />
+            <Route path='/sabaadeKharid' element={<Sabad />} />
             <Route path="product/undefined" element={
               <div style={{ textAlign: 'center', marginTop: '50px' }}>
                 <h1 dir='rtl' style={{ color: '#ed1944' }}>محصول مربوطه پیدا نشد</h1>

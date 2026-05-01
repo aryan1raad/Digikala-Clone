@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from '../assets/Styles/Product.module.css'
+import { ProductContext } from '../App'
 //تمامی آیتم ها درقالب آرایه از اَپ گرفته میشوند
-export const Product = ({ items }) => {
+const Product = () => {
+    const {items} = useContext(ProductContext);
     // گرفتن آیدی محصولمان از یو آر ال فعلی
     const { productId } = useParams();
     useEffect(() => {
@@ -210,3 +212,4 @@ export const Product = ({ items }) => {
         </div>
     )
 }
+export default Product
