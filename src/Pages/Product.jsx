@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import styles from '../assets/Styles/Product.module.css'
 import { ProductContext } from '../App'
 //تمامی آیتم ها درقالب آرایه از اَپ گرفته میشوند
-const Product = () => {
+const Product = ({SetSelectedProducts , selectedProducts}) => {
     const {items} = useContext(ProductContext);
     // گرفتن آیدی محصولمان از یو آر ال فعلی
     const { productId } = useParams();
@@ -34,7 +34,10 @@ const Product = () => {
     const colorSelection = (colorCircle) => {
         setColorSelected(colorCircle);
     }
-
+    const handleAddtoCart = (id) => {
+        SetSelectedProducts([...selectedProducts , {id : id , color: colorSelected} ])
+        console.log(...selectedProducts)
+    }
     return (
         <div className={styles.cont}>
 
@@ -176,7 +179,12 @@ const Product = () => {
 
 
                                                             <div style={{display: 'flex' , justifyContent: 'center' , alignItems: 'center'}}>
-                                                                <button style={{backgroundColor:'#ef4056' , fontWeight: '600', color: 'white' , width: '100%' , height: '48px', border: 'none' , borderRadius: '8px'}}>افزودن به سبد خرید</button>
+                                                                <button 
+                                                                    style={{backgroundColor:'#ef4056' , fontWeight: '600', color: 'white' , width: '100%' , height: '48px', border: 'none' , borderRadius: '8px'}}
+                                                                    onClick={() => handleAddtoCart(item.id)}
+                                                                >
+                                                                    افزودن به سبد خرید
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>

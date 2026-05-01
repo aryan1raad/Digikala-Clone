@@ -20,7 +20,9 @@ const Header = () => {
   }
   useEffect(() => {
     const handleMouseDownOutside = (e)  => {
+      //وقتی خارج از منو کلیک شود بدون نویگیت های مورد نظر منو را میبندیم
       if(PopIsOpen && (popWindowRef.current && !popWindowRef.current.contains(e.target)) && (btnRef.current && !btnRef.current.contains(e.target))){
+        
         setPopOpen(false);
       }
     }
@@ -49,10 +51,10 @@ const Header = () => {
             {user.userName}
           </button>
           {PopIsOpen && <div ref={popWindowRef} className="PopInfo" dir='rtl'>
-            <Link to={'/'} className='Poplink'>
+            <Link to={'/'} onClick={()=> setPopOpen(false)} className='Poplink'>
               <div className='NumberOrMail'>{user.numOrMail}</div>  
             </Link>
-            <Link to={'/sabaadeKharid'} className='Poplink'>
+            <Link to={'/sabaadeKharid'} onClick={()=> setPopOpen(false)} className='Poplink'>
               <div className='NumberOrMail'>سبد خرید</div>  
             </Link>
             <div className='Poplink' onClick={() => setUser({    
