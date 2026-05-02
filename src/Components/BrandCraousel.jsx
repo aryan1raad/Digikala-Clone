@@ -5,9 +5,11 @@ import styles from '../assets/Styles/BrandCraousel.module.css'
 import 'swiper/css'
 import 'swiper/css/mousewheel'
 import 'swiper/css/free-mode'
+import 'swiper/css/navigation'; // ✅ اضافه کردن استایل نویگیشن
+
 //ایمپورت ماژول ها
 import { Swiper , SwiperSlide } from 'swiper/react'
-import { Mousewheel , FreeMode } from 'swiper/modules'
+import { Mousewheel , FreeMode , Navigation } from 'swiper/modules'
 
 export const BrandCraousel = ({img}) => {
 
@@ -24,6 +26,7 @@ export const BrandCraousel = ({img}) => {
         <p className={styles.title}>محبوب ترین برند ها</p>
         <div dir='rtl'>
             <Swiper
+                navigation={true}
                 slidesPerView={'auto'}
                 spaceBetween={0}
                 freeMode={{
@@ -31,11 +34,11 @@ export const BrandCraousel = ({img}) => {
                     sticky:false,
                     momentum: true,
                     momentumRatio: 0.5,
-                    momentumBounce: true, // فعال کردن اثر بازگشت (bounce) در ابتدا و انتهای اسلایدر
+                    momentumBounce: true, // فعال کردن اثر بازگشت 
                     momentumRatio: 1
                 }}
                 speed={300}
-                Mousewheel={{
+                mousewheel={{
                     forceToAxis: true,
                     releaseOnEdges:false,
                     sensitivity: 0.1
@@ -47,7 +50,7 @@ export const BrandCraousel = ({img}) => {
                     return(
                     <SwiperSlide style={{width:'140px' , height: '140px'}} key={index}>
                         <div style={ checkBorderRightRadius(index)} className={styles.brandCont}>
-                            <img src={product}/>
+                            <img src={product} alt={`brand-${index}`}/>
                         </div>
                     </SwiperSlide>
                     )

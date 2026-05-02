@@ -34,7 +34,7 @@ const Sabad = ({selectedProduct}) => {
     for (let i = 0; i < newItems.length; i++) {
       for (let j = i; j < newItems.length; j++) {
         
-        if(newItems[i].foundItem.id === newItems[j].foundItem.id){
+        if((newItems[i].foundItem.id === newItems[j].foundItem.id) && (newItems[i].color === newItems[j].color)){
           tedad++;
           Hafeze = j
         }
@@ -42,7 +42,7 @@ const Sabad = ({selectedProduct}) => {
       //نکته
       // در این کد رنگ پیاده سازی نشده است
       //رنگی که میگیرد آخرین رنگی است که ست شده
-      const doWeHaveThisObject = ProductsAtCart.some(p => p.foundItem.id === newItems[Hafeze].foundItem.id)
+      const doWeHaveThisObject = ProductsAtCart.some(p => p.foundItem.id === newItems[Hafeze].foundItem.id && p.color === newItems[Hafeze].color)
       // اگر قبلا نشمارده ایم ، اضافه بکنیم
       if (!doWeHaveThisObject && (Hafeze!==null)){ 
         ProductsAtCart.push({foundItem: newItems[Hafeze].foundItem , color : newItems[Hafeze].color , tedad: tedad})
