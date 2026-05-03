@@ -84,7 +84,7 @@ function App() {
     numOrMail: null
   })
 
-  const [selectedProducts , SetSelectedProducts] = useLocalStorage( 'selectedProducts' , [])
+  const [selectedProducts , SetSelectedProducts , {removeItem , clearAll}] = useLocalStorage( 'selectedProducts' , []);
   return (
     <Router>
       <ProductContext.Provider value={{ product, setProduct, items, user, setUser }}>
@@ -97,7 +97,7 @@ function App() {
             <Route path='/search/' element={<SearchedPage />} />
             <Route path='search/:category' element={<SearchedPage />} />
             <Route path='/product/:productId' element={<Product SetSelectedProducts={SetSelectedProducts} selectedProducts={selectedProducts}/>} />
-            <Route path='/sabaadeKharid' element={<Sabad selectedProduct={selectedProducts}/>} />
+            <Route path='/sabaadeKharid' element={<Sabad selectedProduct={selectedProducts} SetSelectedProducts={SetSelectedProducts} removeItem={removeItem} clearAll={clearAll}/>} />
             <Route path="product/undefined" element={
               <div style={{ textAlign: 'center', marginTop: '50px' }}>
                 <h1 dir='rtl' style={{ color: '#ed1944' }}>محصول مربوطه پیدا نشد</h1>

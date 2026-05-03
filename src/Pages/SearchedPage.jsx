@@ -103,9 +103,9 @@ const SearchedPage = () => {
             <div className={styles.ShowingGrid}>
               
               {/*مپ کردن محصولات سرچ شده */}
-              {showingItems.map(prd => {
+              {showingItems.map((prd , index) => {
                 return (
-                  <div key={prd.id} className={styles.product_div}>
+                  <div key={prd.id} className={styles.product_div} key={index}>
                     <Link to={`/product/${prd.id}`} className={styles.product_a}>
                       <div className={styles.product_inner}>
                         <article className={styles.article}>

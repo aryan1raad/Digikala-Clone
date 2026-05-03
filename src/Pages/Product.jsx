@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from '../assets/Styles/Product.module.css'
 import { ProductContext } from '../App'
 //تمامی آیتم ها درقالب آرایه از اَپ گرفته میشوند
@@ -7,6 +7,7 @@ const Product = ({SetSelectedProducts , selectedProducts}) => {
     const {items} = useContext(ProductContext);
     // گرفتن آیدی محصولمان از یو آر ال فعلی
     const { productId } = useParams();
+    // const navigate = useNavigate()
     useEffect(() => {
         window.scrollTo({ top: 0 });
         //پیدا کردن محصول با مقایسه آیدی آیتم گرفته شده از لندینگ
@@ -46,10 +47,12 @@ const Product = ({SetSelectedProducts , selectedProducts}) => {
                     return (
                         <div key={index} className={styles.productSelfCont}>
                             <nav className={styles.flow} dir='rtl'>
-                                <div>دیجی کالا
+                                <div>
+                                    <Link to={'/'} style={{color: '#81858b'}}>دیجی کالا</Link>
                                     <span style={{ marginRight: '12px', marginLeft: '12px' }}>/</span>
                                 </div>
-                                <div>{item.category}
+                                <div>
+                                    <Link to={`/search/${item.category}`} style={{color: '#81858b'}}>{item.category}</Link>
                                     <span style={{ marginRight: '12px', marginLeft: '12px' }}>{item.category ? '/' : ''}</span>
                                 </div>
                                 <div className={styles.title}>{item.title}

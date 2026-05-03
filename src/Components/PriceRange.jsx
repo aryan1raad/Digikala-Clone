@@ -4,8 +4,7 @@ import styles from '../assets/Styles/SearchedPage.module.css'
 const PriceRange = ({ min = 0, max = 50000000 , showingItems , setShowingItems , BeforeRange}) => {
     const [minValue, setMinValue] = useState(min);
     const [maxValue, setMaxValue] = useState(max);
-    const leftValueRef = useRef(null);
-    const rightValueRef = useRef(null);
+
     const [dragging , setDragging] = useState(null);
     const [tabIsOpen , setTabOpen] = useState(false);
     const trackRef = useRef(null);
