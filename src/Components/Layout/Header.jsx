@@ -28,7 +28,11 @@ const Header = () => {
     }
 
     document.addEventListener('mousedown' , handleMouseDownOutside);
-    return () => document.removeEventListener('mousedown' , handleMouseDownOutside)
+    document.addEventListener('touchstart' , handleMouseDownOutside)
+    return () => { 
+      document.removeEventListener('mousedown' , handleMouseDownOutside) 
+      document.removeEventListener('touchstart' , handleMouseDownOutside)
+    }
   }, [PopIsOpen])
 
   const handleChange = (e) => {

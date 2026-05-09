@@ -23,10 +23,10 @@ const takhfifPercent = (prevPrice , price) => {
 const Landing = ({storyWrapperData}) => {
     const SliderIMGs = [
         // با استفاده از اسم فولدر سورس دقیق 
-        '/src/assets/IMGS/banner1.webp' , '/src/assets/IMGS/banner2.webp' , '/src/assets/IMGS/banner3.webp' , '/src/assets/IMGS/banner.jpg'
+        {src: '/src/assets/IMGS/banner1.webp' , category: 'mohafezat'} , {src: '/src/assets/IMGS/banner2.webp' , category: 'supermarket'} , {src: '/src/assets/IMGS/banner3.webp' , category: 'clothing'} , {src: '/src/assets/IMGS/banner.jpg' , category: 'makeupCleaning'}
     ]
     const BannerIMGs1 = [{ src: '/src/assets/IMGS/BannerIMGs1/1.webp' , category: 'jewlrey' }, { src: '/src/assets/IMGS/BannerIMGs1/2.webp' , category: 'kitchen' }, { src: '/src/assets/IMGS/BannerIMGs1/3.webp' , category: 'mobile' }, { src: '/src/assets/IMGS/BannerIMGs1/4.webp' , category: 'massage' }];
-    const BannerIMGs2 = [{ src: '/src/assets/IMGS/BannerIMGs2/1.webp' , category: 'lastic'}, { src: '/src/assets/IMGS/BannerIMGs2/2.webp' , category: 'jewlrey'}, { src: '/src/assets/IMGS/BannerIMGs2/3.webp' , category: 'health'}, { src: '/src/assets/IMGS/BannerIMGs2/4.webp' , category: 'supermarker'}];
+    const BannerIMGs2 = [{ src: '/src/assets/IMGS/BannerIMGs2/1.webp' , category: 'lastic'}, { src: '/src/assets/IMGS/BannerIMGs2/2.webp' , category: 'jewlrey'}, { src: '/src/assets/IMGS/BannerIMGs2/3.webp' , category: 'health'}, { src: '/src/assets/IMGS/BannerIMGs2/4.webp' , category: 'supermarket'}];
     const PishnahadIMGsDetail = [
         {img: '/src/assets/IMGS/PishnahadIMGs/1.webp' , title: 'کپسول ویتامین ث و زینک 10 میلی گرمی  بسته 60 عددی' , prevPrice: formatWithComma(506000) , price:formatWithComma(154000), percent: Math.round(takhfifPercent(506000,154000)) , id:1},
         {img: '/src/assets/IMGS/PishnahadIMGs/2.webp' , title: 'هدفون بلوتوثی ورنا مدل Airpods pro K14' , prevPrice: formatWithComma(810000) , price:formatWithComma(565000), percent: Math.round(takhfifPercent(810000,565000)) , id:2},

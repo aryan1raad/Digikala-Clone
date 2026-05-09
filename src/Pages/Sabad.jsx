@@ -11,7 +11,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
     green: { persian: 'سبز', secondUsed: '#38c550' },
     white: { persian: 'سفید', secondUsed: '#c3c3c3' },
     gold: { persian: 'طلایی', secondUsed: '#b89e13' },
-    gray: { persian: 'خاکستری', secondUsed: '#373737' },
+    gray: { persian: 'خاکستری', secondUsed: '#5c5c5c' },
     navy: { persian: 'سرمه ای', secondUsed: '#00009e' },
     orange: { persian: 'نارنجی', secondUsed: '#e67700' },
     purple: { persian: 'بنفش', secondUsed: 'purple' },
@@ -97,7 +97,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
             <div className={styles.square}>{ProductsAtCart.reduce((acc, curr) => acc + curr.tedad, 0)}</div>
             <div>سبد خرید</div>
           </li>
-          <li className={styles.sdf2}>خرید بعدی</li>
+          {/* <li className={styles.sdf2}>خرید بعدی</li> */}
         </ul>
 
         <ul className={styles.prdCont}>
@@ -107,7 +107,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
 
                 <div style={{ fontSize: '12px', fontWeight: '600', color: '#23254e' }}>جمع سبد خرید</div>
                 <div style={{ display: 'flex' }}>
-                  {Intl.NumberFormat().format(ProductsAtCart.reduce((acc, curr) => acc + curr.foundItem.priceNumber, 0))}
+                  {Intl.NumberFormat().format(ProductsAtCart.reduce((acc, curr) => acc + (curr.foundItem.priceNumber * curr.tedad), 0))}
                   <div className={styles.toman}><img src="src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" /></div>
                 </div>
               </div>
