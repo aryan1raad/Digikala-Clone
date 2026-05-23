@@ -16,7 +16,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background: url('src/assets/IMGS/TakhfifIMGs/Background.svg') left no-repeat;
+    background: url('/IMGS/TakhfifIMGs/Background.svg') left no-repeat;
     opacity: 0.5;
 }
 .right{

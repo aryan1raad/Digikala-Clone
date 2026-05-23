@@ -13,7 +13,7 @@ import '../../assets/Styles/Footer.css'
               بازگشت به بالا
             </button>
             <div className='footerLogoCont'>
-              <img src="/src/assets/IMGS/DigiKalaLOGO.svg" alt="digikala" />
+              <img src="/IMGS/DigiKalaLOGO.svg" alt="digikala" />
             </div>
           </div>
 
@@ -28,31 +28,31 @@ import '../../assets/Styles/Footer.css'
           <div className='tahvil'>
             <div className='tahvil_inner'>
               <div className='tahvil_Img_Cont'>
-                <img src="/src/assets/IMGS/Footer/original-products.svg" alt="" />
+                <img src="/IMGS/Footer/original-products.svg" alt="" />
               </div>
               <p className='tahvil_text'>ضمانت اصل بودن کالا</p>
             </div>
             <div className='tahvil_inner'>
               <div className='tahvil_Img_Cont'>
-                <img src="/src/assets/IMGS/Footer/days-return.svg" alt="" />
+                <img src="/IMGS/Footer/days-return.svg" alt="" />
               </div>
               <p className='tahvil_text'>هفت روز ضمانت بازگشت کالا</p>
             </div>
             <div className='tahvil_inner'>
               <div className='tahvil_Img_Cont'>
-                <img src="/src/assets/IMGS/Footer/support.svg" alt="" />
+                <img src="/IMGS/Footer/support.svg" alt="" />
               </div>
               <p className='tahvil_text'>7 روز هفته ، 24 ساعته</p>
             </div>
             <div className='tahvil_inner'>
               <div className='tahvil_Img_Cont'>
-                <img src="/src/assets/IMGS/Footer/cash.svg" alt="" />
+                <img src="/IMGS/Footer/cash.svg" alt="" />
               </div>
               <p className='tahvil_text'>اﻣﮑﺎن ﺗﺤﻮﯾﻞ در محل</p>
             </div>
             <div className='tahvil_inner'>
               <div className='tahvil_Img_Cont'>
-                <img src="/src/assets/IMGS/Footer/delivery.svg" alt="" />
+                <img src="/IMGS/Footer/delivery.svg" alt="" />
               </div>
               <p className='tahvil_text'>اﻣﮑﺎن ﺗﺤﻮﯾﻞ اﮐﺴﭙﺮس</p>
             </div>
@@ -60,16 +60,16 @@ import '../../assets/Styles/Footer.css'
           <div className='discriptionCont'>
             <div className='etemaadCont'>
               <div className="etemaad">
-                <img src="/src/assets/IMGS/Footer/etemad1.png" />
+                <img src="/IMGS/Footer/etemad1.png" />
               </div>
               <div className="etemaad">
-                <img src="/src/assets/IMGS/Footer/etemad2.webp" />
+                <img src="/IMGS/Footer/etemad2.webp" />
               </div>
               <div className="etemaad">
-                <img src="/src/assets/IMGS/Footer/etemad3.webp" />
+                <img src="/IMGS/Footer/etemad3.webp" />
               </div>
               <div className="etemaad">
-                <img src="/src/assets/IMGS/Footer/etemda4.webp" />
+                <img src="/IMGS/Footer/etemda4.webp" />
               </div>
             </div>
 

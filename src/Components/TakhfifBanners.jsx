@@ -6,10 +6,10 @@ export const TakhfifBanners = ({imgLeft}) => {
         <div className={styles.background}></div>
         <div className={styles.right}>
             <div>
-                <img src="src/assets/IMGS/TakhfifIMGs/takhfif-Right/fresh.webp" alt="" />
+                <img src="/IMGS/TakhfifIMGs/takhfif-Right/fresh.webp" alt="" />
             </div>
             <div>
-                <img src="src/assets/IMGS/TakhfifIMGs/takhfif-Right/fresh-incredible-offer.svg" alt="" />
+                <img src="/IMGS/TakhfifIMGs/takhfif-Right/fresh-incredible-offer.svg" alt="" />
             </div>
             <div className={styles.rightTakhfif}>
                 تا 35% تخفیف

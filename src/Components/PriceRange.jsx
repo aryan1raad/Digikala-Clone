@@ -100,7 +100,7 @@ const PriceRange = ({ min = 0, max = 50000000 , showingItems , setShowingItems ,
                                 {format.format(minValue)}
                             </p>
                         </div>
-                        <div className={styles.PriceRangeImgCont}><img src="/src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{scale: '0.5'}}/></div>
+                        <div className={styles.PriceRangeImgCont}><img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{scale: '0.5'}}/></div>
                     </div>
 
                     <div className={styles.PriceRange}>
@@ -110,7 +110,7 @@ const PriceRange = ({ min = 0, max = 50000000 , showingItems , setShowingItems ,
                                 {format.format(maxValue)}
                             </p>
                         </div>
-                        <div className={styles.PriceRangeImgCont}><img src="/src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{scale: '0.5'}}/></div>
+                        <div className={styles.PriceRangeImgCont}><img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{scale: '0.5'}}/></div>
                     </div>            
                 </div>
 

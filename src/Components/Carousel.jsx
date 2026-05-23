@@ -39,13 +39,13 @@ export const Carousel = () => {
                     <div className={styles.TwoCont}>
                         <Link to={'/search/mobile'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/phone.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/phone.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>موبایل</p>
                         </Link>
                         <Link to={'/search/mobile'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/phone.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/phone.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>موبایل</p>
                         </Link>
@@ -57,14 +57,14 @@ export const Carousel = () => {
 
                         <Link to={'/search/laptop'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/laptop.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/laptop.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>لپتاپ</p>
                         </Link>
 
                         <Link to={'/search/laptop'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/laptop.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/laptop.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>لپتاپ</p>
                         </Link>
@@ -75,13 +75,13 @@ export const Carousel = () => {
                     <div className={styles.TwoCont}>
                         <Link to={'/search/digitalProducts'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/digital.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/digital.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>کالای دیجیتال</p>
                         </Link>
                         <Link to={'/search/digitalProducts'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/digital.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/digital.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>کالای دیجیتال</p>
                         </Link>
@@ -93,14 +93,14 @@ export const Carousel = () => {
 
                         <Link to={'/search/kitchen'} style={{color: 'black'}} className={styles.productCont}>                        
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/ashpazkhane.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/ashpazkhane.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>خانه و آشپزخانه</p>
                         </Link>
 
                         <Link to={'/search/kitchen'} style={{color: 'black'}} className={styles.productCont}>                        
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/ashpazkhane.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/ashpazkhane.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>خانه و آشپزخانه</p>
                         </Link>
@@ -112,14 +112,14 @@ export const Carousel = () => {
                         
                         <Link to={'/search/homeAppliance'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/lavazemKhanegi.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/lavazemKhanegi.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>لوازم خانگی برقی</p>
                         </Link>
                         
                         <Link to={'/search/homeAppliance'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/lavazemKhanegi.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/lavazemKhanegi.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>لوازم خانگی برقی</p>
                         </Link>
@@ -131,14 +131,14 @@ export const Carousel = () => {
 
                         <Link to={'/search/makeupCleaning'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/arayeshi.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/arayeshi.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>آرایشی و بهداشتی</p>
                         </Link>
 
                         <Link to={'/search/makeupCleaning'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/arayeshi.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/arayeshi.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>آرایشی و بهداشتی</p>
                         </Link>
@@ -150,14 +150,14 @@ export const Carousel = () => {
 
                         <Link to={'/search/clothing'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/mod.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/mod.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>مد و پوشاک</p>
                         </Link>
 
                         <Link to={'/search/clothing'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/mod.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/mod.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>مد و پوشاک</p>
                         </Link>
@@ -169,14 +169,14 @@ export const Carousel = () => {
 
                         <Link to={'/search/jewlrey'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/tala.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/tala.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>طلا و نقره</p>
                         </Link>
 
                         <Link to={'/search/jewlrey'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/tala.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/tala.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>طلا و نقره</p>
                         </Link>
@@ -188,14 +188,14 @@ export const Carousel = () => {
 
                         <Link to={'/search/carMotor'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/khodro.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/khodro.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>خودرو و موتورسیکلت</p>
                         </Link>
 
                         <Link to={'/search/carMotor'} style={{color: 'black'}} className={styles.productCont}>
                             <div className={styles.imgCont}>
-                                <img src="src/assets/IMGS/Dastebandi/khodro.jpg" className={styles.imgCont}/>
+                                <img src="/IMGS/Dastebandi/khodro.jpg" className={styles.imgCont}/>
                             </div>
                             <p className={styles.text}>خودرو و موتورسیکلت</p>
                         </Link>

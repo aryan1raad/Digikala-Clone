@@ -7,7 +7,7 @@ const takhfifPercent = (prevPrice, price) => {
 }
 const items = [
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/1.webp',
+    img: '/IMGS/PishnahadIMGs/1.webp',
     title: 'کپسول ویتامین ث و زینک 10 میلی گرمی  بسته 60 عددی',
     prevPrice: formatWithComma(506000),
     price: formatWithComma(154000),
@@ -19,7 +19,7 @@ const items = [
     rate: 4.4
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/2.webp',
+    img: '/IMGS/PishnahadIMGs/2.webp',
     title: 'هدفون بلوتوثی ورنا مدل Airpods pro K14',
     prevPrice: formatWithComma(810000),
     price: formatWithComma(565000),
@@ -37,7 +37,7 @@ const items = [
     category: 'digitalProducts'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/4.webp',
+    img: '/IMGS/PishnahadIMGs/4.webp',
     title: 'گوشی موبایل اپل مدل iPhone 15 Ch دو سیم‌ کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت ',
     prevPrice: formatWithComma(145999000),
     price: formatWithComma(142999000),
@@ -55,7 +55,7 @@ const items = [
     category: 'mobile'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/3.webp',
+    img: '/IMGS/PishnahadIMGs/3.webp',
     title: 'کلاژینو بیوتی سه بسته 30 عددی',
     prevPrice: formatWithComma(7500000),
     price: formatWithComma(3488980),
@@ -70,7 +70,7 @@ const items = [
     rate: 4.1
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/5.webp',
+    img: '/IMGS/PishnahadIMGs/5.webp',
     title: ' هدفون بی سیم ادیفایر مدل X3',
     prevPrice: formatWithComma(1049000),
     price: formatWithComma(799000),
@@ -88,7 +88,7 @@ const items = [
     category: 'digitalProducts'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/6.webp',
+    img: '/IMGS/PishnahadIMGs/6.webp',
     title: 'جوراب ساق بلند مردانه اسپست مدل ASP-XSH-VRTAA1 مجموعه 3 عددی',
     prevPrice: formatWithComma(600000),
     price: formatWithComma(349900),
@@ -105,7 +105,7 @@ const items = [
     category: 'clothing'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/7.webp',
+    img: '/IMGS/PishnahadIMGs/7.webp',
     title: 'کتاب دیدار با تاریکی اثر محمدعلی حمصیان انتشارات کتابستان معرفت',
     prevPrice: formatWithComma(332000),
     price: formatWithComma(250000),
@@ -122,7 +122,7 @@ const items = [
     rate: 4.3
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/8.webp',
+    img: '/IMGS/PishnahadIMGs/8.webp',
     title: 'کرم آبرسان صورت گلاما مدل Hyaluronic Acid مناسب برای انواع پوست حجم 50 میلی‌لیتر',
     prevPrice: formatWithComma(1450000),
     price: formatWithComma(180000),
@@ -140,7 +140,7 @@ const items = [
     category: 'makeupCleaning'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/9.webp',
+    img: '/IMGS/PishnahadIMGs/9.webp',
     title: 'کرم مرطوب کننده دست آرت وینا مدل اوره 10 درصد مناسب پوست خشک و آسیب دیده حجم 50 میلی لیتر',
     prevPrice: formatWithComma(1485000),
     price: formatWithComma(499900),
@@ -158,7 +158,7 @@ const items = [
     category: 'makeupCleaning'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/10.webp',
+    img: '/IMGS/PishnahadIMGs/10.webp',
     title: 'کرم آبرسان صورت آرت وینا مدل HA+ مناسب انواع پوست حجم 50 میلی لیتر',
     prevPrice: formatWithComma(1222000),
     price: formatWithComma(475000),
@@ -176,7 +176,7 @@ const items = [
     category: 'makeupCleaning'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/11.webp',
+    img: '/IMGS/PishnahadIMGs/11.webp',
     title: 'کرم دست فوق سبک و آبرسان مورینگا اِمو مدل 1 انواع پوست کاسه‌ای 250 میلی‌لیتر',
     prevPrice: formatWithComma(230000),
     price: formatWithComma(115500),
@@ -194,7 +194,7 @@ const items = [
     category: 'makeupCleaning'
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/12.webp',
+    img: '/IMGS/PishnahadIMGs/12.webp',
     title: 'اکستریت د پرفیوم زنانه عطر یانی مدل سیمرغ با رایحه معتدل حجم 50 میلی‌لیتر',
     prevPrice: formatWithComma(3900000),
     price: formatWithComma(3510000),
@@ -215,7 +215,7 @@ const items = [
     rate: 4.8
   },
   {
-    img: '/src/assets/IMGS/PishnahadIMGs/13.webp',
+    img: '/IMGS/PishnahadIMGs/13.webp',
     title: 'زعفران مصطفوی - 4.608 گرم',
     prevPrice: formatWithComma(1897300),
     price: formatWithComma(1620000),
@@ -230,7 +230,7 @@ const items = [
     rate: 4.9
   },
   {
-    img: '/src/assets/IMGS/TotalIMGs/14.webp',
+    img: '/IMGS/TotalIMGs/14.webp',
     title: 'گوشی موبایل اپل مدل iPhone 17 Pro Max ZAA تک سیم کارت + eSim ظرفیت 256 گیگابایت و رم 12 گیگابایت - نات اکتیو',
     price: formatWithComma(404999000),
     priceNumber: 404999000,
@@ -246,7 +246,7 @@ const items = [
     category: 'mobile'
   },
   {
-    img: '/src/assets/IMGS/TotalIMGs/15.webp',
+    img: '/IMGS/TotalIMGs/15.webp',
     title: 'گوشی موبایل اپل مدل iPhone 17 CH دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - نات اکتیو',
     price: formatWithComma(299999000),
     priceNumber: 299999000,
@@ -262,7 +262,7 @@ const items = [
     category: 'mobile'
   },
   {
-    img: '/src/assets/IMGS/TotalIMGs/16.webp',
+    img: '/IMGS/TotalIMGs/16.webp',
     title: 'لپ‌تاپ لنوو مدل IdeaPad 1 15IJL7 با پردازنده Celeron N4500، رم DDR4 8GB با فرکانس 2933MHz، حافظه SSD با ظرفیت 256GB، نمایشگر 15.6 اینچ TN با وضوح Full HD',
     price: formatWithComma(49400000),
     priceNumber: 49400000,
@@ -281,6 +281,51 @@ const items = [
     ],
     rate: 4.3,
     category: 'laptop'
+  },
+  {
+    img: '/IMGS/TotalIMGs/17.webp',
+    title: 'ترازو دیجیتال پرسونال اسکیل مدل 2003B',
+    price: formatWithComma(1630000),
+    priceNumber: 1630000,
+    id: 17,
+    colors: ['white'],
+    properties: [
+      { top: 'حداکثر وزن قابل اندازه‌گیری', bottom: '180 کیلوگرم' },
+      { top: 'منبع انرژی ترازو', bottom: 'باتری' },
+      { top: 'دقت سنجش ترازو', bottom: '50 گرم' }
+    ],
+    rate: 3.9,
+    category: 'massage'
+  },
+  {
+    img: '/IMGS/TotalIMGs/18.webp',
+    title: 'نیم ست طلا 18 عیار زنانه طلای کامک مدل تراش گل',
+    prevPrice: formatWithComma(504000000),
+    price: formatWithComma(443000000),
+    priceNumber: 443000000,
+    percent: Math.round(takhfifPercent(504000000, 443000000)),
+    id: 18,
+    colors: ['white'],
+    properties: [
+      { top: 'حداکثر وزن قابل اندازه‌گیری', bottom: '180 کیلوگرم' },
+      { top: 'منبع انرژی ترازو', bottom: 'باتری' },
+      { top: 'دقت سنجش ترازو', bottom: '50 گرم' }
+    ],
+    rate: 3.9,
+    category: 'jewlrey'
+  },
+    {
+    img: '/IMGS/TotalIMGs/19.webp',
+    title: 'ست چاقو آشپزخانه 6 پارچه نینجا مدل K32006EU',
+    price: formatWithComma(50900000),
+    priceNumber: 50900000,
+    id: 19,
+    colors: ['gray'],
+    properties: [
+      { top: 'جنس تیغه', bottom: 'فولاد کربنی' }
+    ],
+    rate: 4.2,
+    category: 'kitchen'
   }
 ];
 

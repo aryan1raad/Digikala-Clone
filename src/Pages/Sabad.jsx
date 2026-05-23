@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo } from "react"
 import { ProductContext } from "../App"
 import styles from '../assets/Styles/Sabad.module.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) => {
   const colorNames = {
     blue: { persian: 'آبی', secondUsed: '#5288ff' },
@@ -16,10 +16,12 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
     orange: { persian: 'نارنجی', secondUsed: '#e67700' },
     purple: { persian: 'بنفش', secondUsed: 'purple' },
   };
-
-  const { items } = useContext(ProductContext);
+  const navigate = useNavigate();
+  const { items , user } = useContext(ProductContext);
   //نیو آیتمز دو پراپرتی رنگ و آیتمی که از آرایه ی آیتمز گرفته را درخود دارد
-
+  if(!user || !user.isAuthorized) {
+    return null
+  }
   let newItems = [];
 
 
@@ -108,7 +110,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
                 <div style={{ fontSize: '12px', fontWeight: '600', color: '#23254e' }}>جمع سبد خرید</div>
                 <div style={{ display: 'flex' }}>
                   {Intl.NumberFormat().format(ProductsAtCart.reduce((acc, curr) => acc + (curr.foundItem.priceNumber * curr.tedad), 0))}
-                  <div className={styles.toman}><img src="src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" /></div>
+                  <div className={styles.toman}><img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" /></div>
                 </div>
               </div>
               <div></div>

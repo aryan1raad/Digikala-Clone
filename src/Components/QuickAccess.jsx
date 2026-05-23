@@ -6,56 +6,56 @@ export const QuickAccess = () => {
             <div className={styles.QuickAccess}>
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\shopping.png" />
+                        <img src="/IMGS/LandingSVGs/shopping.png" />
                     </div>
                     <span>ارسال‌فوری خواربار</span>
                 </div>
 
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\Tala.png" />
+                        <img src="/IMGS/LandingSVGs/Tala.png" />
                     </div>
                     <span>طلای دیجیتال</span>
                 </div>
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\truck.png" />
+                        <img src="/IMGS/LandingSVGs/truck.png" />
                     </div>
                     <span>ارسال‌رایگان</span>
                 </div>
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\tala2.png" />
+                        <img src="/IMGS/LandingSVGs/tala2.png" />
                     </div>
                     <span>خرید آنی طلا</span>
                 </div>                
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\vaam.png" />
+                        <img src="/IMGS/LandingSVGs/vaam.png" />
                     </div>
                     <span>وام بانکی دیجی پی</span>
                 </div>
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\taghvim.png" />
+                        <img src="/IMGS/LandingSVGs/taghvim.png" />
                     </div>
                     <span>ارسال‌فوری خواربار</span>
                 </div>
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\kune.png" />
+                        <img src="/IMGS/LandingSVGs/kune.png" />
                     </div>
                     <span>آرامش خود را حفظ کنید</span>
                 </div>
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\khune2.jpg" />
+                        <img src="/IMGS/LandingSVGs/khune2.jpg" />
                     </div>
                     <span>خانه بمانیم</span>
                 </div>
                 <div className={styles.Quick}>
                     <div className={styles.QuickImgCont}>
-                        <img src="src\assets\IMGS\LandingSVGs\aghsaat.png" />
+                        <img src="/IMGS/LandingSVGs/aghsaat.png" />
                     </div>
                     <span>ارسال‌فوری خواربار</span>
                 </div>

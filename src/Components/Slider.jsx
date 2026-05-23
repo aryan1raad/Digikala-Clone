@@ -146,7 +146,7 @@ export const Slider = ({ SliderIMGs }) => {
         >
             {SliderIMGs.map((image, index) => (
                 <div key={index} className={styles.Slider_IMG_Cont}>
-                    <img src={image} alt="" className={styles.Slider_IMG} draggable="false" />
+                    <img src={image.src} alt="" className={styles.Slider_IMG} draggable="false" />
                 </div>
             ))}
         </div>

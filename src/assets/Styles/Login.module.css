@@ -33,8 +33,8 @@
 .ComeBack{
     position: absolute;
     bottom: 50%;
-    transform: translateY(-50%);
-    right: 0;
+    transform: translateY(-40%);
+    right: -10px;
 }
 .textH1{
     font-weight: 600;

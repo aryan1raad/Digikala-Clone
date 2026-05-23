@@ -64,7 +64,7 @@ export const Pishnahad = ({img}) => {
                     </h3>
                     <div className={styles.pricePercent}>
                       <span className={styles.price} dir='ltr'>
-                        <img src="src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" style={{width:'11px'}}/>{ProductImg.price}
+                        <img src="/IMGS/PishnahadIMGs/SVGs/toman.png" style={{width:'11px'}}/>{ProductImg.price}
                       </span >
                       <div className={styles.percent}>
                         {ProductImg.percent}%
@@ -84,10 +84,10 @@ export const Pishnahad = ({img}) => {
       <div className={styles.right}>
         <div className={styles.imgConts}>
           <div className={styles.img1cont}>
-            <img src="src/assets/IMGS/PishnahadIMGs/SVGs/Amazings.svg" />
+            <img src="/IMGS/PishnahadIMGs/SVGs/Amazings.svg" />
           </div>
           <div className={styles.img2cont}>
-            <img src="src/assets/IMGS/PishnahadIMGs/SVGs/Amazing2.svg" />
+            <img src="/IMGS/PishnahadIMGs/SVGs/Amazing2.svg" />
           </div>
         </div>
         <div className={styles.moshahede}>

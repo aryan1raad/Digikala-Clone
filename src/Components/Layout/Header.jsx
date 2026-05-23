@@ -87,7 +87,7 @@ const Header = () => {
       <div className='headRight'>
         <input type="text" onChange={handleChange} onKeyDown={handleKeyDown} placeholder='جستجو' />
         <Link to='/'>
-          <div className="logo"><img src="/src/assets/IMGS/DigiKalaLOGO.svg" alt="" /></div>
+          <div className="logo"><img src="/IMGS/DigiKalaLOGO.svg" alt="" /></div>
         </Link>
       </div>
     </header>

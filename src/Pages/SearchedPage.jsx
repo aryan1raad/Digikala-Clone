@@ -105,7 +105,7 @@ const SearchedPage = () => {
               {/*مپ کردن محصولات سرچ شده */}
               {showingItems.map((prd , index) => {
                 return (
-                  <div key={prd.id} className={styles.product_div} key={index}>
+                  <div key={prd.id} className={styles.product_div}>
                     <Link to={`/product/${prd.id}`} className={styles.product_a}>
                       <div className={styles.product_inner}>
                         <article className={styles.article}>
@@ -143,7 +143,7 @@ const SearchedPage = () => {
                               <div>
                                 <div className={styles.pricePercent}>
                                   <span className={styles.price} dir='ltr'>
-                                    <img src="/src/assets/IMGS/PishnahadIMGs/SVGs/toman.png" style={{width:'11px'}}/>{prd.price}
+                                    <img src="/IMGS/PishnahadIMGs/SVGs/toman.png" style={{width:'11px'}}/>{prd.price}
                                   </span >
                                   {prd.percent && <div className={styles.percent}>
                                     {prd.percent}%
@@ -174,15 +174,16 @@ const SearchedPage = () => {
                   <div></div>
                 </div>
                 <div style={{padding: '0 20px'}}>
-                {/* {console.log(minPrice , maxPrice)} */}
-                {/* زمانی که شوینگ آیتمز عوض شود ، باید مینیمم و ماکسیمم رنج هم دوباره حساب شوند */}
-                <PriceRange min={minPrice} max={maxPrice} showingItems={showingItems} setShowingItems={setShowingItems} BeforeRange={filteredBeforeRangersRef}/>
+                  {/* {console.log(minPrice , maxPrice)} */}
+                  {/* زمانی که شوینگ آیتمز عوض شود ، باید مینیمم و ماکسیمم رنج هم دوباره حساب شوند */}
+                  <PriceRange min={minPrice} max={maxPrice} showingItems={showingItems} setShowingItems={setShowingItems} BeforeRange={filteredBeforeRangersRef}/>
 
                 </div>
+                {/* رنگ
                 <div style={{padding: '0 20px'}}>
                   <div style={{padding: '12px 0', color: '#3f4064', fontWeight: '700' , fontSize: '19px' , borderBottom: '1px solid #f0f0f1'}}>رنگ</div>
                   <div></div>
-                </div>
+                </div> */}
                 
               </div>
               <div></div>

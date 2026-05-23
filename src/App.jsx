@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useParams, Outlet, Navigate } f
 import './App.css'
 import './assets/Styles/Header.css'
 import GetMainItems from './CustomHooks/Data/GetMainItems'
-import Header from './Components/Layout/header';
+import Header from './Components/Layout/Header';
 import Landing from './Pages/Landing';
 import Product from './Pages/Product'
 import Footer from './Components/Layout/Footer';
@@ -16,19 +16,19 @@ import Sabad from './Pages/Sabad'
 
 // داده‌های استوری
 const Dadaye1 = {
-  img: 'src/assets/StoryDataAssets/Namayangar/Atr.jpg',
+  img: '/IMGS/StoryImgs/Namayangar/Atr.jpg',
   title: 'عطر سیمرغ',
-  video: 'src/assets/StoryDataAssets/videos/simorgh.mp4',
-  productImg: 'src/assets/StoryDataAssets/ProductImages/perfume.jpg',
+  video: '/videos/simorgh.mp4',
+  productImg: '/IMGS/StoryImgs/ProductImages/perfume.jpg',
   textContent: 'اکستریت د پرفیوم زنانه عطر یانی مدل سیمرغ با رایحه معتدل حجم 50 میلی‌لیتر',
   id: 12
 };
 
 const Dadaye2 = {
-  img: 'src/assets/StoryDataAssets/Namayangar/zafferanNamaye.png',
+  img: '/IMGS/StoryImgs/Namayangar/zafferanNamaye.png',
   title: 'زعفران مصطفوی - 4.608 گرم',
-  video: 'src/assets/StoryDataAssets/videos/zaaferan.mp4',
-  productImg: 'src/assets/StoryDataAssets/ProductImages/zaaferan.jpg',
+  video: '/videos/zaaferan.mp4',
+  productImg: '/IMGS/StoryImgs/ProductImages/zaaferan.jpg',
   textContent: 'برنج هیمه با ۴۰ سال سابقه بهترین‌ برنج‌ها را از مزارع مازندران دستچین کرده و به سفره‌های شما می‌آورد.',
   id: 13
 };
@@ -56,7 +56,7 @@ const MainLayout = () => {
         alignContent: 'center'
       }}>
         <img
-          src="src/assets/IMGS/TopBanner.gif"
+          src="/IMGS/TopBanner.gif"
           alt="Top Banner"
           style={{ height: '100%', width: '100%', objectFit: 'cover' }}
         />
