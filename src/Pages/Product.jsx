@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from '../assets/Styles/Product.module.css'
-import { ProductContext } from '../App'
+import { useProductContext } from '../hooks/useProductContext'
 //تمامی آیتم ها درقالب آرایه از اَپ گرفته میشوند
 const Product = ({ SetSelectedProducts, selectedProducts }) => {
-    const { items, user } = useContext(ProductContext);
+    const { items, user } = useProductContext();
     // گرفتن آیدی محصولمان از یو آر ال فعلی
     const { productId } = useParams();
     const navigate = useNavigate()

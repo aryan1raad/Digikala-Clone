@@ -1,5 +1,5 @@
-import { useContext, useEffect, useMemo } from "react"
-import { ProductContext } from "../App"
+import { useEffect, useMemo } from "react"
+import { useProductContext } from "../hooks/useProductContext"
 import styles from '../assets/Styles/Sabad.module.css'
 import { Link, useNavigate } from "react-router-dom";
 const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) => {
@@ -17,7 +17,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
     purple: { persian: 'بنفش', secondUsed: 'purple' },
   };
   const navigate = useNavigate();
-  const { items , user } = useContext(ProductContext);
+  const { items , user } = useProductContext();
   //نیو آیتمز دو پراپرتی رنگ و آیتمی که از آرایه ی آیتمز گرفته را درخود دارد
   if(!user || !user.isAuthorized) {
     return null

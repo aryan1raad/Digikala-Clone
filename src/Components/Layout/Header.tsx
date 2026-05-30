@@ -1,12 +1,11 @@
 import '../../assets/Styles/Header.css'
 import { Link, useNavigate} from 'react-router-dom'
-import { useContext, useEffect, useRef, useState } from 'react'
-import { ProductContext } from '../../App'
+import React, { useEffect, useRef, useState } from 'react'
+import { useProductContext } from '../../CustomHooks/Data/useProductContext'
 
 
 const Header = () => {
-  const {user} = useContext(ProductContext);
-  const {setUser} = useContext(ProductContext);
+  const { user, setUser } = useProductContext();
 
   const navigate = useNavigate();
   const [searchValue , setSearchValue] = useState('');

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useContext } from 'react'
-import { ProductContext } from '../App'
+import { useProductContext } from '../CustomHooks/Data/useProductContext'
 import { Link } from 'react-router-dom';
 import styles from '../assets/Styles/Pishnahad.module.css'
 
@@ -12,15 +11,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel , FreeMode } from 'swiper/modules'
 
 export const Pishnahad = ({img}) => {
-  const RadiusCheck = (index , lastIndex) => {
+  const RadiusCheck = (index:number , lastIndex:number) => {
     if(index===lastIndex) 
       return{borderBottomLeftRadius: '8px',borderTopLeftRadius: '8px'}
     else if(index===0)
       return{borderBottomRightRadius: '8px',borderTopRightRadius: '8px'}
     else return null
   }
-  // const { product } = useContext(ProductContext);
-  const { setProduct } = useContext(ProductContext);
+  // const { product } = useProductContext();
+  const { setProduct } = useProductContext();
   return (
     <div className={styles.Pishnahad}>
       <div dir='rtl' className={styles.left}>
@@ -45,7 +44,7 @@ export const Pishnahad = ({img}) => {
           modules={[Mousewheel, FreeMode]}
           className="mySwiper"
         >
-          {img.map((ProductImg , index) => {
+          {img.map((ProductImg , index:number) => {
             const lastIndex = img.length - 1;
             //استایل سویپر اسلاید مهم است
             return(

@@ -1,7 +1,7 @@
-import { useRef, useEffect, useReducer, use, useState, useContext } from 'react'
+import { useRef, useEffect, useReducer, use, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../assets/Styles/Login.module.css';
-import { ProductContext } from '../App';
+import { useProductContext } from '../CustomHooks/Data/useProductContext';
 
 function minutes_And_seconds(seconds) {
     const mins = Math.floor(seconds / 60);
@@ -13,7 +13,7 @@ const Login = ({MyInitialUser}) => {
     const LoginInputRef = useRef(null);
     const timerIdRef = useRef(null);
     const navigate = useNavigate();
-    const { setUser } = useContext(ProductContext);
+    const { setUser } = useProductContext();
 
     const initialState = {
         status: 'NumberIsGiving',
@@ -172,7 +172,7 @@ const Login = ({MyInitialUser}) => {
                 <div className={styles.row1}>
                     <div className={styles.ComeBack} onClick={() => navigate(-1)} >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#636363" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#636363" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <Link to={'/'}>

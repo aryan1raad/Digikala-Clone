@@ -1,11 +1,15 @@
-const formatWithComma = (num) => {
+import { Products, ProductProperty } from "../../types/product";
+
+const formatWithComma = (num: number): string => {
   return new Intl.NumberFormat().format(num);
 }
-const takhfifPercent = (prevPrice, price) => {
+const takhfifPercent = (prevPrice: number, price: number): number => {
   // عدد ضربدر منفی شده است تا تخفیف مثبت بیان شود
   return ((price / prevPrice) - 1) * -100
 }
-const items = [
+
+//آرایه ای از پروداکت ها
+const items: Products = [
   {
     img: '/IMGS/PishnahadIMGs/1.webp',
     title: 'کپسول ویتامین ث و زینک 10 میلی گرمی  بسته 60 عددی',
@@ -331,7 +335,7 @@ const items = [
 
 
 const GetMainItems = () => {
-    return items
+  return items
 }
 
 export default GetMainItems

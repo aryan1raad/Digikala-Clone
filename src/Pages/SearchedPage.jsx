@@ -1,6 +1,6 @@
 import { Link, useParams, useSearchParams } from "react-router-dom"
-import { ProductContext } from "../App";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useProductContext } from "../hooks/useProductContext";
 import styles from '../assets/Styles/SearchedPage.module.css'
 import PriceRange from "../Components/PriceRange";
 //شوینگ آیتمز در کامپوننت های فرزند هم عوض خواهند شد ، در 
@@ -12,7 +12,7 @@ const SearchedPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { category } = useParams();
 
-  const { items } = useContext(ProductContext);
+  const { items } = useProductContext();
   const [showingItems, setShowingItems] = useState([])
   const query = searchParams.get('q') || '';
 
