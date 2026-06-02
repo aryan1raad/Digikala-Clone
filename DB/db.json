@@ -1,28 +1,16 @@
 {
   "cart": [
     {
-      "productId": "6",
-      "color": "navy",
-      "quantity": 4,
-      "id": "-ua_Cy09M_8"
-    },
-    {
-      "productId": "6",
-      "color": "navy",
-      "quantity": 1,
-      "id": "0BvnWUZkSWs"
-    },
-    {
       "productId": "3",
       "color": "black",
-      "quantity": 2,
-      "id": "UoEdkfFkWwA"
+      "quantity": 6,
+      "id": "V0YzkTChOV4"
     },
     {
-      "productId": "3",
-      "color": "pink",
-      "quantity": 1,
-      "id": "7aP4cOPbQOU"
+      "productId": "11",
+      "color": "green",
+      "quantity": 7,
+      "id": "1lOXgvRKLJk"
     }
   ],
   "products": [
