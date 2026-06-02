@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react"
 import { useProductContext } from "../hooks/useProductContext"
 import styles from '../assets/Styles/Sabad.module.css'
 import { Link, useNavigate } from "react-router-dom";
+import { useGetCart } from "../../DB/services/GetMethod";
 const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) => {
   const colorNames = {
     blue: { persian: 'آبی', secondUsed: '#5288ff' },
@@ -87,8 +88,11 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
     SetSelectedProducts([...selectedProduct, { id: id, color: color }])
   }
 
-
-
+  const { data } = useGetCart();
+  console.log(data)
+  useEffect(() => {
+    if(data) console.log(data)
+   },[])
   // console.log(newItems)
   return (
     <div className={styles.Cont}>

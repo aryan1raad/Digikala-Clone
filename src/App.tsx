@@ -13,7 +13,8 @@ import Footer from './Components/Layout/Footer.tsx';
 import Login from './Pages/Login'
 import SearchedPage from './Pages/SearchedPage'
 import useLocalStorage from './CustomHooks/Data/useLocalStorage'
-import Sabad from './Pages/Sabad'
+import Sabad from './Pages/Sabad.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 type StoryDataType = {
   img: string;
@@ -104,6 +105,7 @@ const MainLayout = () => {
 }
 
 function App() {
+  const queryClient = new QueryClient();
   const [product, setProduct] = useState<Product | null>(null);
 
   const MyInitialUser = {
@@ -125,27 +127,29 @@ function App() {
   } = useLocalStorage<Product[]>('selectedProducts', []);
   return (
     <Router>
-      <ProductContext.Provider value={{ product, setProduct, items, user, setUser }}>
-        <Routes>
-          <Route path='/login' element={<Login MyInitialUser={MyInitialUser} />} />
+      <QueryClientProvider client={queryClient}>
+        <ProductContext.Provider value={{ product, setProduct, items, user, setUser }}>
+          <Routes>
+            <Route path='/login' element={<Login MyInitialUser={MyInitialUser} />} />
 
-          <Route path='/' element={<MainLayout />}>
-            <Route index element={<Landing storyWrapperData={storyWrapperData} />} />
-            <Route path='/search/' element={<SearchedPage />} />
-            <Route path='search/:category' element={<SearchedPage />} />
-            <Route path='/product/:productId' element={<ProductPage SetSelectedProducts={SetSelectedProducts} selectedProducts={selectedProducts} />} />
-            <Route path='/sabaadeKharid' element={<Sabad selectedProduct={selectedProducts} SetSelectedProducts={SetSelectedProducts} removeItem={removeItem} clearAll={clearAll} />} />
-            <Route path="product/undefined" element={
-              <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                <h1 dir='rtl' style={{ color: '#ed1944' }}>محصول مربوطه پیدا نشد</h1>
-              </div>
-            } />
-          </Route>
+            <Route path='/' element={<MainLayout />}>
+              <Route index element={<Landing storyWrapperData={storyWrapperData} />} />
+              <Route path='/search/' element={<SearchedPage />} />
+              <Route path='search/:category' element={<SearchedPage />} />
+              <Route path='/product/:productId' element={<ProductPage SetSelectedProducts={SetSelectedProducts} selectedProducts={selectedProducts} />} />
+              <Route path='/sabaadeKharid' element={<Sabad selectedProduct={selectedProducts} SetSelectedProducts={SetSelectedProducts} removeItem={removeItem} clearAll={clearAll} />} />
+              <Route path="product/undefined" element={
+                <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                  <h1 dir='rtl' style={{ color: '#ed1944' }}>محصول مربوطه پیدا نشد</h1>
+                </div>
+              } />
+            </Route>
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
 
-      </ProductContext.Provider>
+        </ProductContext.Provider>
+      </QueryClientProvider>
     </Router>
   );
 }
