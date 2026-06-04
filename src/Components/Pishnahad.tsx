@@ -2,24 +2,25 @@ import React, { useEffect, useRef } from 'react'
 import { useProductContext } from '../CustomHooks/Data/useProductContext'
 import { Link } from 'react-router-dom';
 import styles from '../assets/Styles/Pishnahad.module.css'
-
+import { Product } from '../types/product';
 //اجرایی سازی با swiper js
+// @ts-ignore
 import 'swiper/css'
+// @ts-ignore
 import 'swiper/css/mousewheel'
 //ایمپورت ماژول
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel , FreeMode } from 'swiper/modules'
 
-export const Pishnahad = ({img}) => {
+export const Pishnahad = ({img} : {img: Product[]}) => {
   const RadiusCheck = (index:number , lastIndex:number) => {
     if(index===lastIndex) 
       return{borderBottomLeftRadius: '8px',borderTopLeftRadius: '8px'}
     else if(index===0)
       return{borderBottomRightRadius: '8px',borderTopRightRadius: '8px'}
-    else return null
+    else return undefined
   }
-  // const { product } = useProductContext();
-  const { setProduct } = useProductContext();
+
   return (
     <div className={styles.Pishnahad}>
       <div dir='rtl' className={styles.left}>
@@ -45,14 +46,13 @@ export const Pishnahad = ({img}) => {
           className="mySwiper"
         >
           {img.map((ProductImg , index:number) => {
+            
             const lastIndex = img.length - 1;
             //استایل سویپر اسلاید مهم است
             return(
               <SwiperSlide key={index} style={{ width: 'auto'}}>
-                <Link to = {`product/${ProductImg.id}`} onClick={()=> { 
-                  setProduct(ProductImg);
-                  console.log(ProductImg)
-                 }}>
+                <Link to = {`product/${ProductImg.id}`}>
+
                   {/* فراخوانی تابع RadiusCheck برای کِرو دور پروداکت اول و آخر */}
                   <div className={styles.card } data-id={index} style={RadiusCheck(index , lastIndex)}>
                     <div className={styles.productImgCont}>

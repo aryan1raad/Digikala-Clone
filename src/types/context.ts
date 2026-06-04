@@ -7,9 +7,11 @@ export interface UserType {
     numOrMail?: string | null;
 }
 export interface ProductContextType {
-    product: Product | null;
-    setProduct: Dispatch<SetStateAction<Product | null>>;
-    items: Product[];
+    //پروداکت و ست پروداکت برای لوکال استورج می باشند
+    //وجودشان بی مصرف است
+    // product: Product | null;
+    // setProduct: Dispatch<SetStateAction<Product | null>>;
+    items?: Product[]; //درکامپوننت اپ یکبار بدون آیتمز فرستاده ایم
     user: UserType;
     setUser: Dispatch<SetStateAction<UserType>>;
 }

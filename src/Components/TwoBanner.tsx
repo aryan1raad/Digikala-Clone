@@ -1,7 +1,10 @@
 import React from 'react'
 import styles from '../assets/Styles/TwoBanner.module.css';
-
-export const TwoBanner = ({img1 , img2}) => {
+interface imgTypes {
+    img1: string,
+    img2: string
+}
+export const TwoBanner = ({img1 , img2}: imgTypes) => {
   return (
     <div className={styles.TwoBanner}>
         <a href="#" className={styles.a_Cont}>

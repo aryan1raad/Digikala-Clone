@@ -5,14 +5,16 @@ import { useProductContext } from '../hooks/useProductContext'
 import useGetProduct from '../../DB/services/GetMethod'
 import { useAddToCart } from '../../DB/services/PostMethod'
 
-const Product = ({ SetSelectedProducts, selectedProducts }) => {
-    // console.log(selectedProducts)
+const Product = () => {
     const { items, user } = useProductContext();
     // گرفتن آیدی محصولمان از یو آر ال فعلی
     const { productId } = useParams();
     const navigate = useNavigate()
+
+    //مهم ترین داده ی این صفحه
     //گرفتن از جی سون سرور با ریکت کوئری
-    const { data: ProductInPage } = useGetProduct(productId);
+    
+    const { data: ProductInPage } : {data: any} = useGetProduct(productId ?? '');
     const { mutate: AddMutate, isPending } = useAddToCart();
 
     useEffect(() => {
@@ -41,10 +43,10 @@ const Product = ({ SetSelectedProducts, selectedProducts }) => {
     const [colorSelected, setColorSelected] = useState('blue');
     // برای نمایش رنگ رف
     const colorRef = useRef(null);
-    const colorSelection = (colorCircle) => {
+    const colorSelection = (colorCircle: string) => {
         setColorSelected(colorCircle);
     }
-    const handleAddtoCart = (id) => {
+    const handleAddtoCart = (id: string) => {
         if (!productId) return;
        
         AddMutate(
@@ -56,9 +58,6 @@ const Product = ({ SetSelectedProducts, selectedProducts }) => {
                 onSuccess: () => navigate('/sabaadeKharid')
             }
         )
-        // برای اضافه کردن به استیت در لوکال استورج
-        // SetSelectedProducts([...selectedProducts, { id: id, color: colorSelected }])
-        // console.log(...selectedProducts)
     }
     if (ProductInPage) {
         return (
@@ -84,7 +83,7 @@ const Product = ({ SetSelectedProducts, selectedProducts }) => {
                             <div className={styles.variant} style={{ display: colorSelected === '' ? 'none' : 'block', }}>
                                 <div dir='rtl' style={{ display: colorSelected === '' ? 'none' : 'block', }} className={styles.rangCont}>
 
-                                    <span style={{ display: colorSelected === '' ? 'none' : 'block', fontWeight: '700', fontSize: '16px', lineHeight: '180%', fontSize: '18px' }}>رنگ:</span>
+                                    <span style={{ display: colorSelected === '' ? 'none' : 'block', fontWeight: '700', fontSize: '16px', lineHeight: '180%', }}>رنگ:</span>
                                     <span ref={colorRef} style={{ display: colorSelected === '' ? 'none' : 'block', color: colorSelected === '' ? 'none' : colorNames[colorSelected].secondUsed, fontWeight: '700', fontSize: '16px', lineHeight: '180%', fontSize: '18px', marginRight: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                         {/* اسم استیت رنگ به فارسی به عنوان محتوا */}
                                         {colorSelected === '' ? '' : colorNames[colorSelected].persian}
@@ -95,7 +94,7 @@ const Product = ({ SetSelectedProducts, selectedProducts }) => {
 
                                 <div dir='rtl' className={styles.circles} style={{ display: 'flex', marginBottom: '16px', flexDirection: 'row', gap: '8px' }}>
                                     {/* مپ کردن رنگ های محصول */}
-                                    {ProductInPage.colors.map((colorCircle, index) => {
+                                    {ProductInPage.colors.map((colorCircle: string, index: number) => {
                                         return (
                                             <div style={{ display: colorSelected === '' ? 'none' : 'flex', background: (colorSelected == colorCircle) ? '#19bfd3' : 'white', border: '1px solid #909090' }} className={styles.circleCont} key={index}>
                                                 <div onClick={() => colorSelection(colorCircle)} className={styles.circle} style={{ background: `${(colorCircle)}`, border: colorCircle === colorSelected ? '4px solid #ffffff' : 'none' }}></div>
@@ -112,7 +111,7 @@ const Product = ({ SetSelectedProducts, selectedProducts }) => {
                                     <div className={styles.propertiesGrid} dir='rtl'>
 
                                         {/* لوپ مپ برای گرفتن جزئیات پراپرتیز محصول[آیتم] */}
-                                        {ProductInPage.properties.map((property, index) => {
+                                        {ProductInPage.properties.map((property: {top: string, bottom: string}, index: number) => {
                                             return (
                                                 <div className={styles.box} key={index}>
                                                     <p className={styles.topProperty} style={{ color: '#81858b', fontSize: '12px' }}>

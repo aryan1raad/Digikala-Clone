@@ -1,7 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery} from "@tanstack/react-query"
 import axios from "axios";
 
-const fetchProduct = async ( id: number | string ) => {
+const fetchProduct = async (id: number | string) => {
     const { data } = await axios.get(`http://localhost:3001/products/${id}`);
     return data //یک محصول
 }
@@ -14,16 +14,16 @@ const fetchCart = async () => {
     return data //سبد خرید بدون جزئیات
 }
 
-const useGetProduct = ( id: number | string ) => {
+const useGetProduct = (id: number | string) => {
     return useQuery({
-        queryKey: ['product' , id], // آیدی باعث میشود در بین تمام کوئری های دیگر بازهم یکتا بماند
+        queryKey: ['product', id], // آیدی باعث میشود در بین تمام کوئری های دیگر بازهم یکتا بماند
         queryFn: () => fetchProduct(id)
     })
 }
 const useGetProducts = () => {
     return useQuery({
         queryKey: ['products'],
-        queryFn: fetchProducts
+        queryFn: () => fetchProducts()
     });
 }
 const useGetCart = () => {
@@ -46,13 +46,11 @@ const useGetCartWithDetails = () => {
 
         select: (cartItems) => {
 
-            return cartItems.map(cartItem => {
+            return cartItems.map((cartItem: any) => {
 
                 const fullProduct =
                     products?.find(
-                        p =>
-                            String(p.id) ===
-                            String(cartItem.productId)
+                        (p:any) => String(p.id) === String(cartItem.productId)
                     );
 
                 return {
@@ -65,4 +63,4 @@ const useGetCartWithDetails = () => {
 }
 
 export default useGetProduct
-export {useGetCart , useGetCartWithDetails , useGetProducts}
+export { useGetCart, useGetCartWithDetails, useGetProducts }

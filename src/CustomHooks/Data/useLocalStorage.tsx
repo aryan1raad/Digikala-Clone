@@ -11,7 +11,7 @@ interface UseLocalStorageReturn<T> {
         clearAll: () => void;
     };
 }
-
+//این بخش فقط برای ثبت نام و ذخیره یوزر کار میکند
 const useLocalStorage = <T,>(
     key: string,
     initValue: T

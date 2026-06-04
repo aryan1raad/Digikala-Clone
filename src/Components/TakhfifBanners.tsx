@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../assets/Styles/TakhfifBanners.module.css'
-export const TakhfifBanners = ({imgLeft}) => {
+export const TakhfifBanners = ({imgLeft} : {imgLeft: string[]}) => {
   return (
     <a className={styles.container}>
         <div className={styles.background}></div>

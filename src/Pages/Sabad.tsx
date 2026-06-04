@@ -4,8 +4,10 @@ import styles from '../assets/Styles/Sabad.module.css'
 import { Link, useNavigate } from "react-router-dom";
 import { useGetCart, useGetCartWithDetails } from "../../DB/services/GetMethod";
 import { useAddToCart, useSubFromCart } from '../../DB/services/PostMethod'
+import { ProductWithDetail } from "../types/product";
 
-const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) => {
+
+const Sabad = () => {
   const colorNames = {
     blue: { persian: 'آبی', secondUsed: '#5288ff' },
     black: { persian: 'مشکی', secondUsed: '#232323' },
@@ -21,8 +23,8 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
   };
   const navigate = useNavigate();
 
-  const { items , user } = useProductContext();
-  const { data: itemsInCart } = useGetCart();
+  const { user } = useProductContext();
+  // const { data: itemsInCart } = useGetCart();
   const { data: CartWithDetail = [] } = useGetCartWithDetails();
   const { mutate: AddMutate } = useAddToCart();
   const { mutate: SubMutate } = useSubFromCart();
@@ -30,24 +32,8 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
   if(!user || !user.isAuthorized) {
     return null
   }
-  let newItems = [];
-  //محصولاتی را که آیدی آنها رابطه دارد ، نگه میداریم تا در رندر کردن  پیمایش آرایه کوتاه تر شود
-  const ProductsRelated = useMemo(() => {
-    if(itemsInCart){
-      for (let i = 0; i < itemsInCart?.length; i++) {
-        const shownUp = items.find(each => each.id == itemsInCart.productId);
-        if(shownUp)
-          return shownUp;
-      }
-    }
-  }, [items , itemsInCart])
 
-  selectedProduct.forEach((thisOne) => {
-    const foundItem = items.find((item) => thisOne.id === item.id)
-    if (foundItem) {
-      newItems.push({ foundItem: foundItem, color: thisOne.color })
-    }
-  });
+
 
 
   const decreaseItem = (productId: string | number, color: string) => {
@@ -73,7 +59,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
           <li className={styles.sdf}>
             {/* محاسبه تعداد کلا با استفاده از پراپرتی تعداد که در این کامپوننت محاسبه شده */}
             <div className={styles.square}>
-              {CartWithDetail.reduce((acc, curr) => acc + curr.quantity, 0)}
+              {CartWithDetail.reduce((acc: number, curr: ProductWithDetail) => acc + curr.quantity, 0)}
             </div>
             <div>سبد خرید</div>
           </li>
@@ -89,7 +75,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
                
                 <div style={{ display: 'flex' }}>
                   {Intl.NumberFormat().format(
-                    CartWithDetail.reduce((acc, curr) => acc + (curr.quantity * curr.productDetails.priceNumber), 0)
+                    CartWithDetail.reduce((acc: number, curr: ProductWithDetail) => acc + (curr.quantity * curr.productDetails.priceNumber), 0)
                   )}
                   <div className={styles.toman}><img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" /></div>
                 </div>
@@ -104,7 +90,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
             {/* {itemsInCart.map((eachItem) => {
 
             })} */}
-            {CartWithDetail.map((itm, index) => {
+            {CartWithDetail.map((itm: ProductWithDetail, index: number) => {
               return (
                 <Link to={`/product/${itm.productDetails.id}`} className={styles.prd} dir="rtl" key={index}>
                   <div className={styles.rightSideDetail}>
@@ -116,7 +102,7 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
                       {/* پریونت دیفالت برای عدم نویگیت به پروداکت مورد نظر */}
                       <div className={styles.tedadCont} onClick={(e) => e.preventDefault()}>
                         {/* اضافه */}
-                        <div onClick={(e) => { e.preventDefault(); addOneItemToCart(itm.productDetails.id, itm.color) }} className={styles.plus}>+</div>
+                        <div onClick={(e) => { e.preventDefault(); addOneItemToCart(String(itm.productDetails.id), itm.color) }} className={styles.plus}>+</div>
                         <div className={styles.tedad}>{itm.quantity}</div>
                         {/* حذف */}
                         <div onClick={(e) => { e.preventDefault(); decreaseItem(itm.productDetails.id, itm.color) }} className={styles.minus}>-</div>
@@ -126,7 +112,9 @@ const Sabad = ({ selectedProduct, SetSelectedProducts, removeItem, clearAll }) =
                     <div style={{ display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
                       <div className={styles.title}>{itm.productDetails.title}</div>
                       <div>
-                        <div style={{ color: '#81858b', fontSize: '14px' }}>{itm.color ? `رنگ ${colorNames[itm.color].persian}` : ''}</div>
+                        {/* ارور */}
+                        {/* به خاطر عدم پیش بینی درست تایپ اسکریپت */}
+                        <div style={{ color: '#81858b', fontSize: '14px' }}>{itm.color ? `رنگ ${colorNames[itm.color as keyof colorNames]?.persian ?? itm.color}` : ''}</div>
                         <div style={{ color: '#81858b', fontSize: '14px' }}>گارانتی اصالت و سلامت فیزیکی کالا</div>
                         <div style={{ color: '#81858b', fontSize: '14px' }}>ارسال دیجی کالا</div>
                       </div>

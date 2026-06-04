@@ -1,7 +1,10 @@
 import React from 'react'
 import styles from '../assets/Styles/Banners.module.css'
 import { Link } from 'react-router-dom'
-export const Banners = ({img}) => {
+export const Banners = ({img}: {img: {
+    src: string,
+    category: string
+}[]}) => {
   return (
     <div className={styles.container}>
         {img.map((src , index:number) => {

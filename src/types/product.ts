@@ -23,4 +23,11 @@ export interface Product {
     textContent?: string;
 }
 
+export interface ProductWithDetail {
+    color: string,
+    id: string,
+    productDetails: Product,
+    productId: string,
+    quantity: number,
+}
 export type Products = Product[];

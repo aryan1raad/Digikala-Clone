@@ -1,8 +1,11 @@
 import React from 'react'
 import styles from '../assets/Styles/Carousel.module.css'
 //اجرایی سازی با swiper js
+// @ts-ignore
 import 'swiper/css'
+// @ts-ignore
 import 'swiper/css/mousewheel'
+// @ts-ignore
 import 'swiper/css/free-mode'
 //ایمپورت ماژول ها
 import { Swiper , SwiperSlide } from 'swiper/react'

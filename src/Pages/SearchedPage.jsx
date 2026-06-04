@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useProductContext } from "../hooks/useProductContext";
 import styles from '../assets/Styles/SearchedPage.module.css'
 import PriceRange from "../Components/PriceRange";
+import { useGetProducts } from "../../DB/services/GetMethod";
 //شوینگ آیتمز در کامپوننت های فرزند هم عوض خواهند شد ، در 
 //PriceRange و ColorsRange
 const SearchedPage = () => {
@@ -12,8 +13,10 @@ const SearchedPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { category } = useParams();
 
-  const { items } = useProductContext();
-  const [showingItems, setShowingItems] = useState([])
+  // const { items } = useProductContext();
+  const {data: items} = useGetProducts();
+  const [showingItems, setShowingItems] = useState(items || [])
+  console.log(items , showingItems)
   const query = searchParams.get('q') || '';
 
   const filteredBeforeRangersRef = useRef(null);

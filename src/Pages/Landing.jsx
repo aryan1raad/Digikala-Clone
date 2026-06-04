@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { ProductContext } from '../App'
 import { Slider } from '../Components/Slider'
 import { StoryWrapper } from '../Components/StoryWrapper'
-import { QuickAccess } from '../Components/QuickAccess'
+import { QuickAccess } from '../Components/QuickAccess.tsx'
 import { Pishnahad } from '../Components/Pishnahad'
 import { Banners } from '../Components/Banners'
 import { TakhfifBanners } from '../Components/TakhfifBanners'
@@ -43,7 +43,6 @@ const Landing = ({storyWrapperData}) => {
     ]
     const TakhfifIMGs = ['/IMGS/TakhfifIMGs/takhfif-Left/1.webp' , '/IMGS/TakhfifIMGs/takhfif-Left/2.webp' , '/IMGS/TakhfifIMGs/takhfif-Left/3.webp' , '/IMGS/TakhfifIMGs/takhfif-Left/4.webp' , '/IMGS/TakhfifIMGs/takhfif-Left/5.webp' ,];
     const BrandCraouselImgs = ['/IMGS/BrandCraouselImgs/1.png' , '/IMGS/BrandCraouselImgs/2.png' , '/IMGS/BrandCraouselImgs/3.jpg' , '/IMGS/BrandCraouselImgs/4.jpg' , '/IMGS/BrandCraouselImgs/5.jpg' , '/IMGS/BrandCraouselImgs/7.png' , '/IMGS/BrandCraouselImgs/8.jpg', '/IMGS/BrandCraouselImgs/9.png' , '/IMGS/BrandCraouselImgs/10.jpg' , '/IMGS/BrandCraouselImgs/11.png' , '/IMGS/BrandCraouselImgs/1.png' , '/IMGS/BrandCraouselImgs/2.png' , '/IMGS/BrandCraouselImgs/3.jpg' , '/IMGS/BrandCraouselImgs/4.jpg' , '/IMGS/BrandCraouselImgs/5.jpg' , '/IMGS/BrandCraouselImgs/7.png' , '/IMGS/BrandCraouselImgs/8.jpg', '/IMGS/BrandCraouselImgs/9.png' , '/IMGS/BrandCraouselImgs/10.jpg' , '/IMGS/BrandCraouselImgs/11.png']
-    // const [product , setProduct] = useState(PishnahadIMGsDetail[0]);
     return (
         <>
             <div style={

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from '../assets/Styles/StoryWrapper.module.css';
 
 //پیاده سازی این اسلایدر با سی اس اس ترنسلیت و ترنسفورم انجام شده است
-export const StoryWrapper = ({ storyWrapperData }) => {
+export const StoryWrapper = ({ storyWrapperData } ) => {
     const StoryRef = useRef(null);
     // موقعیت اسکرول شده :
     const translateXRef = useRef(0);
