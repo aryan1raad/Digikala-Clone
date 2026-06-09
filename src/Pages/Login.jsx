@@ -2,6 +2,7 @@ import { useRef, useEffect, useReducer, use, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../assets/Styles/Login.module.css';
 import { useProductContext } from '../CustomHooks/useProductContext';
+import { useUserStore } from '../Stores/useUserStore';
 
 function minutes_And_seconds(seconds) {
     const mins = Math.floor(seconds / 60);
@@ -13,7 +14,7 @@ const Login = ({MyInitialUser}) => {
     const LoginInputRef = useRef(null);
     const timerIdRef = useRef(null);
     const navigate = useNavigate();
-    const { setUser } = useProductContext();
+    const setUser = useUserStore(state => state.setUser);
 
     const initialState = {
         status: 'NumberIsGiving',

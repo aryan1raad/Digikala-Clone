@@ -53,6 +53,7 @@ export const useSubFromCart = () => {
                 })
                 return res.data
             } else if (existingItem && existingItem.quantity === 1 ) {
+                //حذف
                 const res = await axios.delete(`http://localhost:3001/cart/${existingItem.id}`);
                 return res.data
             }

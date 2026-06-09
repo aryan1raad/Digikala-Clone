@@ -44,7 +44,13 @@ const SearchedPage = () => {
 
     const CategoryTrim = category.trim();
     if (CategoryTrim) {
-      result = result.filter((item) => item.catergory.trim() === CategoryTrim)
+      result = result.filter((item) => {
+        // بررسی ایمن:
+        if (item.category && typeof item.category === 'string') {
+          return item.category.trim() === CategoryTrim;
+        }
+        return false;
+      })
     }
 
     if (sorter === 'price') {
@@ -80,10 +86,13 @@ const SearchedPage = () => {
   }, [baseItems.length])
 
   const showingItems = useMemo(() => {
-    return baseItems.filter(
-      (item) =>
-        item.priceNumber >= currentMin && item.priceNumber <= currentMax
-    );
+    console.log(baseItems)
+    return baseItems.length ?
+      baseItems.filter(
+        (item) =>
+          item.priceNumber >= currentMin && item.priceNumber <= currentMax
+      )
+      : []
   }, [baseItems, currentMin, currentMax]);
   return (
     <div className={styles.Cont}>

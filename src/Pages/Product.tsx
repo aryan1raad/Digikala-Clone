@@ -4,9 +4,10 @@ import styles from '../assets/Styles/Product.module.css'
 import { useProductContext } from '../CustomHooks/useProductContext'
 import useGetProduct from '../../DB/services/GetMethod'
 import { useAddToCart } from '../../DB/services/PostMethod'
+import { useUserStore } from '../Stores/useUserStore'
 
 const Product = () => {
-    const { items, user } = useProductContext();
+    const user = useUserStore(state => state.user);
     // گرفتن آیدی محصولمان از یو آر ال فعلی
     const { productId } = useParams();
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ const Product = () => {
     //مهم ترین داده ی این صفحه
     //گرفتن از جی سون سرور با ریکت کوئری
     
-    const { data: ProductInPage , isLoading , isError} : {data: any} = useGetProduct(productId ?? '');
+    const { data: ProductInPage , isLoading , isError} : {data: any , isLoading: boolean , isError: boolean} = useGetProduct(productId ?? '');
     const { mutate: AddMutate, isPending } = useAddToCart();
 
     useEffect(() => {

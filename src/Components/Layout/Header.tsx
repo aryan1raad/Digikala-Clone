@@ -2,11 +2,14 @@ import '../../assets/Styles/Header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useEffect, useRef, useState } from 'react'
 import { useProductContext } from '../../CustomHooks/useProductContext'
+import { useUserStore } from '../../Stores/useUserStore'
 
 
 const Header = () => {
-  const { user, setUser } = useProductContext();
+  const user = useUserStore(state => state.user);
+  const resetUser = useUserStore(state => state.resetUser);
 
+  
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
 
@@ -54,6 +57,12 @@ const Header = () => {
     navigate(`/search/?q=${searchValue}`)
   }
 
+  const handleUserExit = () => {
+    if (user.isAuthorized || user){
+      resetUser();
+      navigate('/')
+    }
+  }
   return (
     <header>
       {user.isAuthorized ?
@@ -68,18 +77,8 @@ const Header = () => {
             <Link to={'/sabaadeKharid'} onClick={() => setPopOpen(false)} className='Poplink'>
               <div className='NumberOrMail'>سبد خرید</div>
             </Link>
-            <div className='Poplink' onClick={() => setUser({
-              isAuthorized: false,
-              userName: null,
-              numOrMail: null
-            })}
-            >
-              <div className='Exit' onClick={() => setUser({
-                isAuthorized: false,
-                userName: null,
-                numOrMail: null
-              })}
-              >
+            <div className='Poplink' onClick={handleUserExit}>
+              <div className='Exit' onClick={handleUserExit}>
                 خروج از حساب کاربری
               </div>
             </div>
