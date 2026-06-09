@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from '../assets/Styles/Product.module.css'
-import { useProductContext } from '../hooks/useProductContext'
+import { useProductContext } from '../CustomHooks/useProductContext'
 import useGetProduct from '../../DB/services/GetMethod'
 import { useAddToCart } from '../../DB/services/PostMethod'
 
@@ -14,7 +14,7 @@ const Product = () => {
     //مهم ترین داده ی این صفحه
     //گرفتن از جی سون سرور با ریکت کوئری
     
-    const { data: ProductInPage } : {data: any} = useGetProduct(productId ?? '');
+    const { data: ProductInPage , isLoading , isError} : {data: any} = useGetProduct(productId ?? '');
     const { mutate: AddMutate, isPending } = useAddToCart();
 
     useEffect(() => {
@@ -59,6 +59,18 @@ const Product = () => {
             }
         )
     }
+    if(isLoading) {
+        return(
+            <div dir='rtl' style={{padding: '20px'}}>در حال بارگذاری...</div>
+        )
+    }
+    
+    if (isError) {
+        return (
+            <div dir="rtl" style={{ padding: '20px', color: 'red' }}>خطا در دریافت اطلاعات محصولات.</div>
+        )
+    }
+
     if (ProductInPage) {
         return (
             <div className={styles.productSelfCont}>

@@ -1,7 +1,7 @@
 import '../../assets/Styles/Header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useEffect, useRef, useState } from 'react'
-import { useProductContext } from '../../CustomHooks/Data/useProductContext'
+import { useProductContext } from '../../CustomHooks/useProductContext'
 
 
 const Header = () => {

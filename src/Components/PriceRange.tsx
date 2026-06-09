@@ -1,172 +1,236 @@
-import { useState, useRef, useEffect } from 'react';
-import styles from '../assets/Styles/SearchedPage.module.css'
-import { Product, Products } from '../types/product';
+import { useEffect, useMemo, useRef, useState } from "react";
+import styles from "../assets/Styles/SearchedPage.module.css";
+import { useSearchStore } from "../Stores/useSearchStore";
 
 interface PriceRangeProps {
     min?: number;
     max?: number;
-    showingItems: Product[];
-    setShowingItems: React.Dispatch<React.SetStateAction<Product[]>>;
-    BeforeRange: React.MutableRefObject<Product[]>;  // ref حاوی آرایه‌ای از محصولات
 }
 
-const PriceRange = ({ min = 0, max = 50000000, showingItems, setShowingItems, BeforeRange }: PriceRangeProps) => {
-    console.log(showingItems)
-    const [minValue, setMinValue] = useState(min);
-    const [maxValue, setMaxValue] = useState(max);
+const PriceRange = ({ min = 0, max = 50000000 }: PriceRangeProps) => {
+    const setPriceRange = useSearchStore((state) => state.setPriceRange);
 
-    const [dragging, setDragging] = useState<'min' | 'max' | null>(null);
+    const [minValue, setMinValue] = useState(min);
+    console.log('min', min, 'minValue', minValue)
+    const [maxValue, setMaxValue] = useState(max);
+    const [dragging, setDragging] = useState<"min" | "max" | null>(null);
     const [tabIsOpen, setTabOpen] = useState(false);
+
     const trackRef = useRef<HTMLDivElement>(null);
 
-    // تعریف فرمت برای استفاده
-    const format = Intl.NumberFormat();
+    const format = useMemo(() => new Intl.NumberFormat("fa-IR"), []);
+
+    useEffect(() => {
+        setMinValue(min);
+        setMaxValue(max);
+    }, [min, max]);
 
     const getValueFromClientX = (clientX: number) => {
-        if(!trackRef.current) return min;
+        if (!trackRef.current) return min;
 
         const rect = trackRef.current.getBoundingClientRect();
-        let percent = 1 - ((clientX - rect.left) / rect.width);
-        //کلیک های خارج از المنت
-        if (percent < 0) percent = 0;
-        if (percent > 1) percent = 1;
-        // جمع با مینیمم برای از حتما صفر شروع نکردن
-        let raw = min + percent * (max - min);
+        const width = rect.width || 1;
+
+        // برای RTL: درصد را از راست محاسبه کنید
+        let percent = 1 - ((clientX - rect.left) / width);
+
+        // بین 0 و 1 باید باشد
+        percent = Math.max(0, Math.min(1, percent));
+
+        const raw = min + percent * (max - min);
         return Math.round(raw);
     };
 
     const getPercent = (val: number) => {
+        if (max === min) return 0;
         return ((val - min) / (max - min)) * 100;
-    }
-    let newArr: Products | [] = [];
-    const finishPoint = () => {
-        newArr = BeforeRange.current.filter(itm => (itm.priceNumber <= maxValue && itm.priceNumber >= minValue));
-        setShowingItems(newArr)
-    }
-    //آن ماوس داون چیزی را فرخوانی نمیکند
-    //استیت را درگینگ میکند و درنتیجه یوز افکت تریگر میشود
-    useEffect(() => {
-        if (!dragging) {
-            // setMaxValue(max);
-            // setMinValue(min);
-            // return
-            setDragging(null);
-        }
+    };
 
-        const HandleMouseMove = (e: MouseEvent ) => {
+    useEffect(() => {
+        if (!dragging) return;
+
+        const handleMouseMove = (e: MouseEvent) => {
             const newValue = getValueFromClientX(e.clientX);
-            // console.log(newValue)
-            if (dragging === 'max' && newValue >= minValue)
-                setMaxValue(newValue)
-            else if (dragging === 'min' && newValue <= maxValue)
-                setMinValue(newValue)
-            //یا مینیمم رو کاربر حرکت میده یا ماکسیمم رو
-        }
-        const HandleMouseUp = () => {
+
+            if (dragging === "min") {
+                setMinValue((prevMin) => {
+                    const next = Math.min(newValue, maxValue);
+                    return next <= maxValue ? next : prevMin;
+                });
+            }
+
+            if (dragging === "max") {
+                setMaxValue((prevMax) => {
+                    const next = Math.max(newValue, minValue);
+                    return next >= minValue ? next : prevMax;
+                });
+            }
+        };
+
+        const handleMouseUp = () => {
             setDragging(null);
-        }
-        window.addEventListener('mousemove', HandleMouseMove);
-        window.addEventListener('mouseup', HandleMouseUp)
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mouseup", handleMouseUp);
 
         return () => {
-            window.removeEventListener('mousemove', HandleMouseMove)
-            window.removeEventListener('mouseup', HandleMouseUp)
-        }
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseup", handleMouseUp);
+        };
     }, [dragging, minValue, maxValue, min, max]);
 
-    useEffect(() => {
-        if (showingItems.length > 0) {
-            let min = showingItems[0].priceNumber;
-            let max = showingItems[0].priceNumber;
-            for (let i = 0; i < showingItems.length; i++) {
-                //پیدا کردن ماکسیمم و مینیمم
-                if (showingItems[i].priceNumber < min)
-                    min = showingItems[i].priceNumber;
-                if (showingItems[i].priceNumber > max)
-                    max = showingItems[i].priceNumber;
-            }
-            setMaxValue(max);
-            setMinValue(min);
-        }
+    const applyRange = () => {
+        const nextMin = Math.min(minValue, maxValue);
+        const nextMax = Math.max(minValue, maxValue);
+        setPriceRange(nextMin, nextMax);
+    };
 
-    }, [showingItems])
-
-    useEffect(() => {
-        newArr = showingItems.filter(itm => (itm.priceNumber <= maxValue && itm.priceNumber >= minValue));
-    }, [maxValue, minValue])
-
+    const resetRange = () => {
+        setMinValue(min);
+        setMaxValue(max);
+        setPriceRange(min, max);
+    };
 
     const minPercent = getPercent(minValue);
     const maxPercent = getPercent(maxValue);
-    console.log('min:', min, 'max:', max);
+
     return (
-        <div style={{ padding: '12px 0', color: '#3f4064', fontWeight: '700', fontSize: '19px', borderBottom: '1px solid #f0f0f1' }}>
-            <div onClick={() => setTabOpen((prev) => !prev)} style={{ userSelect: 'none' }}>محدوده قیمت</div>
-            <div className={styles.container} style={{ maxHeight: `${tabIsOpen ? '330px' : '0px'}`, padding: `${!tabIsOpen ? 'unset' : '16px 12px'}` }}>
+        <div
+            style={{
+                padding: "12px 0",
+                color: "#3f4064",
+                fontWeight: "700",
+                fontSize: "19px",
+                borderBottom: "1px solid #f0f0f1",
+            }}
+        >
+            <div onClick={() => setTabOpen((prev) => !prev)} style={{ userSelect: "none", cursor: "pointer" }}>
+                محدوده قیمت
+            </div>
+
+            <div
+                className={styles.container}
+                style={{
+                    maxHeight: `${tabIsOpen ? "350px" : "0px"}`,
+                    overflow: "hidden",
+                    transition: "max-height 0.3s ease",
+                    padding: `${!tabIsOpen ? "0" : "16px 12px"}`,
+                }}
+            >
                 <div className={styles.labels}>
                     <div className={styles.PriceRange}>
-                        <div style={{ fontWeight: '700', fontSize: '16px', lineHeight: '2.15', color: '#81858b' }}>از</div>
-                        <div style={{ width: '100%', textAlign: 'center', borderBottom: '1px solid #e0e0e2' }}>
-                            <p style={{ fontWeight: '900', fontSize: '1.7rem', lineHeight: '2.1', color: '#3f4064', marginRight: 'auto', marginLeft: 'auto' }}>
+                        <div style={{ fontWeight: "700", fontSize: "16px", lineHeight: "2.15", color: "#81858b" }}>
+                            از
+                        </div>
+                        <div style={{ width: "100%", textAlign: "center", borderBottom: "1px solid #e0e0e2" }}>
+                            <p
+                                style={{
+                                    fontWeight: "900",
+                                    fontSize: "1.7rem",
+                                    lineHeight: "2.1",
+                                    color: "#3f4064",
+                                    margin: "0",
+                                }}
+                            >
                                 {format.format(minValue)}
                             </p>
                         </div>
-                        <div className={styles.PriceRangeImgCont}><img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{ scale: '0.5' }} /></div>
+                        <div className={styles.PriceRangeImgCont}>
+                            <img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{ scale: "0.5" }} />
+                        </div>
                     </div>
 
                     <div className={styles.PriceRange}>
-                        <div style={{ fontWeight: '700', fontSize: '16px', lineHeight: '2.15', color: '#81858b' }}>از</div>
-                        <div style={{ width: '100%', textAlign: 'center', borderBottom: '1px solid #e0e0e2' }}>
-                            <p style={{ fontWeight: '900', fontSize: '1.7rem', lineHeight: '2.1', color: '#3f4064', marginRight: 'auto', marginLeft: 'auto' }}>
+                        <div style={{ fontWeight: "700", fontSize: "16px", lineHeight: "2.15", color: "#81858b" }}>
+                            تا
+                        </div>
+                        <div style={{ width: "100%", textAlign: "center", borderBottom: "1px solid #e0e0e2" }}>
+                            <p
+                                style={{
+                                    fontWeight: "900",
+                                    fontSize: "1.7rem",
+                                    lineHeight: "2.1",
+                                    color: "#3f4064",
+                                    margin: "0",
+                                }}
+                            >
                                 {format.format(maxValue)}
                             </p>
                         </div>
-                        <div className={styles.PriceRangeImgCont}><img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{ scale: '0.5' }} /></div>
+                        <div className={styles.PriceRangeImgCont}>
+                            <img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{ scale: "0.5" }} />
+                        </div>
                     </div>
                 </div>
 
-                <div ref={trackRef} className={styles.track}>
-                    {/*قسمت خاکستری*/}
+                <div ref={trackRef} className={styles.track} style={{ position: "relative", margin: "20px 0" }}>
                     <div className={styles.trackBackground}></div>
+
                     <div
                         className={styles.filled}
                         style={{
                             right: `${minPercent}%`,
-                            width: `${maxPercent - minPercent}%`
+                            width: `${Math.max(maxPercent - minPercent, 0)}%`,
                         }}
-                    >
-                    </div>
+                    />
+
                     <div
-                        onMouseDown={() => setDragging('min')}
+                        onMouseDown={() => setDragging("min")}
                         className={styles.thumb}
-                        style={{ right: `${minPercent}%` }}
-                    >
-                    </div>
+                        style={{ right: `${minPercent}%`, cursor: "pointer" }}
+                    />
+
                     <div
-                        onMouseDown={() => setDragging('max')}
+                        onMouseDown={() => setDragging("max")}
                         className={styles.thumb}
-                        //این عدد 1.4 برای روهم منطبق نشدن و یو اکس بهتر است
-                        style={{ right: `${maxPercent + 1.4}%` }}
-                    >
-                    </div>
+                        style={{ right: `${maxPercent}%`, cursor: "pointer" }}
+                    />
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }} dir='ltr'>
-                    <span>گرانترین</span>
-                    <span>ارزانترین</span>
+
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "12px", marginBottom: "16px" }} dir="ltr">
+                    <span style={{ fontSize: "12px", color: "#81858b" }}>گرانترین</span>
+                    <span style={{ fontSize: "12px", color: "#81858b" }}>ارزانترین</span>
                 </div>
+
                 <button
-                    onClick={finishPoint}
-                    style={{ width: '100%', backgroundColor: '#00bcd4', color: 'white', fontWeight: '700', padding: '5px', border: 'none', marginTop: '10px' }}
-                >اعمال</button>
+                    type="button"
+                    onClick={applyRange}
+                    style={{
+                        width: "100%",
+                        backgroundColor: "#00bcd4",
+                        color: "white",
+                        fontWeight: "700",
+                        padding: "8px",
+                        border: "none",
+                        marginTop: "10px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                    }}
+                >
+                    اعمال
+                </button>
+
                 <button
-                    onClick={() => { setShowingItems(BeforeRange.current) }}
-                    style={{ width: '100%', background: 'linear-gradient(225deg, #d22c4e, #ee384e, #ef5662)', color: 'white', padding: '5px', border: 'none', marginTop: '10px' }}
-                >بازنشانی محدوده</button>
+                    type="button"
+                    onClick={resetRange}
+                    style={{
+                        width: "100%",
+                        background: "linear-gradient(225deg, #d22c4e, #ee384e, #ef5662)",
+                        color: "white",
+                        fontWeight: "700",
+                        padding: "8px",
+                        border: "none",
+                        marginTop: "10px",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                    }}
+                >
+                    بازنشانی محدوده
+                </button>
             </div>
-
         </div>
-
     );
-}
+};
 
-export default PriceRange
+export default PriceRange;

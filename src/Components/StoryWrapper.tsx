@@ -3,8 +3,16 @@ import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import styles from '../assets/Styles/StoryWrapper.module.css';
 
+//این کامپوننت کامل نیست
+//این کامپوننت کامل نیست
+//این کامپوننت کامل نیست
+//این کامپوننت کامل نیست
+
+
 //پیاده سازی این اسلایدر با سی اس اس ترنسلیت و ترنسفورم انجام شده است
-export const StoryWrapper = ({ storyWrapperData } ) => {
+export const StoryWrapper = ({ storyWrapperData }: {
+    storyWrapperData: unknown
+} ) => {
     const StoryRef = useRef(null);
     // موقعیت اسکرول شده :
     const translateXRef = useRef(0);
@@ -16,12 +24,13 @@ export const StoryWrapper = ({ storyWrapperData } ) => {
     const [isDown, setIsDown] = useState(false);
     // کد های سطر های بعدی برای کنترل نمایش استوری و کنترل 
     const [activeStory , SetActiveStory] = useState(null);
-    const videoRef = useRef(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
     const isMuted = useRef(false);
-    const MuteMessage = useRef(null);
+    //مطمئن نیستم
+    const MuteMessage : React.RefObject<null> = useRef(null);
     //رف برای نگه داشتن آیدی
-    const IDKeeperRef = useRef(null);
-    const progressBarRef = useRef(null);
+    const IDKeeperRef = useRef<number>(null);
+    const progressBarRef = useRef<HTMLDivElement>(null);
     
     const handleTimeUpdate = () => {
         if(videoRef.current && progressBarRef.current){
@@ -29,7 +38,7 @@ export const StoryWrapper = ({ storyWrapperData } ) => {
             progressBarRef.current.style.width = `${percent}%`;
         }
     }
-    const storyIdKeepHandler = (IDvalue) => {
+    const storyIdKeepHandler = (IDvalue: number) => {
         IDKeeperRef.current = IDvalue;
     }
     //هندل کردن میوت با کلیک ویدیو

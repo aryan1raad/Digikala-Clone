@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '../assets/Styles/Slider.module.css';
+import { SliderItem } from '../Pages/Landing';
 
 //پیاده سازی این اسلایدر با اسکرول ذاتی جاواسکریپت انجام شده است
-export const Slider = ({ SliderIMGs }) => {
-    const sliderRef = useRef(null);
-    const timerRef = useRef(null);
+export const Slider = ({ SliderIMGs }: {SliderIMGs: SliderItem[]}) => {
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const timerRef = useRef<number | null>(null);
     
     //کد توسط بوف ادیت شده است
     const [ImgContWidth, setImgContWidth] = useState(0);
@@ -65,7 +66,7 @@ export const Slider = ({ SliderIMGs }) => {
         };
     }, [ImgContWidth]); // این وابستگی باعث می‌شود وقتی عرض محاسبه شد، اسلایدر آپدیت شود
 
-    const handleMouseDown = (e) => {
+    const handleMouseDown = (e: React.MouseEvent) => {
         if (timerRef.current) clearInterval(timerRef.current);
         setIsDown(true);
         if (sliderRef.current) {
@@ -74,7 +75,7 @@ export const Slider = ({ SliderIMGs }) => {
         }
     };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: React.MouseEvent) => {
         if (!isDown) return;
         e.preventDefault();
         if (sliderRef.current) {
@@ -144,7 +145,7 @@ export const Slider = ({ SliderIMGs }) => {
                 scrollbarWidth: 'none'
             }}
         >
-            {SliderIMGs.map((image, index) => (
+            {SliderIMGs.map((image: SliderItem, index:number) => (
                 <div key={index} className={styles.Slider_IMG_Cont}>
                     <img src={image.src} alt="" className={styles.Slider_IMG} draggable="false" />
                 </div>

@@ -9,8 +9,8 @@ import Landing from './Pages/Landing';
 import ProductPage from './Pages/Product'
 import Footer from './Components/Layout/Footer';
 import Login from './Pages/Login'
-import SearchedPage from './Pages/SearchedPage'
-import useLocalStorage from './CustomHooks/Data/useLocalStorage'
+import SearchedPage from './Pages/SearchedPage.tsx'
+import useLocalStorage from './CustomHooks/useLocalStorage'
 import Sabad from './Pages/Sabad'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useGetProducts } from '../DB/services/GetMethod'

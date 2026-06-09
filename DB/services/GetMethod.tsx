@@ -1,4 +1,4 @@
-import { useQuery} from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import axios from "axios";
 
 const fetchProduct = async (id: number | string) => {
@@ -50,7 +50,7 @@ const useGetCartWithDetails = () => {
 
                 const fullProduct =
                     products?.find(
-                        (p:any) => String(p.id) === String(cartItem.productId)
+                        (p: any) => String(p.id) === String(cartItem.productId)
                     );
 
                 return {
