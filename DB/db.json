@@ -3,14 +3,26 @@
     {
       "productId": "3",
       "color": "black",
-      "quantity": 12,
+      "quantity": 21,
       "id": "V0YzkTChOV4"
     },
     {
       "productId": "11",
       "color": "green",
-      "quantity": 10,
+      "quantity": 12,
       "id": "1lOXgvRKLJk"
+    },
+    {
+      "productId": "2",
+      "color": "white",
+      "quantity": 2,
+      "id": "J0WvE5MMKz0"
+    },
+    {
+      "productId": "5",
+      "color": "black",
+      "quantity": 1,
+      "id": "iwv91MsyNZc"
     }
   ],
   "products": [

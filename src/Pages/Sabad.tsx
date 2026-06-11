@@ -1,10 +1,11 @@
-import { useEffect, useMemo } from "react"
-import { useProductContext } from "../CustomHooks/useProductContext"
+import { useEffect } from "react"
 import styles from '../assets/Styles/Sabad.module.css'
 import { Link, useNavigate } from "react-router-dom";
-import { useGetCart, useGetCartWithDetails } from "../../DB/services/GetMethod";
+import { useGetCartWithDetails } from "../../DB/services/GetMethod";
 import { useAddToCart, useSubFromCart } from '../../DB/services/PostMethod'
 import { ProductWithDetail } from "../types/product";
+import { useCartStore } from "../Stores/useCartStore";
+import { useUserStore } from "../Stores/useUserStore";
 
 
 const Sabad = () => {
@@ -23,33 +24,42 @@ const Sabad = () => {
   };
   const navigate = useNavigate();
 
-  const { user } = useProductContext();
-  // const { data: itemsInCart } = useGetCart();
+  const { user } = useUserStore();
+  //ریکت کوئری
   const { data: CartWithDetail = [] } = useGetCartWithDetails();
   const { mutate: AddMutate } = useAddToCart();
   const { mutate: SubMutate } = useSubFromCart();
-  //نیو آیتمز دو پراپرتی رنگ و آیتمی که از آرایه ی آیتمز گرفته را درخود دارد
+
+  //زاستند
+  const cartItems = useCartStore((state) => state.getCartItems());
+    console.log(cartItems)
+
+  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+  const setCartItems = useCartStore((state) => state.setCartItems);
+
   if(!user || !user.isAuthorized) {
     return null
   }
 
-
-
+  // Sync server data to Zustand on mount
+  useEffect(() => {
+    if (CartWithDetail.length > 0) {
+      setCartItems(CartWithDetail);
+    }
+  }, [CartWithDetail, setCartItems]);
 
   const decreaseItem = (productId: string | number, color: string) => {
-    SubMutate({productId , color})
+    decreaseQuantity(productId, color);
+    SubMutate({productId , color});
   };
 
   const addOneItemToCart = (id: string, color: string) => {
-    AddMutate(
-        {
-        productId:id,
-        color:color
-      },
-      {
-        onSuccess:() => console.log('add shod')
-      }
-    )
+    increaseQuantity(id, color);
+    AddMutate({
+      productId:id,
+      color:color
+    });
   }
 
   return (
@@ -75,7 +85,7 @@ const Sabad = () => {
                
                 <div style={{ display: 'flex' }}>
                   {Intl.NumberFormat().format(
-                    CartWithDetail.reduce((acc: number, curr: ProductWithDetail) => acc + (curr.quantity * curr.productDetails.priceNumber), 0)
+                    cartItems.reduce((acc: number, curr) => acc + (curr.quantity * curr.productDetails.priceNumber), 0)
                   )}
                   <div className={styles.toman}><img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" /></div>
                 </div>
@@ -87,10 +97,7 @@ const Sabad = () => {
             </div>
           </div>
           <div style={{ flexDirection: 'column' }} className={styles.prdCont}>
-            {/* {itemsInCart.map((eachItem) => {
-
-            })} */}
-            {CartWithDetail.map((itm: ProductWithDetail, index: number) => {
+            {CartWithDetail.map((itm: any, index: number) => {
               return (
                 <Link to={`/product/${itm.productDetails.id}`} className={styles.prd} dir="rtl" key={index}>
                   <div className={styles.rightSideDetail}>

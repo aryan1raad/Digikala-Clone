@@ -14,6 +14,7 @@ interface useUserStore {
 //ذخیره کاربر
 //زاستند + لوکال استورج
 export const useUserStore = create<useUserStore>()(
+    //دو پرانتز برای نیاز به ارسال تایپ به میان افزار هست
     persist(
         (set) => ({
             user: {

@@ -1,13 +1,15 @@
-import { useContext } from 'react'
-import type { ProductContextType } from '../types/context'
-import { ProductContext } from '../App'
+// این کامپوونت مربوط به ورژن اول است و الان با زاستند هندل میکنیم
 
-export const useProductContext = (): ProductContextType => {
-  const context = useContext(ProductContext)
+// import { useContext } from 'react'
+// import type { ProductContextType } from '../types/context'
+// import { ProductContext } from '../App'
+
+// export const useProductContext = (): ProductContextType => {
+//   const context = useContext(ProductContext)
   
-  if (!context) {
-    throw new Error('useProductContext must be used within ProductContext.Provider')
-  }
+//   if (!context) {
+//     throw new Error('useProductContext must be used within ProductContext.Provider')
+//   }
   
-  return context
-}
+//   return context
+// }

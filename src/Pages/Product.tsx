@@ -5,6 +5,7 @@ import { useProductContext } from '../CustomHooks/useProductContext'
 import useGetProduct from '../../DB/services/GetMethod'
 import { useAddToCart } from '../../DB/services/PostMethod'
 import { useUserStore } from '../Stores/useUserStore'
+import { useCartStore } from '../Stores/useCartStore'
 
 const Product = () => {
     const user = useUserStore(state => state.user);
@@ -17,6 +18,9 @@ const Product = () => {
     
     const { data: ProductInPage , isLoading , isError} : {data: any , isLoading: boolean , isError: boolean} = useGetProduct(productId ?? '');
     const { mutate: AddMutate, isPending } = useAddToCart();
+    
+    // Zustand store
+    const addToCart = useCartStore((state) => state.addToCart);
 
     useEffect(() => {
         window.scrollTo({ top: 0 })
@@ -50,6 +54,20 @@ const Product = () => {
     const handleAddtoCart = (id: string) => {
         if (!productId) return;
        
+        // Add to Zustand store
+        addToCart({
+          productId: id,
+          color: colorSelected,
+          quantity: 1,
+          productDetails: {
+            id: ProductInPage.id,
+            title: ProductInPage.title,
+            img: ProductInPage.img,
+            priceNumber: ProductInPage.priceNumber || parseInt(ProductInPage.price)
+          }
+        });
+
+        // Sync to server
         AddMutate(
             {
                 productId: id,

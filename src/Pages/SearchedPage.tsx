@@ -5,7 +5,6 @@ import styles from '../assets/Styles/SearchedPage.module.css'
 import PriceRange from "../Components/PriceRange";
 import { useGetProducts } from "../../DB/services/GetMethod";
 import { useSearchStore } from "../Stores/useSearchStore";
-import { Product } from "../types/product";
 
 
 const SearchedPage = () => {

@@ -1,7 +1,6 @@
 import { useRef, useEffect, useReducer, use, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../assets/Styles/Login.module.css';
-import { useProductContext } from '../CustomHooks/useProductContext';
 import { useUserStore } from '../Stores/useUserStore';
 
 function minutes_And_seconds(seconds) {
@@ -154,7 +153,8 @@ const Login = ({MyInitialUser}) => {
             console.log("لاگین با موفقیت انجام شد");
             setUser({
                 ...MyInitialUser,
-                numOrMail : NumberOrMail
+                numOrMail : NumberOrMail,
+                isAuthorized: true
             })
             navigate('/');
 
