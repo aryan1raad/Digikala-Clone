@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import styles from "../assets/Styles/SearchedPage.module.css";
+import styles from "../assets/Styles/SearchedPage.module.scss";
 import { useSearchStore } from "../Stores/useSearchStore";
 
 interface PriceRangeProps {

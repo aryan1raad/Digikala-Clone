@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import styles from '../assets/Styles/StoryWrapper.module.css';
+import styles from '../assets/Styles/StoryWrapper.module.scss';
 
 //این کامپوننت کامل نیست
 //این کامپوننت کامل نیست

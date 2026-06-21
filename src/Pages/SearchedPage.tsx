@@ -1,7 +1,7 @@
 import { Link, useParams, useSearchParams } from "react-router-dom"
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useProductContext } from "../CustomHooks/useProductContext";
-import styles from '../assets/Styles/SearchedPage.module.css'
+import styles from '../assets/Styles/SearchedPage.module.scss'
 import PriceRange from "../Components/PriceRange";
 import { useGetProducts } from "../../DB/services/GetMethod";
 import { useSearchStore } from "../Stores/useSearchStore";

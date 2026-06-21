@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-import styles from '../assets/Styles/Landing.module.css'
+import styles from '../assets/Styles/Landing.module.scss'
 import { Product } from '../types/product'
-// import { createContext } from 'react'
-import { useContext } from 'react'
-import { ProductContext } from '../App'
-
 import { Slider } from '../Components/Slider'
 import { StoryWrapper } from '../Components/StoryWrapper'
 import { QuickAccess } from '../Components/QuickAccess'

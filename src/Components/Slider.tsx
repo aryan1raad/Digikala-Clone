@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styles from '../assets/Styles/Slider.module.css';
+import styles from '../assets/Styles/Slider.module.scss';
 import { SliderItem } from '../Pages/Landing';
 
 //پیاده سازی این اسلایدر با اسکرول ذاتی جاواسکریپت انجام شده است

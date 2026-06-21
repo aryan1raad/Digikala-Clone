@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../assets/Styles/QuickAccess.module.css'
+import styles from '../assets/Styles/QuickAccess.module.scss'
 export const QuickAccess = () => {
     return (
         <div className={styles.QuickAccess_Cont}>

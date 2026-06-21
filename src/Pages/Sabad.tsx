@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import styles from '../assets/Styles/Sabad.module.css'
+import styles from '../assets/Styles/Sabad.module.scss'
 import { Link, useNavigate } from "react-router-dom";
 import { useGetCartWithDetails } from "../../DB/services/GetMethod";
 import { useAddToCart, useSubFromCart } from '../../DB/services/PostMethod'

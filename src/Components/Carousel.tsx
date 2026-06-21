@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../assets/Styles/Carousel.module.css'
+import styles from '../assets/Styles/Carousel.module.scss'
 //اجرایی سازی با swiper js
 // @ts-ignore
 import 'swiper/css'

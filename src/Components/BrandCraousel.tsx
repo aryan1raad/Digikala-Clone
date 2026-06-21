@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../assets/Styles/BrandCraousel.module.css'
+import styles from '../assets/Styles/BrandCraousel.module.scss'
 
 //اجرایی سازی با swiper js
 // @ts-ignore

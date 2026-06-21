@@ -1,15 +1,9 @@
 {
   "cart": [
     {
-      "productId": "3",
-      "color": "black",
-      "quantity": 21,
-      "id": "V0YzkTChOV4"
-    },
-    {
       "productId": "11",
       "color": "green",
-      "quantity": 12,
+      "quantity": 7,
       "id": "1lOXgvRKLJk"
     },
     {

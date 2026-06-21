@@ -8,7 +8,7 @@ import Header from './Components/Layout/Header';
 import Landing from './Pages/Landing';
 import ProductPage from './Pages/Product'
 import Footer from './Components/Layout/Footer';
-import Login from './Pages/Login'
+import Login from './Pages/Login.tsx'
 import SearchedPage from './Pages/SearchedPage.tsx'
 import useLocalStorage from './CustomHooks/useLocalStorage'
 import Sabad from './Pages/Sabad'

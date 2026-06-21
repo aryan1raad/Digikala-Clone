@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../assets/Styles/TwoBanner.module.css';
+import styles from '../assets/Styles/TwoBanner.module.scss';
 interface imgTypes {
     img1: string,
     img2: string

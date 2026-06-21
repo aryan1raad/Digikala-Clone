@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../assets/Styles/Banners.module.css'
+import styles from '../assets/Styles/Banners.module.scss'
 import { Link } from 'react-router-dom'
 export const Banners = ({img}: {img: {
     src: string,
