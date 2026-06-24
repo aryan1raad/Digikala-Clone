@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import { useProductContext } from '../CustomHooks/useProductContext'
 import { Link } from 'react-router-dom';
 import styles from '../assets/Styles/Pishnahad.module.scss'
 import { Product } from '../types/product';

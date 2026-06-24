@@ -99,7 +99,7 @@ const PriceRange = ({ min = 0, max = 50000000 }: PriceRangeProps) => {
         <div
             style={{
                 padding: "12px 0",
-                color: "#3f4064",
+                color: "$color-dark-blue",
                 fontWeight: "700",
                 fontSize: "19px",
                 borderBottom: "1px solid #f0f0f1",
@@ -110,7 +110,7 @@ const PriceRange = ({ min = 0, max = 50000000 }: PriceRangeProps) => {
             </div>
 
             <div
-                className={styles.container}
+                className={styles['container']}
                 style={{
                     maxHeight: `${tabIsOpen ? "350px" : "0px"}`,
                     overflow: "hidden",
@@ -118,8 +118,8 @@ const PriceRange = ({ min = 0, max = 50000000 }: PriceRangeProps) => {
                     padding: `${!tabIsOpen ? "0" : "16px 12px"}`,
                 }}
             >
-                <div className={styles.labels}>
-                    <div className={styles.PriceRange}>
+                <div className={styles['labels']}>
+                    <div className={styles['PriceRange']}>
                         <div style={{ fontWeight: "700", fontSize: "16px", lineHeight: "2.15", color: "#81858b" }}>
                             از
                         </div>
@@ -129,19 +129,19 @@ const PriceRange = ({ min = 0, max = 50000000 }: PriceRangeProps) => {
                                     fontWeight: "900",
                                     fontSize: "1.7rem",
                                     lineHeight: "2.1",
-                                    color: "#3f4064",
+                                    color: "$color-dark-blue",
                                     margin: "0",
                                 }}
                             >
                                 {format.format(minValue)}
                             </p>
                         </div>
-                        <div className={styles.PriceRangeImgCont}>
+                        <div className={styles['PriceRangeImgCont']}>
                             <img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{ scale: "0.5" }} />
                         </div>
                     </div>
 
-                    <div className={styles.PriceRange}>
+                    <div className={styles['PriceRange']}>
                         <div style={{ fontWeight: "700", fontSize: "16px", lineHeight: "2.15", color: "#81858b" }}>
                             تا
                         </div>
@@ -151,24 +151,24 @@ const PriceRange = ({ min = 0, max = 50000000 }: PriceRangeProps) => {
                                     fontWeight: "900",
                                     fontSize: "1.7rem",
                                     lineHeight: "2.1",
-                                    color: "#3f4064",
+                                    color: "$color-dark-blue",
                                     margin: "0",
                                 }}
                             >
                                 {format.format(maxValue)}
                             </p>
                         </div>
-                        <div className={styles.PriceRangeImgCont}>
+                        <div className={styles['PriceRangeImgCont']}>
                             <img src="/IMGS/PishnahadIMGs/SVGs/toman.png" alt="" style={{ scale: "0.5" }} />
                         </div>
                     </div>
                 </div>
 
-                <div ref={trackRef} className={styles.track} style={{ position: "relative", margin: "20px 0" }}>
-                    <div className={styles.trackBackground}></div>
+                <div ref={trackRef} className={styles['track']} style={{ position: "relative", margin: "20px 0" }}>
+                    <div className={styles['trackBackground']}></div>
 
                     <div
-                        className={styles.filled}
+                        className={styles['filled']}
                         style={{
                             right: `${minPercent}%`,
                             width: `${Math.max(maxPercent - minPercent, 0)}%`,
@@ -177,13 +177,13 @@ const PriceRange = ({ min = 0, max = 50000000 }: PriceRangeProps) => {
 
                     <div
                         onMouseDown={() => setDragging("min")}
-                        className={styles.thumb}
+                        className={styles['thumb']}
                         style={{ right: `${minPercent}%`, cursor: "pointer" }}
                     />
 
                     <div
                         onMouseDown={() => setDragging("max")}
-                        className={styles.thumb}
+                        className={styles['thumb']}
                         style={{ right: `${maxPercent}%`, cursor: "pointer" }}
                     />
                 </div>

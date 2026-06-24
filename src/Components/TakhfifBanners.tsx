@@ -3,7 +3,7 @@ import styles from '../assets/Styles/TakhfifBanners.module.scss'
 export const TakhfifBanners = ({imgLeft} : {imgLeft: string[]}) => {
   return (
     <a className={styles.container}>
-        <div className={styles.background}></div>
+        <div className={styles['container__background']}></div>
         <div className={styles.right}>
             <div>
                 <img src="/IMGS/TakhfifIMGs/takhfif-Right/fresh.webp" alt="" />
@@ -11,18 +11,18 @@ export const TakhfifBanners = ({imgLeft} : {imgLeft: string[]}) => {
             <div>
                 <img src="/IMGS/TakhfifIMGs/takhfif-Right/fresh-incredible-offer.svg" alt="" />
             </div>
-            <div className={styles.rightTakhfif}>
+            <div className={styles['container__rightTakhfif']}>
                 تا 35% تخفیف
             </div>
         </div>
         <div className={styles.left}>
             {imgLeft.map((ProductImage , index) => {
                 return(            
-                    <div className={styles.product} key={index}>
-                        <div className={styles.ProductImageCont}>
-                            <img src={ProductImage} className={styles.ProductImage} draggable='false'/>
+                    <div className={styles['container--product']} key={index}>
+                        <div className={styles['container__ProductImageCont']}>
+                            <img src={ProductImage} className={styles['container__ProductImageCont--ProductImage']} draggable='false'/>
                         </div>
-                        <span className={styles.number}>40%</span>
+                        <span className={styles['container--number']}>40%</span>
                     </div>
                 )
             })}

@@ -186,11 +186,11 @@ const Login = ({ MyInitialUser }: {
                         ورود | ثبت‌نام
                     </h1>
 
-                    {status === "enterIdentifier" && <p style={{ fontSize: '12px', color: '#3f4064', marginTop: '16px', lineHeight: '2.17', fontWeight: '500' }}>
+                    {status === "enterIdentifier" && <p style={{ fontSize: '12px', color: '$color-dark-blue', marginTop: '16px', lineHeight: '2.17', fontWeight: '500' }}>
                         سلام!
                     </p>}
 
-                    <p style={{ fontSize: '12px', color: '#3f4064', marginBottom: '16px', lineHeight: '2.17', fontWeight: '500' }}>
+                    <p style={{ fontSize: '12px', color: '$color-dark-blue', marginBottom: '16px', lineHeight: '2.17', fontWeight: '500' }}>
                         {status === "enterIdentifier" && "لطفا شماره موبایل یا ایمیل خود را وارد کنید"}
                     </p>
 
@@ -250,7 +250,7 @@ const Login = ({ MyInitialUser }: {
                     <h1 className={styles.textH1}>
                         {codeErrors.code?.message ? "خطا در ورود" : "کد تایید را وارد کنید"}
                     </h1>
-                    <p style={{ fontSize: '12px', color: '#3f4064', marginBottom: '16px', lineHeight: '2.17', fontWeight: '500' }}>
+                    <p style={{ fontSize: '12px', color: '$color-dark-blue', marginBottom: '16px', lineHeight: '2.17', fontWeight: '500' }}>
                         {codeErrors.code?.message ? "لطفا کد [1234] را به درستی وارد کنید." : "کد ارسالی را وارد نمایید."}
                     </p>
 

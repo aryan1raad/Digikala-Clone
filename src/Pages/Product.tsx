@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from '../assets/Styles/Product.module.scss'
-import { useProductContext } from '../CustomHooks/useProductContext'
 import useGetProduct from '../../DB/services/GetMethod'
 import { useAddToCart } from '../../DB/services/PostMethod'
 import { useUserStore } from '../Stores/useUserStore'

@@ -1,4 +1,4 @@
-.Story_MainCont {
+.StoryCont {
     display: flex;
     direction: rtl;
     padding: 16px 0 0 0;
@@ -7,75 +7,114 @@
     width: 100%;
     max-width: 1336px;
     position: relative;
+
+    &__buttonRight {
+        right:   0 ; 
+        top:  52px ; 
+        position: absolute ; 
+        z-index: 1 ; 
+        padding:  10px ; 
+        background-color:  white ; 
+        border-radius: 90px;
+        width:  50px;
+        height:  50px;
+        border: rgb(224 ,224, 226) 1px solid;
+        color: rgb(66, 71, 8 );
+        display:  flex;
+        justify-content:  center;
+        align-items:  center;
+        scale: 0.88;
+        font-weight: 900;
+        text-align:  center;
+    }
+
+    &__buttonLeft {
+        left:   0 ; 
+        top:  52px ; 
+        position: absolute ; 
+        z-index: 1 ; 
+        padding:  10px ; 
+        background-color:  white ; 
+        border-radius: 90px;
+        width:  50px;
+        height:  50px;
+        border: rgb(224 ,224, 226) 1px solid;
+        color: rgb(66, 71, 8 );
+        display:  flex;
+        justify-content:  center;
+        align-items:  center;
+        scale: 0.88;
+        font-weight: 900;
+        text-align:  center;
+    }
+
+
 }
 
-.left{
-    padding: 10px;
+
+.Story{
+    &__wrapper{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0px 50px 0px 0px;
+        /* overflow: hidden; */
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        /* ویژگی‌های مهم برای پرفورمنس */
+        will-change: transform; /* به مرورگر می‌گوید که این المنت تغییر می‌کند */
+    }
+
+    &__container{
+        margin-left: 24px;
+        height: 140px;
+        width: 84px;
+        flex: 0 0 auto;
+        user-select: none;
+    }
+
+    &--title{
+        font-size: 11px;
+        color: #23254e;
+        line-height: 2.17;
+        width: 100%;
+        text-align: center;
+        /* ایجاد محدودیت تکست برای نمایش*/
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
 }
 
-.Story_wrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0px 50px 0px 0px;
-    /* overflow: hidden; */
-    cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    /* ویژگی‌های مهم برای پرفورمنس */
-    will-change: transform; /* به مرورگر می‌گوید که این المنت تغییر می‌کند */
-}
 
-
-.Story_container {
-    margin-left: 24px;
-    height: 140px;
-    width: 84px;
-    flex: 0 0 auto;
-    user-select: none;
-}
-
-.Story_IMG_Gradient {
-    background: linear-gradient(315deg, #e03d96, #7d4c9e);
-    height: 84px;
-}
-.Story_IMG_Gradient{
-    background: linear-gradient(315deg , #e03d96, #7d4c9e);
-    height: 84px;
-}
-.Story_IMG_WHITE{
-    background-color: #fff;
-    width: calc(100% - 6px);
-}
-.Story_IMG_CONT{
-    width: calc(100% - 6px);
-
-}
-.Story_IMG{
+.StoryIMG{
     border-radius: 50%;
     height: 100%;width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.2);
     object-fit: cover;
+
+    &_CONT{
+        width: calc(100% - 6px);
+    }
+
+    &_WHITE{
+        background-color: #fff;
+        width: calc(100% - 6px);
+    }
+
+    &_Gradient{
+        background: linear-gradient(315deg , #e03d96, #7d4c9e);
+        height: 84px;
+    }
+
+    /*  موقعیت دهی به کانتینر گردینت و سفید در کد زیر*/
+    &_Gradient, &_WHITE, &_CONT{
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;align-items: center;
+    }
 }
 
-/*  موقعیت دهی به کانتینر گردینت و سفید در کد زیر*/
-.Story_IMG_Gradient , .Story_IMG_WHITE , .Story_IMG_CONT {
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;align-items: center;
-}
-
-.Story_title{
-    font-size: 11px;
-    color: #23254e;
-    line-height: 2.17;
-    width: 100%;
-    text-align: center;
-    /* ایجاد محدودیت تکست برای نمایش*/
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    /* max-height: 1.7rem; */
-}

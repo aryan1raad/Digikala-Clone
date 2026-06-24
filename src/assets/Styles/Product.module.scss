@@ -1,3 +1,4 @@
+@use "base/variables" as *;
 .cont{
     width:100%;
     max-width: 1676px;
@@ -83,7 +84,7 @@
     grid-template-rows: repeat(2 , 1fr);
 }
 .downProperty{
-    color: #3f4064;
+    color: $color-dark-blue;
     display: -webkit-box;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -193,11 +194,11 @@
     margin-left: 4px;
     font-weight: 700;
     text-decoration: line-through;
-    color: #c0c2c5;
+    color: $color-gray;
 }
 .prevPriceColCont > span {
     margin-right: 4px;margin-left: 4px;
-    background-color: #d32f2f;
+    background-color: $color-red;
     color: white;
     font-weight: 700;
     font-size: 12px;

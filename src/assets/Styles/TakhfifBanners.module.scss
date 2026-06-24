@@ -1,3 +1,5 @@
+@use "base/variables" as *;
+
 .container{
     padding: 16px 40px 12px 40px;
     position: relative;
@@ -9,16 +11,62 @@
     justify-content: space-between;
     background: linear-gradient(267.6deg, rgba(2, 154, 73, .1) 0, rgba(118, 118, 118, 0.101) 100%);
     border-radius: 16px;
+
+    &__background{
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: url('/IMGS/TakhfifIMGs/Background.svg') left no-repeat;
+        opacity: 0.5;
+    }
+
+    &__rightTakhfif{
+        background-color: #029a49;
+        color: white;
+        padding: 0 1rem;
+        font-weight: 600;
+        font-size: 14px;
+        border-radius: 50px;
+        text-align: center;
+    }
+
+    &--product{
+        background-color: #fff;
+        width: 80px;height: 80px;
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;align-items: center;
+        position: relative;
+        padding: 8px;
+        margin-left: 8px;
+        border-radius: 50px;
+    }
+
+    &____ProductImageCont{
+      display: flex;align-items: center;justify-content: center;
+    }
+    &__ProductImageCont--ProductImage{
+        width: 100%;height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &--number{
+        position: absolute;
+        background-color: $color-red;
+        font-weight: 700;
+        color: white;
+        font-size: 12px;
+        padding: 0px 5px;
+        border-radius: 50px;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+    }
 }
-.background{
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: url('/IMGS/TakhfifIMGs/Background.svg') left no-repeat;
-    opacity: 0.5;
-}
+
 .right{
     display: flex;
     align-items: center;
@@ -34,34 +82,7 @@
     top: 0;
     left: 0;
 }
-.rightTakhfif{
-    background-color: #029a49;
-    color: white;
-    padding: 0 1rem;
-    font-weight: 600;
-    font-size: 14px;
-    border-radius: 50px;
-    text-align: center;
-}
-.product{
-    background-color: #fff;
-    width: 80px;height: 80px;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;align-items: center;
-    position: relative;
-    padding: 8px;
-    margin-left: 8px;
-    border-radius: 50px;
-}
-.ProductImage{
-    width: 100%;height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.ProductImageCont{
-    display: flex;align-items: center;justify-content: center;
-}
+
 .left_btn{
     background: #ffffff;
     color: #029a49;
@@ -78,18 +99,7 @@
     opacity: 1;
     z-index: 2;
 }
-.number{
-    position: absolute;
-    background-color: #d32f2f;
-    font-weight: 700;
-    color: white;
-    font-size: 12px;
-    padding: 0px 5px;
-    border-radius: 50px;
-    right: 0;
-    bottom: 0;
-    text-align: center;
-}
+
 @media(min-width:1024px){
     .container{
         padding-left: 16px;
