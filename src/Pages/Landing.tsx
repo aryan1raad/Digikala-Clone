@@ -23,7 +23,7 @@ interface BannerItem {
 }
 
 interface LandingProps {
-    storyWrapperData: unknown
+    storyWrapperData: any
 }
 
 

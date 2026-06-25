@@ -121,14 +121,14 @@ const Sabad = () => {
                       <div>
                         {/* ارور */}
                         {/* به خاطر عدم پیش بینی درست تایپ اسکریپت */}
-                        <div style={{ color: '#81858b', fontSize: '14px' }}>{itm.color ? `رنگ ${colorNames[itm.color as keyof colorNames]?.persian ?? itm.color}` : ''}</div>
+                        <div style={{ color: '#81858b', fontSize: '14px' }}>{itm.color ? `رنگ ${colorNames[itm.color as keyof typeof colorNames]?.persian ?? itm.color}` : ''}</div>
                         <div style={{ color: '#81858b', fontSize: '14px' }}>گارانتی اصالت و سلامت فیزیکی کالا</div>
                         <div style={{ color: '#81858b', fontSize: '14px' }}>ارسال دیجی کالا</div>
                       </div>
                     </div>
                   </div>
 
-                  <div style={itm.color ? { backgroundColor: `${colorNames[itm.color].secondUsed}` } : {}} className={styles.color}></div>
+                  <div style={itm.color ? { backgroundColor: `${colorNames[itm.color as keyof typeof colorNames].secondUsed}` } : {}} className={styles.color}></div>
 
                 </Link>
               )

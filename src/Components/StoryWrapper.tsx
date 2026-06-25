@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import styles from '../assets/Styles/StoryWrapper.module.scss';
 import { StoryDataType } from '../App';
 
-//این کامپوننت کامل نیست
-//این کامپوننت کامل نیست
-//این کامپوننت کامل نیست
-//این کامپوننت کامل نیست
 
 interface storyWrapperDataType {
     id:number,
@@ -17,11 +13,14 @@ interface storyWrapperDataType {
     title:string,
     video:string
 }
+
+
+
 //پیاده سازی این اسلایدر با سی اس اس ترنسلیت و ترنسفورم انجام شده است
 export const StoryWrapper = ({ storyWrapperData }: {
     storyWrapperData: storyWrapperDataType[]
 } ) => {
-
+    const modal = document.getElementById('StoryModal');
     const StoryRef = useRef<HTMLDivElement>(null);
     const leftBTN = useRef<HTMLButtonElement>(null);
     const rightBTN = useRef<HTMLButtonElement>(null);
@@ -80,10 +79,12 @@ export const StoryWrapper = ({ storyWrapperData }: {
 
     const handleClicker = (e: React.MouseEvent<HTMLDivElement>) => {
         //گرفتن استوری کلیک شده با کلوسست
-        const storyContainer = e.target.closest(`.${styles['Story__container']}`);
+        const target = e.target as HTMLElement
+        const storyContainer = target.closest(`.${styles['Story__container']}`);
         if (storyContainer) {
             //AI coded:
-            const index = Array.from(StoryRef.current.children).indexOf(storyContainer);
+            if (!StoryRef.current) return;
+            const index = Array.from(StoryRef.current?.children).indexOf(storyContainer);
             if (index !== -1 && storyWrapperData[index]) {
                 SetActiveStory(storyWrapperData[index]);
                 storyIdKeepHandler(storyWrapperData[index]);
@@ -92,7 +93,8 @@ export const StoryWrapper = ({ storyWrapperData }: {
     }
 
     const RightLeftFunction = (side : 'right' | 'left') => {
-        const max = StoryRef.current.scrollWidth - StoryRef.current.clientWidth;
+        if (!StoryRef.current) return;
+        const max = StoryRef.current?.scrollWidth - StoryRef.current?.clientWidth;
         const min = 0;
 
         let newTranslate = 0;
@@ -229,7 +231,9 @@ export const StoryWrapper = ({ storyWrapperData }: {
             </div>
 
             {/* پورتال برای ویدیو ی استوری */}
-            {activeStory && createPortal(
+            {
+            modal ?
+            activeStory && createPortal(
                 <div
                     className='StoryModalPortal'
                     onClick={() => {
@@ -296,8 +300,10 @@ export const StoryWrapper = ({ storyWrapperData }: {
                         </Link>
 
                     </div>
-                </div>, document.getElementById('StoryModal')
-            )}
+                </div>, modal
+            )
+            : null
+        }
 
         </>
     );

@@ -6,6 +6,6 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src" , "DB"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
