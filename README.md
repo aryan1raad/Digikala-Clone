@@ -1,16 +1,46 @@
-# React + Vite
+# Digikala Clone
+![Logo](https://www.digikala.com/brand/full-horizontal.svg)  
+This project is structured via 2 version: 
+## version1 & version2
+these two version are compeletly different according to thier implementation by their technologies.
+version2 is our last branch , and has updated features with json server handling the server side of our app.  
+For project setup for version2 branch:
+```
+#your setup commands:
+#you have to run command 2 and 3 in two seperate terminals:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+npm i 
+npm run dev
+npm run json-server
+```
+for version1 ***npm run dev*** is just fine.
+## `version 2`
 
-Currently, two official plugins are available:
+#### Technologies🚀
+*   json server
+*   react query
+*   zustand
+*   react hook form
+*   useReducer
+*   react Portal
+*   SCSS
+*   libraries:
+    * swiper
+    
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+data handling are with zustand persist on localStorage (user) and   
+json server (cart and products)
 
-## React Compiler
+## `version 1`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#### Technologies🚀
+*   Context API
+*   localStorage
+*   useState + useReducer
+*   react Portal
+*   CSS
+*   full pure React
 
-## Expanding the ESLint configuration
+data handling are with zustand persist on localStorage (user) and   
+json server (cart and products)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
